@@ -11,7 +11,7 @@ apt-get install apache
 ```
 Will do the trick.
 
-Some configurations that must be present:
+Some configurations that must be present in the config file of apache. On linux it can be found in /etc/httpd/conf/httpd.conf. Don't know the location of windows.
 ```
 DocumentRoot "/var/www"
 <Directory />
@@ -31,9 +31,20 @@ ProxyPass "/movie" "http://localhost:3000/movie"
 ProxyPassReverse "/movie" "http://localhost:3000/movie"
 ```
 
-The "/var/www" is the sn-frontend folder where all the html,js is located. e.g "/home/phcr/Project/sn-frontend" I have symlinked my /varr/www. (ln -s source destination, on linux. e.g ln -s /home/phcr/Project/sn-frontend /var/www)
+The "/var/www" is the sn-frontend folder where all the html,js is located. e.g "/home/phcr/Project/sn-frontend" I have symlinked my /var/www. 
+```
+ln -s source destination, on linux. 
+e.g ln -s /home/phcr/Project/sn-frontend /var/www
+```
 
- If you're running on linux. Make sure that apache can access your project (chmod o+x folder, to make it readable and executable by anyone, see chmod docs for more information. You might have to make the whole home folder readable chmod -R o+x ~/)
+ If you're running on linux. Make sure that apache can access your project 
+```
+chmod o+x folder
+```
+to make it readable and executable by anyone, see chmod docs for more information. You might have to make the whole home folder readable and executable 
+```
+chmod -R o+x ~/
+```
 
  If you're setting up apache on windows, you're on your own. If you get it working, please write how you did it here.
 
