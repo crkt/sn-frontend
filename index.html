@@ -1,8 +1,30 @@
 <html>
 <head>
-        <script data-main="js/main" src="js/require.js"></script>
+        <script data-main="js/main.js" src="js/require.js"></script>
 </head>
 <body>
-<h1>Hello world!</h1>
+<div class="main-content">
+  <h3> Create a movie </h3>
+  <form id="new-movie">
+    <div class="input-div">
+      <label id="movie-title">Title:</label><br>
+      <input type="text" id="movie-title-input"></input>
+    </div>
+    <div class="input-div">
+    <label id="movie-year">Year:</label><br>
+    <input type="text" id="movie-year-input"></input>
+    </div>
+    <div class="input-div">
+    <label id="movie-runtime">Runtime (minutes):</label><br>
+    <input type="text" id="movie-runtime-input"></input>
+    </div>
+    <div class="input-div">
+    <label id="movie-genres">Genres:</label><br>
+    <input type="text" id="movie-genre-input"></input>    
+    </div>
+    <br>
+    <input type="submit" id="post-movie" value="Submit"></input>
+  </form>
+</div>
 </body>
 </html>
