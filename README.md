@@ -11,7 +11,7 @@ apt-get install apache
 ```
 Will do the trick.
 
-Some configurations that must be present in the config file of apache. On linux it can be found in /etc/httpd/conf/httpd.conf. Don't know the location of windows.
+Some configurations that must be present in the config file of apache. On linux it can be found in /etc/httpd/conf/httpd.conf. Don't know the location on windows.
 ```
 DocumentRoot "/var/www"
 <Directory />
