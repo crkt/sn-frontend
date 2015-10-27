@@ -3,6 +3,7 @@ You need to install [leiningen](http://leiningen.org/)
 You will also need to install [Clojure](http://clojure.org/getting_started)
 
 Once you have installed both of them you will run the server by doing:
+(In the terminal, might be different in windows. This is how you would do it in linux/mac)
 ```
 lein repl
 user=> (use 'ring.adapter.jetty)
