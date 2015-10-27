@@ -16,28 +16,28 @@ define(['app/movie/model', 'app/request'], function(Movie, Request) {
 
   // Bind the onChange event to our custom function.
   // E.g when someone enters some text.
-  title.onChange = function (e) {
+  title.onchange = function (e) {
     e.preventDefault(); //Stop the event from propagating. (Bubbling)
     movie.setTitle(e.target.value); // Set the title of the movie.
   }
 
   var year = document.querySelector("#movie-year-input");
 
-  year.onChange = function (e) {
+  year.onchange = function (e) {
     e.preventDefault();
     movie.setYear(e.target.value);
   }
 
   var runtime = document.querySelector("#movie-runtime-input");
 
-  runtime.onChange = function (e) {
+  runtime.onchange = function (e) {
     e.preventDefault();
     movie.setRuntime(e.target.value);
   }
 
   var genres = document.querySelector("#movie-genre-input");
   
-  genres.onChange = function (e) {
+  genres.onchange = function (e) {
     e.preventDefault();
     /**
        Splits the string on , this will yeild an
@@ -61,7 +61,7 @@ define(['app/movie/model', 'app/request'], function(Movie, Request) {
     year.value = "";
     runtime.value = "";
     genres.value = "";
-    movie = new Movie();
+    movie = new Movie();    
   }
 
   var submit = function (e) {
