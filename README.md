@@ -1,16 +1,43 @@
-# How ro run
-You need to install [leiningen](http://leiningen.org/)
-You will also need to install [Clojure](http://clojure.org/getting_started)
+# sn-frontend
 
-Once you have installed both of them you will run the server by doing:
-(In the terminal, might be different in windows. This is how you would do it in linux/mac)
+The sortnight frontend, using javascript and an apache to perform requests to the backend.
+
+## Config
+
+You will need to have [Apache httpd server](https://httpd.apache.org/) installed. 
+If you're running linux, your package manager will probably have apache as an available package in that case:
 ```
-lein repl
-user=> (use 'ring.adapter.jetty)
-user=> (use 'sn-backend.core)
-user=> (run-jetty #'app {:port 3000})
+apt-get install apache
+```
+Will do the trick.
+
+Some configurations that must be present:
+```
+DocumentRoot "/var/www"
+<Directory />
+    AllowOverride none
+    Require all granted
+</Directory>
+
+<Directory "/var/www"> 
+    Options Indexes FollowSymLinks
+
+    AllowOverride none
+
+    Require all granted
+</Directory>
+
+ProxyPass "/movie" "http://localhost:3000/movie"
+ProxyPassReverse "/movie" "http://localhost:3000/movie"
 ```
 
-You can then test to go to http://localhost:3000 and see that the server is running.
+The "/var/www" is the sn-frontend folder where all the html,js is located. e.g "/home/phcr/Project/sn-frontend" I have symlinked my /varr/www. (ln -s source destination, on linux. e.g ln -s /home/phcr/Project/sn-frontend /var/www)
 
-You did it!
+ If you're running on linux. Make sure that apache can access your project (chmod o+x folder, to make it readable and executable by anyone, see chmod docs for more information. You might have to make the whole home folder readable chmod -R o+x ~/)
+
+ If you're setting up apache on windows, you're on your own. If you get it working, please write how you did it here.
+
+## License
+
+Copyright © 2015 SortNight
+
