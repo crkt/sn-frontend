@@ -44,7 +44,7 @@ define(['app/movie/model', 'app/request'], function(Movie, Request) {
        array of the genres, [Action, Drama]
      **/
     var g = e.target.value.split(","); // Split the string on comma
-    movie.setGenre(g);
+    movie.setGenres(g);
   }
 
 

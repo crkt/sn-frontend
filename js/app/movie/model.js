@@ -8,7 +8,7 @@ define([], function() {
     this.title = "";
     this.year = "";
     this.runtime = 0;
-    this.genre = [];
+    this.genres = [];
   }
   
   /**
@@ -40,12 +40,12 @@ define([], function() {
     return this.runtime;
   }
 
-  Movie.prototype.setGenre = function (x) {
-    this.genre = x;
+  Movie.prototype.setGenres = function (x) {
+    this.genres = x;
   }
   
-  Movie.prototype.getGenre = function () {
-    return this.genre;
+  Movie.prototype.getGenres = function () {
+    return this.genres;
   }
 
   // Return the Movie prototype in requirejs
