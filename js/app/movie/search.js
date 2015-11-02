@@ -8,7 +8,25 @@ define(['app/movie/domain/search', 'app/request'], function(Search, Request) {
 
   var search = new Search();
 
+  var title = document.querySelector("#movie-title-input");
+  var year = document.querySelector("#movie-year-input");
+  var runtime = document.querySelector("#movie-run-time-input");
   var genres = document.querySelector("#movie-genre-input");
+
+  title.onchange = function (e) {
+    e.preventDefault();
+    search.setTitle(e.target.value);
+  }
+
+  year.onchange = function (e) {
+    e.preventDefault();
+    search.setYear(e.target.value);
+  }
+
+  runtime.onchange = function (e) {
+    e.preventDefault();
+    search.setRuntime(e.target.value);
+  }
 
   genres.onchange = function(e) {
     e.preventDefault();
@@ -30,6 +48,9 @@ define(['app/movie/domain/search', 'app/request'], function(Search, Request) {
       console.log(args);
     }
     genres.value = "";
+    title.value = "";
+    year.value = "";
+    runtime.value = "";
     search = new Search();    
   }
 
@@ -53,10 +74,13 @@ define(['app/movie/domain/search', 'app/request'], function(Search, Request) {
   // when the form html has been loaded, reset the fields.
   form.onload = function (e) {
     genres.value = "";
+    title.value = "";
+    year.value = "";
+    runtime.value = "";
     search = new Search();
   }
 
-  // exports nothing right now.
+
   exports.onSearch = onSearch;
   return exports;
 
