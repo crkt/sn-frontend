@@ -29,6 +29,8 @@ DocumentRoot "/var/www"
 
 ProxyPass "/movie" "http://localhost:3000/movie"
 ProxyPassReverse "/movie" "http://localhost:3000/movie"
+ProxyPass "/search/movie" "http://localhost:3000/search/movie"
+ProxyPassReverse "/search/movie" "http://localhost:3000/search/movie"
 ```
 
 The "/var/www" is the sn-frontend folder where all the html,js is located. e.g "/home/phcr/Project/sn-frontend" I have symlinked my /var/www. 
