@@ -50,11 +50,12 @@ chmod -R o+x ~/
 
  If you're setting up apache on windows, you're on your own. If you get it working, please write how you did it here.
 
-Just paste these lines into the config file:
-ProxyPass "/movie" "http://localhost:3000/movie"
-ProxyPassReverse "/movie" "http://localhost:3000/movie"
-ProxyPass "/search/movie" "http://localhost:3000/search/movie"
-ProxyPassReverse "/search/movie" "http://localhost:3000/search/movie"
+Just paste these lines into the config file, and change /var/www/ to C:\xampp\htdocs\ and remove the # for:
+LoadModule proxy_connect_module modules/mod_proxy_connect.so
+LoadModule proxy_express_module modules/mod_proxy_express.so
+LoadModule proxy_html_module modules/mod_proxy_html.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+LoadModule proxy_scgi_module modules/mod_proxy_scgi.so
 
 Inside backend, open the db.clj file and change parameters for the dataabase username and password to "root" and "".
 Create database "sortnight" (in phpmyadmin, for example) and run db.sql in that database.
