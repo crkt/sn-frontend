@@ -55,6 +55,10 @@ ProxyPass "/movie" "http://localhost:3000/movie"
 ProxyPassReverse "/movie" "http://localhost:3000/movie"
 ProxyPass "/search/movie" "http://localhost:3000/search/movie"
 ProxyPassReverse "/search/movie" "http://localhost:3000/search/movie"
+
+Inside backend, open the db.clj file and change parameters for the dataabase username and password to "root" and "".
+Create database "sortnight" (in phpmyadmin, for example) and run db.sql in that database.
+
 ## License
 
 Copyright © 2015 SortNight
