@@ -4,6 +4,7 @@ The sortnight frontend, using javascript and an apache to perform requests to th
 
 ## Config
 
+### Linux/Mac
 You will need to have [Apache httpd server](https://httpd.apache.org/) installed. 
 If you're running linux, your package manager will probably have apache as an available package in that case:
 ```
@@ -48,17 +49,18 @@ to make it readable and executable by anyone, see chmod docs for more informatio
 chmod -R o+x ~/
 ```
 
- If you're setting up apache on windows, you're on your own. If you get it working, please write how you did it here.
+### Windows with XAMPP
 
-Just paste these lines into the config file, and change /var/www/ to C:\xampp\htdocs\ and remove the # for:
+Just paste these lines into the config file, set Directory to C:\xampp\htdocs\ and uncomment:
+```
 LoadModule proxy_connect_module modules/mod_proxy_connect.so
 LoadModule proxy_express_module modules/mod_proxy_express.so
 LoadModule proxy_html_module modules/mod_proxy_html.so
 LoadModule proxy_http_module modules/mod_proxy_http.so
 LoadModule proxy_scgi_module modules/mod_proxy_scgi.so
+```
 
-Inside backend, open the db.clj file and change parameters for the dataabase username and password to "root" and "".
-Create database "sortnight" (in phpmyadmin, for example) and run db.sql in that database.
+See the README in sn-backend for information about the database.
 
 ## License
 
