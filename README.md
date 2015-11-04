@@ -50,6 +50,11 @@ chmod -R o+x ~/
 
  If you're setting up apache on windows, you're on your own. If you get it working, please write how you did it here.
 
+Just paste these lines into the config file:
+ProxyPass "/movie" "http://localhost:3000/movie"
+ProxyPassReverse "/movie" "http://localhost:3000/movie"
+ProxyPass "/search/movie" "http://localhost:3000/search/movie"
+ProxyPassReverse "/search/movie" "http://localhost:3000/search/movie"
 ## License
 
 Copyright © 2015 SortNight
