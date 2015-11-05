@@ -4,27 +4,24 @@
 </head>
 <body>
 <div class="main-content">
-  <h3> Create a movie </h3>
-  <form id="new-movie">
+  <h3> Search for movie </h3>
+  <form id="search-for-movie">
+
     <div class="input-div">
-      <label id="movie-title">Title:</label><br>
-      <input type="text" id="movie-title-input"></input>
+      <label id="movie-genre">Genres:</label><br>
+      <input type="text" id="movie-genre-input"></input>
     </div>
+
     <div class="input-div">
-    <label id="movie-year">Year:</label><br>
-    <input type="text" id="movie-year-input"></input>
+      <label id="movie-run-time">Run time:</label><br>
+      <input type="text" id="movie-run-time-input"></input>
     </div>
-    <div class="input-div">
-    <label id="movie-runtime">Runtime (minutes):</label><br>
-    <input type="text" id="movie-runtime-input"></input>
-    </div>
-    <div class="input-div">
-    <label id="movie-genres">Genres:</label><br>
-    <input type="text" id="movie-genre-input"></input>    
-    </div>
-    <br>
-    <input type="submit" id="post-movie" value="Submit"></input>
+    <input type="submit" id="search-movie" value="Search"></input>
   </form>
+  <div class="search-results">
+    <ul id="results">
+    </ul>
+  </div>
 </div>
 </body>
 </html>
