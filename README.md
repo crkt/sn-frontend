@@ -58,7 +58,7 @@ chmod -R o+x ~/
 ### Windows with XAMPP
 
 How to find the config file in XAMPP
-![Screentshot](readme-img/bild.png?raw=true "Screenshot)
+![Screentshot](https://github.com/Fruitschinpo/sn-frontend/blob/master/readme-img/bild.png "Screenshot)
 
 Just paste these lines into the config file httpd.conf, set Directory to C:\xampp\htdocs\ and uncomment:
 ```
