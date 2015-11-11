@@ -12,7 +12,13 @@ apt-get install apache
 ```
 Will do the trick.
 
-Some configurations that must be present in the config file of apache. On linux it can be found in /etc/httpd/conf/httpd.conf or /etc/apache2/conf/apache2.conf. Don't know the location on windows.
+Some configurations that must be present in the config file of apache. On linux it can be found in.
+```
+/etc/httpd/conf/httpd.conf
+/etc/apache2/conf/apache2.conf
+```
+On XAMPP click config for apache and then select httpd.conf
+
 ```
 DocumentRoot "/var/www"
 <Directory />
@@ -51,7 +57,7 @@ chmod -R o+x ~/
 
 ### Windows with XAMPP
 
-Just paste these lines into the config file, set Directory to C:\xampp\htdocs\ and uncomment:
+Just paste these lines into the config file httpd.conf, set Directory to C:\xampp\htdocs\ and uncomment:
 ```
 LoadModule proxy_connect_module modules/mod_proxy_connect.so
 LoadModule proxy_express_module modules/mod_proxy_express.so
