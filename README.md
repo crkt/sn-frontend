@@ -17,7 +17,7 @@ Some configurations that must be present in the config file of apache. On linux 
 /etc/httpd/conf/httpd.conf
 /etc/apache2/conf/apache2.conf
 ```
-On XAMPP click config for apache and then select httpd.conf
+On XAMPP click config for apache and then select httpd.confg
 
 ```
 DocumentRoot "/var/www"
@@ -57,6 +57,9 @@ chmod -R o+x ~/
 
 ### Windows with XAMPP
 
+How to find the config file in XAMPP
+![Screentshot](readme-img/bild.png?raw=true "Screenshot)
+
 Just paste these lines into the config file httpd.conf, set Directory to C:\xampp\htdocs\ and uncomment:
 ```
 LoadModule proxy_connect_module modules/mod_proxy_connect.so
@@ -65,6 +68,7 @@ LoadModule proxy_html_module modules/mod_proxy_html.so
 LoadModule proxy_http_module modules/mod_proxy_http.so
 LoadModule proxy_scgi_module modules/mod_proxy_scgi.so
 ```
+
 
 See the README in sn-backend for information about the database.
 
