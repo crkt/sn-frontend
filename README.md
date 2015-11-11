@@ -74,5 +74,5 @@ See the README in sn-backend for information about the database.
 
 ## License
 
-Copyright © 2015 SortNight
+Copyright © 2015 SortNight 
 
