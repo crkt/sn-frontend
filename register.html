@@ -2,6 +2,7 @@
 
 <html>
 <head>
+    <script data-main="js/main.js" src="js/require.js"></script>
     <link rel="stylesheet" type="text/css" href="css/SortNightCSS.css">
 </head> 
 
@@ -11,14 +12,14 @@
 </body>
     
     <div class="content">
-        <form class="form-3">
+        <form  id="user-form" class="form-3">
         <p class="clearfix">
             <label for="login">E-mail/Username</label>
-            <input type="text" name="login" id="login" placeholder="E-mail/Username">
+            <input type="text" name="loginEmail" id="loginEmail" placeholder="E-mail/Username">
         </p>
         <p class="clearfix">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password"> 
+            <input type="password" name="loginPW" id="loginPW" placeholder="Password"> 
         </p>
         <p class="clearfix">
             <input type="checkbox" name="remember" id="remember">
@@ -33,18 +34,18 @@
         </form>
 
 <body>
-       <form class="form-4">
+       <form id="register-form" class="form-4">
             <p class="clearfix">
             <label for="login">E-mail</label>
-            <input type="text" name="login" id="login" placeholder="E-mail">
+            <input type="text" name="registerEmail" id="registerEmail" placeholder="E-mail">
             </p>
             <p class="clearfix">
             <label for="login">Password</label>
-            <input type="text" name="login" id="login" placeholder="Password">
+            <input type="text" name="registerPW" id="registerPW" placeholder="Password">
             </p>
             <center>
             <p class="clearfix">
-            <input type="submit" name="submit" value="Register">
+            <input type="submit" name="submit" value="Submit">
             </p>
             </center>
     </div> 

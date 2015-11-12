@@ -4,8 +4,6 @@ requirejs.config({
 });
 
 
-requirejs(['app/request', 'app/movie/search', 'app/movie/list'], function(Request, Search, List) {
+requirejs(['app/request', 'app/user/register'], function(Request, UserRegister) {
   
-  Search.onSearch = List.onChange;
-
 });
