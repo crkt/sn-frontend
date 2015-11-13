@@ -2,8 +2,8 @@ define([], function() {
   
   function SearchModel () {
     this.title = "";
-    this.runtime = 0;
-    this.year = 0;
+    this.runtime = "";
+    this.year = "";
     this.genres = [];
   }
 
