@@ -18,7 +18,8 @@ define(['views/search', 'app/request'], function(SearchView, Request) {
     e.preventDefault();
     Request.send("PUT",
                  model,
-                 this.sucess,
+                 "/search/movie",
+                 this.success,
                  this.failure
                  );
     console.log(e);
