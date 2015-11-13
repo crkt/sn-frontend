@@ -9,9 +9,9 @@ define([], function() {
      Only sends with JSON.
      From https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
    **/
-  var postRequest = function(data, dest, success, failure) {
+  var sendDataRequest = function(type, data, dest, success, failure) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", dest, true);
+    xhr.open(type, dest, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Accept", "application/json");
     
@@ -20,12 +20,12 @@ define([], function() {
       failure();
     };
     
-    // If things go as planned, run the success function that was supplied.
-    // if not, the failure function.
+    // If things go as planned, run the success function that was
+    // supplied.  if not, the failure function.
     xhr.onload = function () {
       if (xhr.readyState === 4) {
 	if (xhr.status === 200) {
-	  success(xhr, xhr.response);
+	  success(xhr, JSON.parse(xhr.response));
 	} else {
 	  failure(xhr, xhr.response);
 	}
@@ -39,12 +39,13 @@ define([], function() {
     }
     
     // Sends the data as a JSON object.
+    console.log(JSON.stringify(data));
     xhr.send(JSON.stringify(data));
   };
 
   
   // The functions to export.
-  exports.post = postRequest;
+  exports.send = sendDataRequest;
   
   return exports;
 });
