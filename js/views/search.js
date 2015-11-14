@@ -11,19 +11,40 @@ define(['views/input-widgets', 'models/search'], function(InputWidget, Model) {
     
     this.title = new InputWidget.search("text", "Movie title", "Movie title", 
                                         function (e) {
-                                          model.setTitle(e.target.value);
+                                          e.preventDefault();
+                                          if (e.target.value == "") {
+                                            model.setTitle(undefined);
+                                          } else {
+                                            model.setTitle(e.target.value);
+                                          }
+                                          
                                         });
 
     this.runtime = new InputWidget.search("number", "Runtime in minutes", "Movie runtime", function (e) {
-      model.setRuntime(e.target.value);
+      e.preventDefault();
+      if (e.target.value == "") {
+        model.setRuntime(undefined);
+      } else {
+        model.setRuntime(parseInt(e.target.value));
+      }
     });
     
     this.year = new InputWidget.search("number", "1993", "Movie release year", function (e) {
-      model.setYear(e.target.value);
+      e.preventDefault();
+      if (e.target.value == "") {
+        model.setYear(undefined);
+      } else {
+        model.setYear(parseInt(e.target.value));
+      }
     });
     
     this.genres = new InputWidget.search("text", "action, comedy", "Movie genres", function (e) {
-      model.setGenres(e.target.value);
+      e.preventDefault();
+      if (e.target.value == "") {
+        model.setGenres(undefined);
+      } else {
+        model.setGenres(e.target.value.split(","));
+      }
     });
 
     this.submitbtn = new InputWidget.Button("submit", "Search");
