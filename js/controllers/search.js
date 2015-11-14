@@ -1,17 +1,16 @@
 define(['views/search', 'app/request'], function(SearchView, Request) {
 
-  function Search() {
-    this.view = new SearchView(document.querySelector("#search"), this.submit, this);    
+  function Search(listener) {
+    this.view = new SearchView(document.querySelector("#search"), this.submit, this);   
+    this.listener = listener;
   }
 
-  Search.prototype.success = function (xhr, args) {
-    console.log("SEARCH IS OK");
-    console.log(xhr.response);
+  Search.prototype.success = function (xhr, response) {
+    this.onSuccess(response);
   };
 
-  Search.prototype.failure = function (xhr, args) {
-    console.log("FAILED SEARCH");
-    console.log(xhr.response);
+  Search.prototype.failure = function (xhr, response) {
+    console.log(response);
   }
 
   Search.prototype.submit = function(model,e) {
@@ -19,11 +18,13 @@ define(['views/search', 'app/request'], function(SearchView, Request) {
     Request.send("PUT",
                  model,
                  "/search/movie",
-                 this.success,
-                 this.failure
+                 this.success.bind(this),
+                 this.failure.bind(this)
                  );
-    console.log(e);
-    console.log(model);
+  }
+
+  Search.prototype.onSuccess = function (movies) {
+    this.listener.addMovies(movies);
   }
 
   return Search;

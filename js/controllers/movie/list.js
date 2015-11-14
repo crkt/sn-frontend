@@ -6,8 +6,10 @@ define(['views/movie/list'], function(ListView) {
   }
 
   ListController.prototype.addMovies = function (movies) {
-    for (var x in movies) {
-      this.view.addMovie(x);
+    console.log("adding movies");
+    for (var i = 0; i < movies.length; i++) {
+      var movie = movies[i];
+      this.view.addMovie(movie);     
     }
   }
 
