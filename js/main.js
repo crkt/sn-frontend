@@ -10,5 +10,6 @@ requirejs(['controllers/user/login',
            'views/header'], function(UserLogin, MovieList, Search, Header) {            
              var header = new Header();
              var list = new MovieList();
-             var search = new Search();
+             var search = new Search(list);
+
 });
