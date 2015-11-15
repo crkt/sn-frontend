@@ -1,12 +1,12 @@
 define([], function() {
 
   var User = function () {
-    this.name = "";
-    this.id = "";
-    this.password = "";
+    this.name = undefined;
+    this.id = undefined;
+    this.password = undefined;
   }
 
-  User.prototype.validate = function(user) {
+  User.prototype.validate = function() {
     return (this.name != "" && this.password != "");
   }
 

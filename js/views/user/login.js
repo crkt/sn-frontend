@@ -14,6 +14,7 @@ define(['models/user', 'views/register-widgets'], function(User, Widget) {
 
     this.submitbtn = document.createElement("button");
     this.submitbtn.type = "submit";    
+    this.submitbtn.classList.add("user-submit");
     this.submitbtn.textContent = "Login";
     this.submitbtn.onclick = function (e) {
       e.preventDefault();
@@ -38,10 +39,12 @@ define(['models/user', 'views/register-widgets'], function(User, Widget) {
 
     this.email = new Widget.formInput("text", "Email", "Your email");
     this.password = new Widget.formInput("password", "Password", "Enter a password");
+    this.repassword = new Widget.formInput("password", "Confirm Password", "Re-enter password");
     
     this.submitbtn = document.createElement("button");
-    this.submitbtn.type = "submit";    
-    this.submitbtn.textContent = "Login";
+    this.submitbtn.type = "submit";   
+    this.submitbtn.classList.add("user-submit");
+    this.submitbtn.textContent = "Register";
     this.submitbtn.onclick = function (e) {
       e.preventDefault();
       console.log("Submit");
@@ -49,6 +52,7 @@ define(['models/user', 'views/register-widgets'], function(User, Widget) {
 
     this.form.appendChild(this.email.content);
     this.form.appendChild(this.password.content);
+    this.form.appendChild(this.repassword.content);
     this.form.appendChild(this.submitbtn);
     this.content.appendChild(this.form);
 

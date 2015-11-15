@@ -9,22 +9,3 @@
 .form-input-input {
     display: block;
 }
-
-
-#login {
-    display: none;
-    position: absolute;
-}
-
-#login.active {
-    display: block;
-}
-
-#register {
-    display: none;
-    position: absolute;
-}
-
-#register.active {
-    display: block;    
-}
