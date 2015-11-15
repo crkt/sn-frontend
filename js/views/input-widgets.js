@@ -2,16 +2,16 @@ define([], function() {
 
   var widgets = {};
 
-  function searchInput(type, placeholder, label, onchange) {
+  function Input(type, placeholder, label, onchange) {
     this.content = document.createElement("div");
-    this.content.classList.add("search-input");
+    this.content.classList.add("input-widget");
 
     this.label = document.createElement("label");
-    this.label.classList.add("label");
+    this.label.classList.add("input-label");
     this.label.textContent = label;
 
     this.input = document.createElement("input");
-    this.input.classList.add("input");
+    this.input.classList.add("value-input");
     this.input.type = type;
     this.input.placeholder = placeholder;
     this.input.onchange = onchange;
@@ -27,7 +27,7 @@ define([], function() {
     this.content.value = text;
   }
 
-  widgets.search = searchInput;
+  widgets.Input = Input;
   widgets.Button = Button;
 
   return widgets;

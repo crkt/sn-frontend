@@ -4,8 +4,8 @@ define(['views/user/login', 'app/request'], function(UserView, Request) {
 
     this.content = document.querySelector("#user");  
   
-    this.login = new UserView.Login(this.content);
-    this.register= new UserView.Register(this.content);
+    this.login = new UserView.Login(this.content, this.login, this);
+    this.register= new UserView.Register(this.content, this.register, this);
 
     this.onLogin = onLogin
   }
@@ -21,6 +21,8 @@ define(['views/user/login', 'app/request'], function(UserView, Request) {
 
   User.prototype.register = function (user, e) {
     e.preventDefault();
+    console.log("User obj: " + user);
+    console.log("Register a user");
     Request.send("POST",
                  user,
                  "/user/register",
@@ -31,6 +33,8 @@ define(['views/user/login', 'app/request'], function(UserView, Request) {
 
   User.prototype.login = function (user, e) {
     e.preventDefault();
+    console.log("User obj: " + user);
+    console.log("Login with a user");
     Request.send("PUT",
                  user,
                  "/user/login",
