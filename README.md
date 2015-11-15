@@ -4,6 +4,7 @@ The sortnight frontend, using javascript and an apache to perform requests to th
 
 ## Config
 
+### Linux/Mac
 You will need to have [Apache httpd server](https://httpd.apache.org/) installed. 
 If you're running linux, your package manager will probably have apache as an available package in that case:
 ```
@@ -11,7 +12,13 @@ apt-get install apache
 ```
 Will do the trick.
 
-Some configurations that must be present in the config file of apache. On linux it can be found in /etc/httpd/conf/httpd.conf. Don't know the location on windows.
+Some configurations that must be present in the config file of apache. On linux it can be found in.
+```
+/etc/httpd/conf/httpd.conf
+/etc/apache2/conf/apache2.conf
+```
+On XAMPP click config for apache and then select httpd.confg
+
 ```
 DocumentRoot "/var/www"
 <Directory />
@@ -29,6 +36,8 @@ DocumentRoot "/var/www"
 
 ProxyPass "/movie" "http://localhost:3000/movie"
 ProxyPassReverse "/movie" "http://localhost:3000/movie"
+ProxyPass "/search/movie" "http://localhost:3000/search/movie"
+ProxyPassReverse "/search/movie" "http://localhost:3000/search/movie"
 ```
 
 The "/var/www" is the sn-frontend folder where all the html,js is located. e.g "/home/phcr/Project/sn-frontend" I have symlinked my /var/www. 
@@ -46,7 +55,22 @@ to make it readable and executable by anyone, see chmod docs for more informatio
 chmod -R o+x ~/
 ```
 
- If you're setting up apache on windows, you're on your own. If you get it working, please write how you did it here.
+### Windows with XAMPP
+
+How to find the config file in XAMPP
+[Screentshot](https://github.com/Fruitschinpo/sn-frontend/blob/master/readme-img/bild.png "Screenshot)
+
+Just paste these lines into the config file httpd.conf, set Directory to C:\xampp\htdocs\ and uncomment:
+```
+LoadModule proxy_connect_module modules/mod_proxy_connect.so
+LoadModule proxy_express_module modules/mod_proxy_express.so
+LoadModule proxy_html_module modules/mod_proxy_html.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+LoadModule proxy_scgi_module modules/mod_proxy_scgi.so
+```
+
+
+See the README in sn-backend for information about the database.
 
 ## License
 
