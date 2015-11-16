@@ -21,6 +21,6 @@ requirejs(['controllers/movie/list',
 
              var list = new MovieListController();
              var search = new SearchController(list);
-             var uc = new UserController(main);
+             var uc = new UserController(main.onLogin);
              
 });

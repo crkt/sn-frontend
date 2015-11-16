@@ -1,10 +1,11 @@
-#user #login {
+#user #login,
+#user #register {
     display: none;
 }
 
-
-#user #register {
-
+#user #login.active,
+#user #register.active {
+    display: block;
 }
 
 
