@@ -1,31 +1,31 @@
-define([], function() {
+define(['views/base-widgets'], function(Base) {
   
   var exports = {};
-  
-  function formInput(type, placeholder, label) {
-    this.content = document.createElement("div");
-    this.content.classList.add("form-input");
+
+  function CompoundInput(type, placeholder, label) {
+    Base.Base.call(this, "div");
+    this.addClass("form-input");
     
-    this.label = document.createElement("label");
-    this.label.textContent = label;
-    this.label.classList.add("form-input-label");
+    this.label = new Base.Label(label);
+    this.label.addClass("form-input-label");
 
-    this.input = document.createElement("input");
-    this.input.type = type;
-    this.input.placeholder = placeholder;
-    this.input.classList.add("form-input-input");
+    this.input = new Base.Input(type, placeholder, this.onChange.bind(this));
+    this.input.addClass("form-input-input");
 
-    this.input.onchange = this.onChange;
-
-    this.content.appendChild(this.label);
-    this.content.appendChild(this.input);
+    this.addChild(this.label.element);
+    this.addChild(this.input.element);
   }
 
-  formInput.prototype.onChange = function (e) {
+  CompoundInput.prototype.onChange = function (e) {
+    conesole.log("Reg-widget on change");
     console.log(e.target.value);
   }
 
-  exports.formInput = formInput;
+  CompoundInput.prototype = Object.create(Base.Base.prototype);
+  CompoundInput.prototype.constructor = CompoundInput;
+  
+
+  exports.CompundInput = CompoundInput;
 
   return exports;
 
