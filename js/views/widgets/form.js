@@ -2,14 +2,10 @@ define(['views/widgets/base'], function(Base) {
   
   var exports = {};
 
-  function Form(onsubmit) {
+  function Form(callback) {
     Base.Base.call(this, "form");
-    
-    if (onsubmit) {
-      this.setEvent("onsubmit", onsubmit);
-    } else {
-      this.setEvent("onsubmit", this.onSubmit.bind(this));
-    }
+    this.callback = callback;
+    this.setEvent("onsubmit", this.onSubmit.bind(this));    
   }
 
   Form.prototype = Object.create(Base.Base.prototype);
@@ -17,7 +13,7 @@ define(['views/widgets/base'], function(Base) {
 
   Form.prototype.onSubmit = function (e) {
     e.preventDefault();
-    console.log("form submit yo");
+    this.callback(e);
   };
 
   function CompoundInput(type, placeholder, label, callback) {

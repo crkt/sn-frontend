@@ -6,6 +6,10 @@ define([], function() {
     this.element = document.createElement(element);
   }
 
+  Base.prototype.toggleClass = function (c, t) {
+    this.element.classList.toggle(c, t);
+  }
+
   Base.prototype.setEvent = function(event, f) {
     this.element[event] = f;
   }
@@ -57,14 +61,27 @@ define([], function() {
   Label.prototype = Object.create(Base.prototype);
   Label.prototype.constructor = Label;
 
-  function Button(type, text) {
+  Label.prototype.setContent = function (x) {
+    this.element.textContent = x;
+  }
+
+  function Button(type, text, callback) {
     Base.call(this, "button");
     this.element.type = type;
     this.element.textContent = text;
+    
+    this.callback = callback;
+
+    this.setEvent("onclick", this.onClick.bind(this));
   }
 
   Button.prototype = Object.create(Base.prototype);
   Button.prototype.constructor = Button;
+
+  Button.prototype.onClick = function (e) {
+    e.preventDefault();
+    this.callback(e);
+  }
 
   Button.prototype.setDisabled = function (t) {
     this.element.disabled = t;
