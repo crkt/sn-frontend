@@ -1,5 +1,5 @@
-define(['views/widgets/base', 
-        'views/widgets/form', 
+define(['widgets/base', 
+        'widgets/form', 
         'models/search'], function(Base, FormWidget, Model) 
 {
 

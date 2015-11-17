@@ -1,37 +1,21 @@
-define(['views/widgets/base',
-        'models/movie'], function(Base, Movie) 
+define(['widgets/base',
+        'views/movie/movie-item',
+        'models/movie'], function(Base, MovieItem, Movie) 
 {
-
-  function CompoundLabel(prop,value) {
-    Base.Base.call(this, "div");
-    this.prop = prop;
-    this.value = value;
-    
-    this.proplbl = new Base.Label(prop);
-    this.proplbl.addClass("property");
-
-    this.valuelbl = new Base.Label(value);
-    this.valuelbl.addClass("value");
-
-    this.addChild(this.proplbl.element);
-    this.addChild(this.valuelbl.element);
-  }
-
-  CompoundLabel.prototype = Object.create(Base.Base.prototype);
-  CompoundLabel.prototype.constructor = CompoundLabel;
-  
 
   function ListItem(movie) {
     Base.Base.call(this, "li");
-
-    for (var prop in movie) {
-      var field = new CompoundLabel(prop,movie[prop]);   
-      this.addChild(field.element);
-    }
+    
+    var field = new MovieItem(movie, this.onClick.bind(this));
+    this.addChild(field.element);
   }
 
   ListItem.prototype = Object.create(Base.Base.prototype);
   ListItem.prototype.constructor = ListItem;
+
+  ListItem.prototype.onClick = function (e) {
+    console.log("Clicked list item");
+  }
 
   function List() {
     Base.Base.call(this, "ul");
@@ -54,10 +38,8 @@ define(['views/widgets/base',
   }
 
   List.prototype.clear = function () {
-    while (this.element.hasChildNodes()) {
-      for (var i = 0; i < this.element.childNodes.length; i++) {
-        this.element.removeChild[i];
-      }
+    while (this.element.firstChild) {
+      this.element.removeChild(this.element.firstChild);
     }
   }
 

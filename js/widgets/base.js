@@ -79,8 +79,10 @@ define([], function() {
   Button.prototype.constructor = Button;
 
   Button.prototype.onClick = function (e) {
-    e.preventDefault();
-    this.callback(e);
+    if (this.callback) {
+      e.preventDefault();
+      this.callback(e);
+    }
   }
 
   Button.prototype.setDisabled = function (t) {

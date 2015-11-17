@@ -18,6 +18,7 @@ define(['controllers/movie/list',
   }
 
   Application.prototype.onSearch = function (movies) {
+    list.clear();
     list.addMovies(movies);
   }
   

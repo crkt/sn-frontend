@@ -1,4 +1,4 @@
-define(['views/widgets/base'], function(Base) {
+define(['widgets/base'], function(Base) {
   
   var exports = {};
 

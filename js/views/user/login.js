@@ -1,6 +1,6 @@
 define(['models/user', 
-        'views/widgets/form', 
-        'views/widgets/base'], function(User, FormWidget, Base) 
+        'widgets/form', 
+        'widgets/base'], function(User, FormWidget, Base) 
 {
   var exports = {};
 

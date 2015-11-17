@@ -16,5 +16,9 @@ define(['views/movie/list'], function(ListView) {
     }
   }
 
+  ListController.prototype.clear = function () {
+    this.list.clear();
+  }
+
   return ListController;
 });
