@@ -4,12 +4,23 @@ requirejs.config({
 });
 
 
-requirejs(['controllers/user/login', 
-           'controllers/movie/list',
+requirejs(['controllers/movie/list',
            'controllers/search',
-           'views/header'], function(UserLogin, MovieList, Search, Header) {            
-             var header = new Header();
-             var list = new MovieList();
-             var search = new Search(list);
+           'controllers/user/login'], function(MovieListController, SearchController, UserController) {    
+                                       
+             function Main () {
+               this.loggedIn = false;                                             
+             }
 
+             Main.prototype.onLogin = function (user) {
+               console.log("User logged in: " + user);
+               this.loggedIn = true;
+             }
+
+             var main = new Main();
+
+             var list = new MovieListController();
+             var search = new SearchController(list);
+             var uc = new UserController(main.onLogin);
+             
 });

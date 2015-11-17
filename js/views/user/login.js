@@ -45,8 +45,6 @@ define(['models/user', 'views/register-widgets', 'views/base-widgets'], function
 
   Login.prototype = Object.create(Form.prototype);
   Login.prototype.constructor = Login;
-
-  exports.Login = Login;
   exports.Register = Register;
   
   return exports;

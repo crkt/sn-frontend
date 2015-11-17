@@ -9,18 +9,18 @@ define(['views/input-widgets', 'models/search'], function(InputWidget, Model) {
     this.queryForm = document.createElement("form");
     this.queryForm.classList.add("query");
     
-    this.title = new InputWidget.search("text", "Movie title", "Movie title", 
-                                        function (e) {
-                                          e.preventDefault();
-                                          if (e.target.value == "") {
-                                            model.setTitle(undefined);
-                                          } else {
-                                            model.setTitle(e.target.value);
-                                          }
-                                          
-                                        });
-
-    this.runtime = new InputWidget.search("number", "Runtime in minutes", "Movie runtime", function (e) {
+    this.title = new InputWidget.Input("text", "Movie title", "Movie title", 
+                                       function (e) {
+                                         e.preventDefault();
+                                         if (e.target.value == "") {
+                                           model.setTitle(undefined);
+                                         } else {
+                                           model.setTitle(e.target.value);
+                                         }
+                                         
+                                       });
+    
+    this.runtime = new InputWidget.Input("number", "Runtime in minutes", "Movie runtime", function (e) {
       e.preventDefault();
       if (e.target.value == "") {
         model.setRuntime(undefined);
@@ -29,7 +29,7 @@ define(['views/input-widgets', 'models/search'], function(InputWidget, Model) {
       }
     });
     
-    this.year = new InputWidget.search("number", "1993", "Movie release year", function (e) {
+    this.year = new InputWidget.Input("number", "1993", "Movie release year", function (e) {
       e.preventDefault();
       if (e.target.value == "") {
         model.setYear(undefined);
@@ -38,7 +38,7 @@ define(['views/input-widgets', 'models/search'], function(InputWidget, Model) {
       }
     });
     
-    this.genres = new InputWidget.search("text", "action, comedy", "Movie genres", function (e) {
+    this.genres = new InputWidget.Input("text", "action, comedy", "Movie genres", function (e) {
       e.preventDefault();
       if (e.target.value == "") {
         model.setGenres(undefined);
