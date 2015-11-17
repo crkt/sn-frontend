@@ -6,12 +6,15 @@ define(['controllers/movie/list',
 {
 
   function Application () {
-    this.loggedIn = false;                                             
+    this.loggedIn = false;
+    this.loggedInUser = undefined;
   }
   
   Application.prototype.onLogin = function (user) {
     console.log("User logged in: " + user);
     this.loggedIn = true;
+    this.loggedInuser = user;
+    uc.userLoggedIn(user);
   }
 
   Application.prototype.onSearch = function (movies) {
