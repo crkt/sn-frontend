@@ -1,66 +1,71 @@
-define(['views/input-widgets', 'models/search'], function(InputWidget, Model) {
+define(['views/widgets/base', 
+        'views/widgets/form', 
+        'models/search'], function(Base, FormWidget, Model) 
+{
 
   var model = new Model();
 
-  function Search(element, onchange, that) {
-    this.content = document.createElement("div");
-    this.content.id = "search-pane";
+  function Search(onSearch) {
+    Base.Base.call(this, "div");
+    this.addClass("search-pane");
 
-    this.queryForm = document.createElement("form");
-    this.queryForm.classList.add("query");
-    
-    this.title = new InputWidget.Input("text", "Movie title", "Movie title", 
-                                       function (e) {
-                                         e.preventDefault();
-                                         if (e.target.value == "") {
-                                           model.setTitle(undefined);
-                                         } else {
-                                           model.setTitle(e.target.value);
-                                         }
-                                         
-                                       });
-    
-    this.runtime = new InputWidget.Input("number", "Runtime in minutes", "Movie runtime", function (e) {
-      e.preventDefault();
-      if (e.target.value == "") {
-        model.setRuntime(undefined);
-      } else {
-        model.setRuntime(parseInt(e.target.value));
-      }
-    });
-    
-    this.year = new InputWidget.Input("number", "1993", "Movie release year", function (e) {
-      e.preventDefault();
-      if (e.target.value == "") {
-        model.setYear(undefined);
-      } else {
-        model.setYear(parseInt(e.target.value));
-      }
-    });
-    
-    this.genres = new InputWidget.Input("text", "action, comedy", "Movie genres", function (e) {
-      e.preventDefault();
-      if (e.target.value == "") {
-        model.setGenres(undefined);
-      } else {
-        model.setGenres(e.target.value.split(","));
-      }
-    });
+    this.callback = onSearch;
 
-    this.submitbtn = new InputWidget.Button("submit", "Search");
+    this.form = new FormWidget.Form(this.onSearch.bind(this));
+    this.form.addClass("query");
 
-    
-    this.queryForm.appendChild(this.title.content);
-    this.queryForm.appendChild(this.runtime.content);
-    this.queryForm.appendChild(this.year.content);
-    this.queryForm.appendChild(this.genres.content);
-    this.queryForm.appendChild(this.submitbtn.content);
+    this.model = new Model();
 
+    this.title = new FormWidget.CompoundInput("text",
+                                              "Movie Title",
+                                              "Movie Title",
+                                              this.onChange.bind(this, "title"));
 
-    this.queryForm.onsubmit = onchange.bind(that, model);;
+    this.runtime = new FormWidget.CompoundInput("number",
+                                                "Runtime in minutes",
+                                                "Movie runtime",
+                                                this.onChange.bind(this, "runtime"));
 
-    this.content.appendChild(this.queryForm); 
-    element.appendChild(this.content);
+    this.year = new FormWidget.CompoundInput("number",
+                                             "1993",
+                                             "Movie release year",
+                                             this.onChange.bind(this, "year"));
+
+    this.genres = new FormWidget.CompoundInput("text",
+                                               "action, comedy",
+                                               "Movie genres",
+                                               this.onChange.bind(this, "genres"));
+
+    this.submitButton = new Base.Button("submit", "Search");
+
+    this.form.addChild(this.title.element);
+    this.form.addChild(this.runtime.element);
+    this.form.addChild(this.year.element);
+    this.form.addChild(this.genres.element);
+    this.form.addChild(this.submitButton.element);
+    this.addChild(this.form.element);
+  }
+
+  Search.prototype = Object.create(Base.Base.prototype);
+  Search.prototype.constructor = Search;
+
+  Search.prototype.onChange = function (prop, value) {
+    console.log("Search value: " + value);
+    console.log("Search propery: " + prop);
+    if (prop == "title") {
+      this.model.setTitle(value);
+    } else if (prop == "runtime") {
+      this.model.setRuntime(value);
+    } else if (prop == "year") {
+      this.model.setYear(value);
+    } else if (prop == "genres") {
+      this.model.setGenres(value.split(","));
+    }
+  }
+
+  Search.prototype.onSearch = function (e) {
+    console.log("Search with: " + this.model);
+    this.callback(this.model, e);
   }
 
   return Search;

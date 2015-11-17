@@ -1,31 +1,8 @@
 define(['models/user', 
-        'views/register-widgets', 
-        'views/base-widgets'], function(User, FormWidget, Base) 
+        'views/widgets/form', 
+        'views/widgets/base'], function(User, FormWidget, Base) 
 {
-          
   var exports = {};
-
-  function Form(onsubmit) {
-    Base.Base.call(this, "form");
-    this.addClass("user-form");
-    
-    if (onsubmit) {
-      this.setEvent("onsubmit", onsubmit);
-    } else {
-      this.setEvent("onsubmit", this.onSubmit.bind(this));
-    }
-  }
-
-  Form.prototype = Object.create(Base.Base.prototype);
-  Form.prototype.constructor = Form;
-
-  Form.prototype.onSubmit = function (e) {
-    e.preventDefault();
-    console.log("form submit yo");
-  };
-
-
-  
 
   function Register(callback) {
     Base.Base.call(this, "div");
@@ -34,7 +11,8 @@ define(['models/user',
     
     this.callback = callback;
 
-    this.form = new Form(this.onSubmit.bind(this));
+    this.form = new FormWidget.Form("user-form", this.onSubmit.bind(this));
+    this.form.addClass("user-form");
 
     this.model = new User();
 
@@ -61,7 +39,7 @@ define(['models/user',
     this.addChild(this.form.element);
   }
 
-  Register.prototype = Object.create(Form.prototype);
+  Register.prototype = Object.create(Base.Base.prototype);
   Register.prototype.constructor = Register;
 
   Register.prototype.isValid = function () {
@@ -93,16 +71,25 @@ define(['models/user',
     this.callback(this.model, e);
   }
 
+  Register.prototype.reset = function () {
+    this.model = new User();
+    this.email.input.clear();
+    this.password.input.clear();
+    this.repassword.input.clear();
+    this.submitButton.setDisabled(true);
+  }
+
   function Login() {
     Base.Base.call(this, "div");
     this.setAttribute("id", "login");
 
-    this.form = new Form();
+    this.form = new FormWidget.Form();
+    this.form.addClass("user-form");
 
     this.addChild(this.form.element);
   }
 
-  Login.prototype = Object.create(Form.prototype);
+  Login.prototype = Object.create(Base.Base.prototype);
   Login.prototype.constructor = Login;
 
 
