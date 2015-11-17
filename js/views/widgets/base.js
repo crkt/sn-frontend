@@ -49,8 +49,6 @@ define([], function() {
     return this.element.value;
   }
   
-
-
   function Label(text) {
     Base.call(this, "label");
     this.element.textContent = text;
