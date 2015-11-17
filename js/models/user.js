@@ -7,7 +7,11 @@ define([], function() {
   }
 
   User.prototype.setEmail = function (x) {
-    this.email = x;
+    if (x === "") {
+      this.email = undefined;
+    } else {
+      this.email = x;
+    }
   }
 
   User.prototype.getEmail = function () {
@@ -15,7 +19,11 @@ define([], function() {
   }
 
   User.prototype.setId = function (x) {
-    this.id = x;
+    if (x === "") {
+      this.id = undefined;
+    } else {
+      this.id = x;
+    }
   }
   
   User.prototype.getId = function () {
@@ -23,15 +31,20 @@ define([], function() {
   }
   
   User.prototype.setPassword = function (x) {
-    this.password = x;
+    if (x === "") {
+      this.password = undefined;
+    } else {
+      this.password = x;
+    }
   }
 
   User.prototype.getPassword = function () {
     return this.password;
   }
 
-  User.prototype.validate = function() {
-    return (this.name != "" && this.password != "");
+  User.prototype.isValid = function() {
+    return !(this.email == "" || this.email == undefined && 
+            this.password == "" || this.password == undefined);
   }
 
   return User;

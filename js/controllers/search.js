@@ -1,8 +1,12 @@
 define(['views/search', 'app/request'], function(SearchView, Request) {
 
-  function Search(listener) {
-    this.view = new SearchView(document.querySelector("#search"), this.submit, this);   
-    this.listener = listener;
+  function Search(onSearch) {
+    this.container = document.querySelector("#search");
+    this.view = new SearchView(this.submit.bind(this));
+
+    this.callback = onSearch;
+    
+    this.container.appendChild(this.view.element);
   }
 
   Search.prototype.success = function (xhr, response) {
@@ -24,7 +28,8 @@ define(['views/search', 'app/request'], function(SearchView, Request) {
   }
 
   Search.prototype.onSuccess = function (movies) {
-    this.listener.addMovies(movies);
+    console.log("Search was a success");
+    this.callback(movies);
   }
 
   return Search;

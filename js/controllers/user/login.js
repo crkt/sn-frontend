@@ -16,7 +16,9 @@ define(['views/user/login',
   }
 
   User.prototype.success = function (xhr, response) {
+    // There be dragons here.
     this.onLogin(new UserModel(response.email, response.id));
+    this.register.clear();
   }
 
   User.prototype.failure = function (xhr, response) {

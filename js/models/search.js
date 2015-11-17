@@ -8,58 +8,53 @@ define([], function() {
   }
 
   SearchModel.prototype.setTitle = function (x) {
-    this.title = x;
+    if (x === "") {
+      this.title = undefined;
+    } else {
+      this.title = x;
+    }
   }
 
   SearchModel.prototype.getTitle = function () {
     return this.title;
   }
   
-  SearchModel.prototype.validateTitle = function () {
-    return (this.search === "" || 
-            this.search === undefined);
-  }
-
   SearchModel.prototype.setRuntime = function (x) {
-    this.runtime = x;
+    if (x === 0 || x === "") {
+      this.runtime = undefined;
+    } else {
+      this.runtime = x;
+    }
   }
 
   SearchModel.prototype.getRuntime = function () {
     return this.runtime;
   }
 
-  SearchModel.prototype.validateRuntime = function () {
-    return (this.runtime === 0 ||
-            this.runtime === undefined);
-  }
-
   SearchModel.prototype.setYear = function (x) {
-    this.year = x;
+    if (x === 0 || x === "") {
+      this.year = undefined;
+    } else {
+      this.year = x;
+    }
   }
 
   SearchModel.prototype.getYear = function () {
     return this.year;
   }
 
-  SearchModel.prototype.validateYear = function () {
-    return (this.year === 0 ||
-            this.year === undefined);
-  }
-
-
   SearchModel.prototype.setGenres = function (x) {
+    if (x.length == 0 || x == "") {
+      this.genres = undefined;
+    } else {
       this.genres = x;
+    }
   }
 
   SearchModel.prototype.getGenres = function () {
     return this.genres;
   }
-
-  SearchModel.prototype.validateGenres = function () {
-    return (this.genres.length === 0 ||
-            this.genres === undefined);
-  }
-
+  
   return SearchModel;
 
 });
