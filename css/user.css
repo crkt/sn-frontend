@@ -1,10 +1,12 @@
 #user #login,
-#user #register {
+#user #register,
+#user #user-profile {
     display: none;
 }
 
 #user #login.active,
-#user #register.active {
+#user #register.active,
+#user #user-profile.active {
     display: block;
 }
 
