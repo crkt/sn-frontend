@@ -3,8 +3,6 @@ define(['views/widgets/base',
         'models/search'], function(Base, FormWidget, Model) 
 {
 
-  var model = new Model();
-
   function Search(onSearch) {
     Base.Base.call(this, "div");
     this.addClass("search-pane");
