@@ -4,9 +4,6 @@ define([], function() {
 
   function Base(element) {
     this.element = document.createElement(element);
-
-    this.element.onchange = this.onChange.bind(this);
-    this.element.onclick = this.onClick.bind(this);
   }
 
   Base.prototype.setEvent = function(event, f) {
@@ -26,20 +23,29 @@ define([], function() {
   }
 
   
-  function Input(type, placeholder, onchange) {
+  function Input(type, placeholder, callback) {
     Base.call(this, "input");
     this.element.type = type;
     this.element.placeholder = placeholder;
+    this.callback = callback;
 
-    this.onChange = onchange;
+    this.setEvent("onchange", this.onChange.bind(this));
   }
 
-  Input.prototype.onChange = function (e) {
-    console.log("on change bro");
-  }
-  
   Input.prototype = Object.create(Base.prototype);
   Input.prototype.constructor = Input;
+
+  Input.prototype.onChange = function (e) {
+    e.preventDefault();
+    console.log("Input base onChange");
+    this.callback(e.target.value);
+  }
+
+  Input.prototype.getValue = function () {
+    return this.element.value;
+  }
+  
+
 
   function Label(text) {
     Base.call(this, "label");
@@ -57,6 +63,10 @@ define([], function() {
 
   Button.prototype = Object.create(Base.prototype);
   Button.prototype.constructor = Button;
+
+  Button.prototype.setDisabled = function (t) {
+    this.element.disabled = t;
+  }
 
   widgets.Base = Base;
   widgets.Input = Input;

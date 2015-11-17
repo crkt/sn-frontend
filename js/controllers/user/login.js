@@ -1,18 +1,22 @@
-define(['views/user/login', 'app/request', 'models/user'], function(UserView, Request, UserModel) {
+define(['views/user/login', 
+        'app/request', 
+        'models/user'], function(UserView, Request, UserModel) {
   
   function User(onLogin) {
 
-    this.content = document.querySelector("#user");  
+    this.view = document.querySelector("#user");  
   
-    this.login = new UserView.Login(this.content, this.submit, this);
-    this.register= new UserView.Register(this.content, this.submit, this);
+    this.login = new UserView.Login();
+    this.register= new UserView.Register(this.submit.bind(this, "register"));
+
+    this.view.appendChild(this.login.element);
+    this.view.appendChild(this.register.element);
 
     this.onLogin = onLogin
   }
 
   User.prototype.success = function (xhr, response) {
     this.onLogin(new UserModel(response.email, response.id));
-    this.register.clear();
   }
 
   User.prototype.failure = function (xhr, response) {
@@ -20,7 +24,7 @@ define(['views/user/login', 'app/request', 'models/user'], function(UserView, Re
     console.log(response);
   }
 
-  User.prototype.submit = function (user, type, e) {
+  User.prototype.submit = function (type, user, e) {
     e.preventDefault();
     console.log("User obj: " + user);
     console.log("Type: " + type);

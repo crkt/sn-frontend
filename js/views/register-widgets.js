@@ -2,9 +2,11 @@ define(['views/base-widgets'], function(Base) {
   
   var exports = {};
 
-  function CompoundInput(type, placeholder, label) {
+  function CompoundInput(type, placeholder, label, callback) {
     Base.Base.call(this, "div");
     this.addClass("form-input");
+    
+    this.callback = callback;
     
     this.label = new Base.Label(label);
     this.label.addClass("form-input-label");
@@ -16,16 +18,15 @@ define(['views/base-widgets'], function(Base) {
     this.addChild(this.input.element);
   }
 
-  CompoundInput.prototype.onChange = function (e) {
-    conesole.log("Reg-widget on change");
-    console.log(e.target.value);
-  }
-
   CompoundInput.prototype = Object.create(Base.Base.prototype);
   CompoundInput.prototype.constructor = CompoundInput;
-  
 
-  exports.CompundInput = CompoundInput;
+  CompoundInput.prototype.onChange = function (value) {
+    console.log("Reg-widget on change");
+    this.callback(value
+  }
+
+  exports.CompoundInput = CompoundInput;
 
   return exports;
 
