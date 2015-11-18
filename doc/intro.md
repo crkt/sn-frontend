@@ -1,3 +1,20 @@
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Introduction to sn-frontend](#)
+	- [Config](#)
+		- [Apache](#)
+			- [Linux/Mac](#)
+			- [Windows with XAMPP](#)
+	- [General information](#)
+		- [What code do I write?](#)
+		- [Where do I put my files?](#)
+		- [Why is there views, controllers and models?](#)
+		- [Where is the main function? The one that does everything?](#)
+		- [How do I import code from another JS file to my JS file?](#)
+		- [How the fuck do I make a request to our server?](#)
+			- [I meant how it actually does it...](#)
+		- [My code won't run...](#)
+
 # Introduction to sn-frontend
 TODO: write [great documentation](http://jacobian.org/writing/what-to-write/) 
 
