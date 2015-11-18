@@ -5,7 +5,7 @@ define(['views/user/login',
   
   function User(onLogin) {
 
-    this.view = document.querySelector("#user");  
+    this.view = document.querySelector("#user");
   
     this.login = new UserView.Login(this.submit.bind(this, "login"),
                                    this.toggleRegisterLogin.bind(this));
@@ -39,6 +39,7 @@ define(['views/user/login',
 
   User.prototype.userLoggedIn = function (user) {  
     this.register.toggleVisible(false);
+    this.login.toggleVisible(false);
     this.profile.setUser(user);
     this.profile.toggleVisible(true);
   }
@@ -70,7 +71,7 @@ define(['views/user/login',
                    user,
                    "/user/login",
                    this.success.bind(this),
-                   this.faulure.bind(this)
+                   this.failure.bind(this)
                   );      
     }
   }
