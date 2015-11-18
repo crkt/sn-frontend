@@ -37,3 +37,16 @@ header > div {
 #search-pane .query .search-input .input {
     display: block;
 }
+
+#movie-results .movie .property {
+    
+}
+
+#movie-results .movie .property::after {
+    content: ":";
+    padding-right: 5px;
+}
+
+#movie-results .movie .value {
+
+}
