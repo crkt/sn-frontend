@@ -35,10 +35,10 @@ Aahh, we use something called [RequireJS](http://requirejs.org/docs/api.html)
 This allows us to treat our JS files as modules, and import them. See the requireJS docs for more information.
 
 ### How the fuck do I make a request to our server?
-Woah! Easy! It's actually quite simple. The file request.js has the logic for sending data to our server. So you would import it and use it in your code, see the search controller for how to use it. 
+Woah! Easy! It's actually quite simple. The file [request.js](https://github.com/Fruitschinpo/sn-frontend/blob/master/js/app/request.js) has the logic for sending data to our server. So you would import it and use it in your code, see the search controller for how to use it. 
 
 #### I meant how it actually does it...
-It uses [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) See the request.js file for how to use it.
+It uses [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) See the [request.js](https://github.com/Fruitschinpo/sn-frontend/blob/master/js/app/request.js) file for how to use it.
 
 ### My code won't run...
 [Don't Panic!](https://www.youtube.com/watch?v=d-diB65scQU)
