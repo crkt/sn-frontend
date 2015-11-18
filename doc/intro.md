@@ -14,14 +14,14 @@ Javascript for logic, css for style, html for view structure. Things to read to 
 * [HTML resource](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 ### Where do I put my files?
-CSS? the css folder.
-JS? the javascript folder
-- Is it a model? Yes, then js/models/
-- Is it a view? Yes, then js/views/
-- Is it a controller? Yes, then js/controllers/
-- Is it a widgetr? Yes, then js/widgets/
-HTML? We only have index.html, we then select the divs with javascript in the controllers. See search or login controllers.
-Unknown? Ask yourself if it's really part of the project.
+- CSS? the css folder.
+- JS? the javascript folder
+-- Is it a model? Yes, then js/models/
+-- Is it a view? Yes, then js/views/
+-- Is it a controller? Yes, then js/controllers/
+-- Is it a widget? Yes, then js/widgets/
+- HTML? We only have index.html, we then select the divs with javascript in the controllers. See search or login controllers.
+- Unknown? Ask yourself if it's really part of the project.
 
 ### Why is there views, controllers and models?
 We're trying to use a interface pattern called Model View Controller, notice how I wrote trying. This is to seperate view and logic. And strive for an understandable structure of the code.
