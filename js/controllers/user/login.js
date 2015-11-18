@@ -39,6 +39,7 @@ define(['views/user/login',
 
   User.prototype.userLoggedIn = function (user) {  
     this.register.toggleVisible(false);
+    this.login.toggleVisible(false);
     this.profile.setUser(user);
     this.profile.toggleVisible(true);
   }
