@@ -9,3 +9,7 @@
 .form-input-input {
     display: block;
 }
+
+input.invalid {
+    border-color: red;
+}
