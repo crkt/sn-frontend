@@ -26,13 +26,18 @@ define([], function() {
     this.element.classList.add(x);
   }
 
+  Base.prototype.removeClass = function (x) {
+    this.element.classList.remove(x);
+  }
+
   
-  function Input(type, placeholder, callback) {
+  function Input(type, placeholder, property, callback) {
     Base.call(this, "input");
     this.element.type = type;
     this.element.placeholder = placeholder;
     this.callback = callback;
 
+    this.element.dataset.property = property;
     this.setEvent("onchange", this.onChange.bind(this));
   }
 
@@ -51,6 +56,14 @@ define([], function() {
 
   Input.prototype.getValue = function () {
     return this.element.value;
+  }
+
+  Input.prototype.setInvalid = function () {
+    this.addClass("invalid");
+  }
+
+  Input.prototype.removeInvalid = function () {
+    this.removeClass("invalid");
   }
   
   function Label(text) {

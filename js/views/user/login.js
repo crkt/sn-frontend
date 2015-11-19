@@ -16,18 +16,21 @@ define(['models/user',
 
     this.model = new User();
 
-    this.email = new FormWidget.CompoundInput("text", 
+    this.email = new FormWidget.CompoundInput("email", 
                                               "Email", 
+                                              "email",
                                               "Your email",
                                               this.onChange.bind(this, "email"));
 
     this.password = new FormWidget.CompoundInput("password", 
                                                  "Password", 
+                                                 "password",
                                                  "Enter password", 
                                                  this.onChange.bind(this, "password"));
 
     this.repassword = new FormWidget.CompoundInput("password", 
-                                                   "Confirm Password", 
+                                                   "Confirm Password",
+                                                   "password",
                                                    "Re-enter password", 
                                                    this.onChange.bind(this, "repassword"));
     this.submitButton = new Base.Button("submit", "Register");
@@ -80,6 +83,15 @@ define(['models/user',
     this.callback(this.model, e);
   }
 
+  Register.prototype.onError = function (error) {   
+    if (error.field == "email") {
+      this.email.input.setInvalid();
+    } else if (error.field = "password") {
+      this.password.input.setInvalid();
+    }
+    console.log("On error register " + error);
+  }
+
   Register.prototype.toggleActive = function (t) {
     this.toggleClass("active", t);
   }
@@ -109,12 +121,14 @@ define(['models/user',
     this.model = new User();
 
     this.email = new FormWidget.CompoundInput("text", 
-                                              "Email", 
+                                              "Email",
+                                              "email",
                                               "Your email",
                                               this.onChange.bind(this, "email"));
 
     this.password = new FormWidget.CompoundInput("password", 
                                                  "Password", 
+                                                 "password",
                                                  "Enter password", 
                                                  this.onChange.bind(this, "password"));
 
@@ -153,11 +167,22 @@ define(['models/user',
 
   Login.prototype.onChange = function (prop, value) {
     if (prop == "email") {
+      this.email.input.removeInvalid();
       this.model.setEmail(value);
     } else if (prop == "password") {
+      this.password.input.removeInvalid();
       this.model.setPassword(value);
     }
     this.submitButton.setDisabled(!this.isValid());
+  }
+
+  Login.prototype.onError = function (error) {
+    if (error.field == "email") {
+      this.email.input.setInvalid();
+    } else if (error.field = "password") {
+      this.password.input.setInvalid();
+    }
+    console.log("On error register " + error); 
   }
 
   Login.prototype.onSubmit = function (e) {

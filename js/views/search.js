@@ -16,21 +16,25 @@ define(['widgets/base',
 
     this.title = new FormWidget.CompoundInput("text",
                                               "Movie Title",
+                                              "title",
                                               "Movie Title",
                                               this.onChange.bind(this, "title"));
 
     this.runtime = new FormWidget.CompoundInput("number",
                                                 "Runtime in minutes",
+                                                "runtime",
                                                 "Movie runtime",
                                                 this.onChange.bind(this, "runtime"));
 
     this.year = new FormWidget.CompoundInput("number",
                                              "1993",
+                                             "year",
                                              "Movie release year",
                                              this.onChange.bind(this, "year"));
 
     this.genres = new FormWidget.CompoundInput("text",
                                                "action, comedy",
+                                               "genres",
                                                "Movie genres",
                                                this.onChange.bind(this, "genres"));
 
