@@ -16,7 +16,7 @@ define(['widgets/base'], function(Base) {
     this.callback(e);
   };
 
-  function CompoundInput(type, placeholder, label, callback) {
+  function CompoundInput(type, placeholder, property, label, callback) {
     Base.Base.call(this, "div");
     this.addClass("form-input");
     
@@ -25,7 +25,7 @@ define(['widgets/base'], function(Base) {
     this.label = new Base.Label(label);
     this.label.addClass("form-input-label");
 
-    this.input = new Base.Input(type, placeholder, this.onChange.bind(this));
+    this.input = new Base.Input(type, placeholder, property, this.onChange.bind(this));
     this.input.addClass("form-input-input");
 
     this.addChild(this.label.element);

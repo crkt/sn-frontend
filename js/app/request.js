@@ -9,7 +9,7 @@ define([], function() {
      Only sends with JSON.
      From https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
    **/
-  var sendDataRequest = function(type, data, dest, success, failure) {
+  var send = function(type, data, dest, success, failure) {
     var xhr = new XMLHttpRequest();
     xhr.open(type, dest, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -43,9 +43,72 @@ define([], function() {
     xhr.send(JSON.stringify(data));
   };
 
-  
+  var register = function(type, data, dest, success, failure) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(type, dest, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+
+    xhr.ontimeout = function () {
+      console.log("xhr ontime");
+      failure();
+    }
+
+    xhr.onerror = function (e) {
+      console.log("xhr onerror");
+      failure(xhr.statusText);
+    }
+
+    xhr.onload = function () {
+      console.log("xhr load");
+      if (xhr.readyState === 4) {
+        if (xhr.status === 201) {
+          success(xhr, JSON.parse(xhr.response));
+        } else if (xhr.status === 400) {     
+          console.log("400");
+        } else {
+          failure(xhr, xhr.response);
+        }
+      }
+    }
+    xhr.send(JSON.stringify(data));
+  }
+
+  var login = function(type, data, dest, success, onerror, failure) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(type, dest, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+
+    xhr.ontimeout = function () {
+      console.log("xhr ontime");
+      failure();
+    }
+
+    xhr.onerror = function (e) {
+      console.log("xhr onerror");
+      failure(xhr.statusText);
+    }
+
+    xhr.onload = function () {
+      console.log("xhr load");
+      if (xhr.readyState === 4) {
+        if (xhr.status === 202) {
+          success(xhr, JSON.parse(xhr.response));
+        } else if (xhr.status === 400) {     
+          onerror(xhr, JSON.parse(xhr.response));
+        } else {
+          failure(xhr, xhr.response);
+        }
+      }
+    }
+    xhr.send(JSON.stringify(data));
+  }
+
   // The functions to export.
-  exports.send = sendDataRequest;
+  exports.send = send;
+  exports.register = register;
+  exports.login = login;
   
   return exports;
 });

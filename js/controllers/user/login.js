@@ -33,7 +33,7 @@ define(['views/user/login',
     } else if (active == this.register.element) {
       this.register.toggleActive(false);
       this.login.toggleActive(true);
-    }             
+    }                  
   }
 
   User.prototype.userLoggedIn = function (user) {  
@@ -41,6 +41,15 @@ define(['views/user/login',
     this.login.toggleVisible(false);
     this.profile.setUser(user);
     this.profile.toggleVisible(true);
+  }
+
+  User.prototype.onError = function (type, xhr, response) {    
+    console.log(type + " " + xhr + " " + response);
+    if (type === "register") {
+      this.register.onError(response);
+    } else if (type === "login") {
+      this.login.onError(response);
+    }
   }
 
   User.prototype.success = function (xhr, response) {
@@ -59,19 +68,21 @@ define(['views/user/login',
     console.log("User obj: " + user);
     console.log("Type: " + type);
     if (type === "register") {
-      Request.send("POST",
-                   user,
-                   "/user/register",
-                   this.success.bind(this),
-                   this.failure.bind(this)
-                  );
+      Request.register("POST",
+                       user,
+                       "/user/register",
+                       this.success.bind(this),
+                       this.onError.bind(this, "register"),
+                       this.failure.bind(this)
+                      );
     } else if (type === "login") {
-      Request.send("PUT",
-                   user,
-                   "/user/login",
-                   this.success.bind(this),
-                   this.failure.bind(this)
-                  );      
+      Request.login("PUT",
+                    user,
+                    "/user/login",
+                    this.success.bind(this),
+                    this.onError.bind(this, "login"),
+                    this.failure.bind(this)
+                   );      
     }
   }
 
