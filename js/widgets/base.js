@@ -33,6 +33,7 @@ define([], function() {
     this.element.placeholder = placeholder;
     this.callback = callback;
 
+    
     this.setEvent("onchange", this.onChange.bind(this));
   }
 

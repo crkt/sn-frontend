@@ -33,8 +33,7 @@ define(['views/user/login',
     } else if (active == this.register.element) {
       this.register.toggleActive(false);
       this.login.toggleActive(true);
-    }
-                  
+    }             
   }
 
   User.prototype.userLoggedIn = function (user) {  

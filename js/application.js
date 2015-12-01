@@ -21,9 +21,17 @@ define(['controllers/movie/list',
     list.clear();
     list.addMovies(movies);
   }
+
+  Application.prototype.onRating = function (id, value) {
+    if (this.loggedIn) {
+      
+    }
+  }
+
+  
   
   var app = new Application();
-  var list = new MovieListController();
+  var list = new MovieListController(app.onRating);
   var search = new SearchController(app.onSearch);
   var uc = new UserController(app.onLogin);
 

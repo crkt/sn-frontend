@@ -1,11 +1,15 @@
-define(['views/movie/list'], function(ListView) {
+define(['views/movie/list',
+        'app/request'], function(ListView, Request) 
+{
 
-  function ListController() {    
+  function ListController(ratingCallback) {    
     this.view = document.querySelector("#main-content");
 
-    this.list = new ListView();
+    this.list = new ListView(this.updateRating.bind(this));
 
     this.view.appendChild(this.list.element);
+
+    this.callback = ratingCallback;
   }
 
   ListController.prototype.addMovies = function (movies) {
@@ -19,6 +23,37 @@ define(['views/movie/list'], function(ListView) {
   ListController.prototype.clear = function () {
     this.list.clear();
   }
+
+
+  ListController.prototype.success = function (xhr, response) {
+    // There be dragons here.
+    console.log("Updated rating");
+  }
+
+  ListController.prototype.failure = function (xhr, response) {
+    console.log("Failure to create user");
+    console.log(response);
+  }
+
+  ListController.prototype.updateRating = function (id, value) {
+    var ratingObj = {
+      id: id,
+      value: value,
+      user_id: 1
+    };
+    
+    Request.send("PUT",
+                 ratingObj,
+                 "/movie/rating",
+                 this.success.bind(this),
+                 this.failure.bind(this)
+                 );
+    
+  }
+
+
+
+
 
   return ListController;
 });
