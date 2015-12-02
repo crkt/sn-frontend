@@ -1,48 +1,60 @@
-define(['widgets/base',
-        'views/movie/movie-item',
-        'models/movie'], function(Base, MovieItem, Movie) 
+define(['views/movie-item'], function (MovieItem)
 {
 
-  function ListItem(movie) {
-    Base.Base.call(this, "li");
+  /*
+    <template id="movie-preview">
+    <div class="movie-preview">
+    <img class="main-image"></img>
+    <h1 class="title"></h1>
+    <p class="plot">
+    </p>
+    <div class="thumb-images">
+    </div>
+    <a class="imdb-link">IMDB</a>
+    </div>
+    </template>
+   */
+  // Default Movie list view
+  // This is where one uses handlebars, jQuery or whatever
+  function MovieListView() {
+    this.dom = document.importNode(document.querySelector("#movie-results").content, true);
+    this.list = this.dom.querySelector(".list");
+  }
+  
+  MovieListView.prototype.setList(movies) {
     
-    var field = new MovieItem(movie, this.onClick.bind(this));
-    this.addChild(field.element);
+  }
+  
+  // Movie preview presenter
+  // Implements all logic
+  function MoviePreview(view) {
+    this.view = view || new MoviePreviewView();
+    this.view.onPreviewClick = MoviePreviewView.prototype.setMainImage.bind(this.view);
   }
 
-  ListItem.prototype = Object.create(Base.Base.prototype);
-  ListItem.prototype.constructor = ListItem;
-
-  ListItem.prototype.onClick = function (e) {
-    console.log("Clicked list item");
+  MoviePreview.prototype.fetch = function(id) {
+    MovieAPI.fetchMovie(id)
+      .onSuccess(MoviePreview.prototype.showMovie.bind(this))
+      .onError(function(reason) {
+	//Do something smart here...
+      });
   }
-
-  function List() {
-    Base.Base.call(this, "ul");
-    this.setAttribute("id", "movie-results");
+  
+  MoviePreview.prototype.showMovie = function(movie) {
+    var view = this.view;
+    
+    view.setTitle(movie.title);
+    view.setPlot(movie.plot);
+    view.setIMDBLink(movie.imdbLink);
+    view.setMainImage(movie.mainImage);
+    
+    view.clearImages();
+    movie.images.forEach(function (url) {
+      view.addImage(url);
+    });
   }
-
-  List.prototype = Object.create(Base.Base.prototype);
-  List.prototype.constructor = List;
-
-  List.prototype.addMovies = function (movies) {
-    for (var movie in movies) {
-      var item = new ListItem(movie);
-      this.addChild(item.element);
-    }
-  }
-
-  List.prototype.addMovie = function (movie) {
-    var item = new ListItem(movie);
-    this.addChild(item.element);
-  }
-
-  List.prototype.clear = function () {
-    while (this.element.firstChild) {
-      this.element.removeChild(this.element.firstChild);
-    }
-  }
-
-  return List;
+  
+  return MoviePreview;
+});
 
 });
