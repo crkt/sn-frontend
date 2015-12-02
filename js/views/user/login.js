@@ -1,3 +1,5 @@
+/* Detta får Philip kolla sen */
+
 define(['models/user', 
         'widgets/form', 
         'widgets/base'], function(User, FormWidget, Base) 
@@ -21,6 +23,12 @@ define(['models/user',
                                               "email",
                                               "Your email",
                                               this.onChange.bind(this, "email"));
+
+    this.email = new FormWidget.CompoundInput("username", 
+                                              "Username", 
+                                              "username",
+                                              "Your username",
+                                              this.onChange.bind(this, "username"));
 
     this.password = new FormWidget.CompoundInput("password", 
                                                  "Password", 
@@ -86,8 +94,10 @@ define(['models/user',
   Register.prototype.onError = function (error) {   
     if (error.field == "email") {
       this.email.input.setInvalid();
+    } else if (error.field = "username") {
+      this.username.input.setInvalid();
     } else if (error.field = "password") {
-      this.password.input.setInvalid();
+      this.password.input.setInvalid();  
     }
     console.log("On error register " + error);
   }
@@ -125,6 +135,13 @@ define(['models/user',
                                               "email",
                                               "Your email",
                                               this.onChange.bind(this, "email"));
+
+    this.username = new FormWidget.CompoundInput("text", 
+                                              "Username",
+                                              "username",
+                                              "Your username",
+                                              this.onChange.bind(this, "username"));
+
 
     this.password = new FormWidget.CompoundInput("password", 
                                                  "Password", 
@@ -169,18 +186,23 @@ define(['models/user',
     if (prop == "email") {
       this.email.input.removeInvalid();
       this.model.setEmail(value);
+    } else if (prop == "username") {
+      this.username.input.removeInvalid();
+      this.model.setUsername(value);
     } else if (prop == "password") {
       this.password.input.removeInvalid();
-      this.model.setPassword(value);
+      this.model.setPassword(value);  
     }
     this.submitButton.setDisabled(!this.isValid());
   }
 
   Login.prototype.onError = function (error) {
-    if (error.field == "email") {
+    if (error.field == "username") {
+      this.email.input.setInvalid();
+    } else if (error.field = "email") {
       this.email.input.setInvalid();
     } else if (error.field = "password") {
-      this.password.input.setInvalid();
+      this.password.input.setInvalid();  
     }
     console.log("On error register " + error); 
   }
@@ -197,7 +219,7 @@ define(['models/user',
 
     this.infoPanel = new Base.Base("div");
     this.info = new Base.Label("Logged in as: ");
-    this.infoEmail = new Base.Label();
+    this.infoUsername = new Base.Label();
 
     this.infoPanel.addChild(this.info.element);
     this.infoPanel.addChild(this.infoEmail.element);
