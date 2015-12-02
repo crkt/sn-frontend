@@ -38,7 +38,7 @@ define(['widgets/base',
 
   List.prototype.addMovies = function (movies) {
     for (var movie in movies) {
-      var item = new ListItem(movie, this.onMovieRating.bind(this));
+      var item = new ListItem(movie, undefined, this.onMovieRating.bind(this));
       this.addChild(item.element);
     }
   }

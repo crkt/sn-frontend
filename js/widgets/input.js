@@ -3,7 +3,7 @@ define(['widgets/base'], function(Base) {
   var widgets = {};
 
   function Radio(name, value, callback) {
-    Base.Input.call(this, "radio", undefined, callback);
+    Base.Input.call(this, "radio", "", "movie-rating", callback);
     
     this.element.name = name;
     this.element.value = value;

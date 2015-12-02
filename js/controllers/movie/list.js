@@ -42,6 +42,9 @@ define(['views/movie/list',
       user_id: 1
     };
     
+    console.log("MOVIE ID: " + id + " " + "Value: " + value);
+    console.log("RATING SOMETGINF< ASDASdDS");
+
     Request.send("PUT",
                  ratingObj,
                  "/movie/rating",
