@@ -1,11 +1,6 @@
 <html>
 <head>
         <script data-main="js/main.js" src="js/require.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/forms.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/search.css">
-        <link rel="stylesheet" type="text/css" href="css/user.css">
-        <link rel="stylesheet" type="text/css" href="css/widgets.css">
 </head>
 <body>
 <header id="header">
@@ -14,6 +9,19 @@
   <div id="user"></div>
 </header>
 <div class="main-content" id="main-content">
+
+<template id="search">
+  <form id="sn-query">
+    <div class="label-input" data-property="title">
+      <input class="query-input" placeholder="Search with movie title"></input>
+    </div>
+  </form>
+</template>
+
+<template id="movie-results">
+  <div class="list">
+  </div>
+</template>
 </div>
 </body>
 <footer>
