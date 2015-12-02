@@ -1,0 +1,25 @@
+/*
+	Ratings Stars
+	(with as little code as possible)
+*/
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+}
+.rating > input {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > input:hover,
+.rating > input:hover ~ input {
+  color: transparent;
+}
+.rating > input:hover:before,
+.rating > input:hover ~ input:before {
+   content: "\2605";
+   position: absolute;
+   left: 0; 
+   color: gold;
+}
