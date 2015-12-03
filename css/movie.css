@@ -1,0 +1,26 @@
+body {
+    background: grey;
+}
+
+
+fieldset, label { 
+    margin: 0; 
+    padding: 0; 
+    -webkit-appearance: none;
+    border: none;
+    display: block;
+}
+
+.rating > input { 
+    -webkit-appearance: none;
+    color: #ddd;
+} 
+
+
+.rating .star:before {
+    content: "\2605";
+}
+
+.rating .star.on {
+    color: #FFD700;
+}

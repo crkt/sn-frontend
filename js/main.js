@@ -4,7 +4,12 @@ requirejs.config({
 });
 
 
-requirejs(['application'],function(Application) 
+requirejs(['movie/list','movie/search','api'],function(Movie, Search, API) 
 {    
-  var app = new Application();
+  
+  var list = new Movie.List(document.querySelector("#moviez-list"));
+  API.moviez.forEach(Movie.List.prototype.addMovie, list);
+
+  var search = new Search(document.querySelector("#search-moviez"));
+  
 });

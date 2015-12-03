@@ -1,21 +1,51 @@
 <html>
 <head>
-        <script data-main="js/main.js" src="js/require.js"></script>
+        <script data-main="js/main.js" src="js/require.js"></script>        
+        <link rel="stylesheet" type="text/css" href="css/movie.css">
+
 </head>
 <body>
 <header id="header">
   <div class="logo-pane">SortNight</div>
-  <div id="search"></div>
   <div id="user"></div>
 </header>
 <div class="main-content" id="main-content">
+<h1> Search for a movie </h1>
+<div id="search-moviez"></div>
+<h1> Top rated moviez </h1>
+<div id="moviez-list"></div>
+
+<template id="movie-item">
+  <div class="movie">
+    <img class="image">
+    <h2 class="title"></h2>
+    <fieldset class="rating">
+      <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
+      <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
+      <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
+      <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
+      <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
+    </div>
+  </div>
+</template>
+
 
 <template id="search">
   <form id="sn-query">
-    <div class="label-input" data-property="title">
-      <input class="query-input" placeholder="Search with movie title"></input>
+    <div class="label-input">
+      <input class="query-input" data-property="title" placeholder="Search with movie title"></input>
+      <fieldset class="genres">
+      </fieldset>
     </div>
   </form>
+</template>
+
+<template id="genres">
+  <div class="checkbox">
+    <label class="check-label">
+      <input type="checkbox" class="check-input"></input>
+    </label>
+  </div>
 </template>
 
 <template id="movie-results">
