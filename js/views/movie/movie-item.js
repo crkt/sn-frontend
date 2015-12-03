@@ -34,7 +34,7 @@ define(['widgets/base', 'widgets/input'],function(Base, Input)
     
     this.model = movie;
 
-    //this.setEvent("onclick", this.onClick.bind(this));
+    this.setEvent("onclick", this.onClick.bind(this));
     this.createFields();
   }
 
@@ -43,7 +43,7 @@ define(['widgets/base', 'widgets/input'],function(Base, Input)
 
   Movie.prototype.onClick = function (e) {
     e.preventDefault();
-    console.log("Clicked on a movie");
+    this.callback(this.model);
   }
 
   Movie.prototype.createFields = function() {
