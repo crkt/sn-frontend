@@ -24,7 +24,7 @@ define(['models/user',
                                               "Your email",
                                               this.onChange.bind(this, "email"));
 
-    this.email = new FormWidget.CompoundInput("username", 
+    this.username = new FormWidget.CompoundInput("username", 
                                               "Username", 
                                               "username",
                                               "Your username",
@@ -47,6 +47,7 @@ define(['models/user',
     this.cancelButton = new Base.Button("button", "Cancel", 
                                         this.onCancelClick.bind(this));
 
+    this.form.addChild(this.username.element);
     this.form.addChild(this.email.element);
     this.form.addChild(this.password.element);
     this.form.addChild(this.repassword.element);
@@ -74,7 +75,9 @@ define(['models/user',
     if (prop == "email") {
       this.model.setEmail(value);
     } else if (prop == "password") {
-      this.model.setPassword(value);      
+      this.model.setPassword(value); 
+    } else if (prop == "username") {
+      this.model.setName(value);         
     } else if (prop == "repassword") {
       if (this.model.getPassword() != value) {
         console.log("Password doesn't match, do things here");
@@ -129,17 +132,17 @@ define(['models/user',
     this.form.addClass("user-form");
 
     this.model = new User();
-
+/*
     this.email = new FormWidget.CompoundInput("text", 
                                               "Email",
                                               "email",
                                               "Your email",
                                               this.onChange.bind(this, "email"));
-
+*/
     this.username = new FormWidget.CompoundInput("text", 
                                               "Username",
                                               "username",
-                                              "Your username",
+                                              "Enter username",
                                               this.onChange.bind(this, "username"));
 
 
@@ -155,7 +158,8 @@ define(['models/user',
     this.registerButton = new Base.Button("button", "Create user", this.onRegisterClick.bind(this));
     this.registerButton.setDisabled(false);
 
-    this.form.addChild(this.email.element);
+    //this.form.addChild(this.email.element);
+    this.form.addChild(this.username.element);
     this.form.addChild(this.password.element);
     this.form.addChild(this.submitButton.element);    
     this.form.addChild(this.registerButton.element);
@@ -188,7 +192,7 @@ define(['models/user',
       this.model.setEmail(value);
     } else if (prop == "username") {
       this.username.input.removeInvalid();
-      this.model.setUsername(value);
+      this.model.setName(value);
     } else if (prop == "password") {
       this.password.input.removeInvalid();
       this.model.setPassword(value);  
@@ -222,7 +226,7 @@ define(['models/user',
     this.infoUsername = new Base.Label();
 
     this.infoPanel.addChild(this.info.element);
-    this.infoPanel.addChild(this.infoEmail.element);
+    this.infoPanel.addChild(this.infoUsername.element);
 
     this.addChild(this.infoPanel.element);
   }
@@ -240,7 +244,7 @@ define(['models/user',
 
   Profile.prototype.setUser = function (user) {
     this.user = user;
-    this.infoEmail.setContent(user.email);
+    this.infoUsername.setContent(user.name);
   }
 
   exports.Profile = Profile;
