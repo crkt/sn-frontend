@@ -13,11 +13,7 @@ define(['views/movie/list',
   }
 
   ListController.prototype.addMovies = function (movies) {
-    console.log("adding movies");
-    for (var i = 0; i < movies.length; i++) {
-      var movie = movies[i];
-      this.list.addMovie(movie);     
-    }
+    this.list.addMovies(movies);     
   }
 
   ListController.prototype.clear = function () {
