@@ -5,12 +5,12 @@ define(['widgets/base',
 
   var opts = [
     {label: "Rating", options: [
-      {name: "rating", value: "rating-high",label: "High to low", type: "rating"},
-      {name: "rating", value: "rating-low",label: "Low to high", type: "rating"}
+      {name: "rating", value: "descending",label: "High to low", type: "rating"},
+      {name: "rating", value: "ascending",label: "Low to high", type: "rating"}
     ]},
      {label: "Title", options: [
-       {name: "title", value: "title-a", label: "A-Z", type: "title"},
-       {name: "title", value: "title-z", label: "Z-A", type: "title"}
+       {name: "title", value: "descending", label: "A-Z", type: "title"},
+       {name: "title", value: "ascending", label: "Z-A", type: "title"}
      ]}
   ];
   
@@ -18,6 +18,13 @@ define(['widgets/base',
     Base.Base.call(this, "select");
     this.element.textContent = label;
 
+    var def = document.createElement("option");
+    def.value = "";
+    def.disabled = true;
+    def.textContent = "Select";
+    def.selected = true;
+    
+    this.addChild(def);
 
     options.forEach(function (x) {
       var opt = document.createElement("option");
@@ -122,16 +129,27 @@ define(['widgets/base',
   }
 
   List.prototype.onSortChange = function (value, type) {
-    function compare(a,b) {
+    function ascending(a,b) {
+      if (a.title < b.title)
+        return 1;
+      if (a.title > b.title)
+        return -1;
+      return 0;
+    }
+
+    function descending(a,b) {
       if (a.title < b.title)
         return -1;
       if (a.title > b.title)
         return 1;
       return 0;
     }
-    
+
     if (type === "title") {
-      this.movies.sort(compare);
+      if (value === "ascending")
+        this.movies.sort(ascending);
+      if (value === "descending") 
+        this.movies.sort(descending);
     }
 
     this.clear();
