@@ -54,7 +54,7 @@ define(['views/user/login',
 
   User.prototype.success = function (xhr, response) {
     // There be dragons here.
-    this.onLogin(new UserModel(response.email, response.id));
+    this.onLogin(new UserModel(response.email, response.id, response.password, response.username));
     this.register.reset();
   }
 
