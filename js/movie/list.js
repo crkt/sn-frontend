@@ -72,17 +72,34 @@ define(['api'], function (API)
     }
   }
 
-  function MovieListing(node) {
-    this.node = node;
+
+  /*
+   * Movie listing view
+   */
+  function MovieListingView() {
+    var template = document.querySelector("#movie-listing");
+    this.dom = document.importNode(template.content, true);
+    this.list = this.dom.querySelector('.listing');
+  }
+  
+  MovieListingView.prototype.addMovieItem = function(item) {
+    this.list.appendChild(item.view.dom);
   }
 
-  MovieListing.prototype.addMovie = function (movie) {
+  /*
+   * Movie listing presenter
+   */
+  function MovieListing(view) {
+    this.view = view || new MovieListingView();
+  }
+  
+  MovieListing.prototype.addMovie = function(movie) {
     var item = new MovieItem();
-    
+
     // Click on a movie event
     item.selectMovie = MovieListing.prototype.onMovieSelect.bind(this);
     item.setMovie(movie);
-    this.node.appendChild(item.view.dom);
+    this.view.addMovieItem(item);
   }
 
   MovieListing.prototype.onMovieSelect = function (movie) {

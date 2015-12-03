@@ -31,10 +31,8 @@ define([], function () {
   /*
     Movie detail presenter
   */
-  function Detail (node) {
-    this.node = node;
+  function Detail () {
     this.view = new DetailView();
-    this.node.appendChild(this.view.dom);
   }
 
   Detail.prototype.setMovie = function (movie) {

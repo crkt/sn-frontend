@@ -45,16 +45,13 @@ define(['api'], function(API) {
     }
   }
 
-  function Search (node) {
-    this.node = node;
+  function Search () {
     this.view = new SearchView();
     this.view.changeTitle = Search.prototype.changeTitle.bind(this);
     this.view.changeGenre = Search.prototype.changeGenre.bind(this);
     this.view.setGenres(API.genres);
     this.attributes = {};
     this.attributes.genres = [];
-
-    this.node.appendChild(this.view.dom);
   }
 
   Search.prototype.changeTitle = function (title) {
