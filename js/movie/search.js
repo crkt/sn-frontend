@@ -77,6 +77,11 @@ define(['api'], function(API) {
     // Call to API with the attributes that it has.
   }
 
+  Search.prototype.onSearchResult = function (callback) {
+    var data = [];
+    callback(data);
+  }
+
   return Search;
 
 });

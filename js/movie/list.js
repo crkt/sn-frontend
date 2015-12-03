@@ -9,6 +9,17 @@ define(['api'], function (API)
     this.title = this.dom.querySelector(".title");
     this.image = this.dom.querySelector(".image");
     this.rating = this.dom.querySelector(".rating");
+
+    var self = this;
+    this.dom.children[0].addEventListener("click", function (e) {
+      if (self.clickMovie) {
+        self.clickMovie(self.movie);
+      }
+    },false);
+  }
+
+  MovieItemView.prototype.setMovie = function (movie) {
+    this.movie = movie;
   }
 
   MovieItemView.prototype.setTitle = function (title) {
@@ -36,10 +47,14 @@ define(['api'], function (API)
 
   function MovieItem (view) {
     this.view = view || new MovieItemView();
+    
+    // View events
     this.view.rateMovie = MovieItem.prototype.rateMovie.bind(this.view);
+    this.view.clickMovie = MovieItem.prototype.clickMovie.bind(this);
   }
 
   MovieItem.prototype.setMovie = function (movie) {
+    this.view.setMovie(movie);
     this.view.setTitle(movie.title);
     this.view.setImage(movie.image);
     this.view.setRating(movie.rating);
@@ -51,14 +66,29 @@ define(['api'], function (API)
     console.log("Movie to rate: " + this.title.textContent + " rating: " + rating);
   }
 
+  MovieItem.prototype.clickMovie = function (movie) {
+    if (this.selectMovie) {
+      this.selectMovie(movie);
+    }
+  }
+
   function MovieListing(node) {
     this.node = node;
   }
 
   MovieListing.prototype.addMovie = function (movie) {
     var item = new MovieItem();
+    
+    // Click on a movie event
+    item.selectMovie = MovieListing.prototype.onMovieSelect.bind(this);
     item.setMovie(movie);
     this.node.appendChild(item.view.dom);
+  }
+
+  MovieListing.prototype.onMovieSelect = function (movie) {
+    if (this.onMovieSelected) {
+      this.onMovieSelected(movie);
+    }
   }
 
   exports.Item = MovieItem;
