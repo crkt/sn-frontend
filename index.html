@@ -32,7 +32,24 @@
   </div>
 </template>
 
+<template id="movie-sort">
+  <label> Sort by rating
+  <select class="rating">
+    <option class="low" value="low">Low to High</option>
+    <option class="high" value="high">High to Low</option>
+  </select>
+  </label>
+  <label>Sort by title
+  <select class="title">
+    <option class="low" value="low">Z-A</option>
+    <option class="high" value="high">A-Z</option>
+  </select>    
+  </label>
+</template>
+
 <template id="movie-listing">
+  <div class="sorting">
+  </div>
   <div class="listing">
   </div>
 </template>

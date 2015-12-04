@@ -3,6 +3,13 @@ define(['api'], function (API)
 
   var exports = {};
 
+  function SortView() {
+    var template = document.querySelector("#movie-sort");
+    this.dom = document.importNode(template.content, true);
+    this.rating = this.dom.querySelector(".rating");
+    this.title = this.dom.querySelector(".title");
+  }
+
   function MovieItemView() {
     var template = document.querySelector("#movie-item");
     this.dom = document.importNode(template.content, true);
@@ -13,13 +20,9 @@ define(['api'], function (API)
     var self = this;
     this.dom.children[0].addEventListener("click", function (e) {
       if (self.clickMovie) {
-        self.clickMovie(self.movie);
+        self.clickMovie(e);
       }
     },false);
-  }
-
-  MovieItemView.prototype.setMovie = function (movie) {
-    this.movie = movie;
   }
 
   MovieItemView.prototype.setTitle = function (title) {
@@ -54,10 +57,11 @@ define(['api'], function (API)
   }
 
   MovieItem.prototype.setMovie = function (movie) {
-    this.view.setMovie(movie);
     this.view.setTitle(movie.title);
     this.view.setImage(movie.image);
     this.view.setRating(movie.rating);
+    // Have a look at this later...
+    this.movie = movie;
   }
 
   MovieItem.prototype.rateMovie = function (rating) {
@@ -66,11 +70,11 @@ define(['api'], function (API)
     console.log("Movie to rate: " + this.title.textContent + " rating: " + rating);
   }
 
-  MovieItem.prototype.clickMovie = function (movie) {
+  MovieItem.prototype.clickMovie = function (e) {
     if (this.selectMovie) {
-      this.selectMovie(movie);
+      this.selectMovie(this.movie);
     }
-  }
+  }  
 
 
   /*
@@ -79,11 +83,18 @@ define(['api'], function (API)
   function MovieListingView() {
     var template = document.querySelector("#movie-listing");
     this.dom = document.importNode(template.content, true);
-    this.list = this.dom.querySelector('.listing');
+    this.sort = this.dom.querySelector(".sorting");
+    this.list = this.dom.querySelector(".listing");
   }
   
   MovieListingView.prototype.addMovieItem = function(item) {
     this.list.appendChild(item.view.dom);
+  }
+
+  MovieListingView.prototype.clear = function () {   
+    while (this.list.firstChild) {
+      this.list.removeChild(this.list.firstChild);
+    } 
   }
 
   /*
@@ -102,11 +113,16 @@ define(['api'], function (API)
     this.view.addMovieItem(item);
   }
 
+  MovieListing.prototype.clear = function() {
+    this.view.clear();
+  }
+
   MovieListing.prototype.onMovieSelect = function (movie) {
     if (this.onMovieSelected) {
       this.onMovieSelected(movie);
     }
   }
+  
 
   exports.Item = MovieItem;
   exports.List = MovieListing;

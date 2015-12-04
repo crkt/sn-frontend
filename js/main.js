@@ -23,14 +23,13 @@ requirejs(['movie/list','movie/search','movie/detail','api'],function(Movie, Sea
 
   API.moviez.forEach(Movie.List.prototype.addMovie, list);
 
-  // Ehh, should be able to write in another way...
   list.onMovieSelected = function (movie) {
     detail.setMovie(movie);
   };
 
-  // Black magic vodoo..?
-  search.onSearchResult(function (r) {
+  search.onSearchResult = function (r) {
+    list.clear();
     r.forEach(Movie.List.prototype.addMovie, list);
-  });
+  };
 
 });

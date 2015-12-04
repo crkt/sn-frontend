@@ -45,18 +45,32 @@ define(['api'], function(API) {
     }
   }
 
+  /*
+    Search model
+   */
+  function Attributes () {
+    this.title = undefined;
+    this.runtime = undefined;
+    this.year = undefined;
+    this.genres = [];
+  }
+
   function Search () {
     this.view = new SearchView();
     this.view.changeTitle = Search.prototype.changeTitle.bind(this);
     this.view.changeGenre = Search.prototype.changeGenre.bind(this);
-    this.view.setGenres(API.genres);
-    this.attributes = {};
-    this.attributes.genres = [];
+
+    var self = this;
+    API.fetchGenres(function (genres) {
+      self.view.setGenres(genres);
+    });
+
+    this.attributes = new Attributes();
   }
 
   Search.prototype.changeTitle = function (title) {
     this.attributes.title = title;
-    console.log(this.attributes);
+    this.search();
   }
 
   Search.prototype.changeGenre = function (genre, id) {
@@ -67,16 +81,17 @@ define(['api'], function(API) {
     } else if (index > -1) {
       this.attributes.genres.remove(index);
     }
-    console.log(this.attributes.genres);
+
+    // Dont think this is needed?
+    this.search.call(this);
   }
 
   Search.prototype.search = function () {
-    // Call to API with the attributes that it has.
-  }
-
-  Search.prototype.onSearchResult = function (callback) {
-    var data = [];
-    callback(data);
+    var self = this;
+    API.search(this.attributes, function (result) {
+      if (self.onSearchResult)
+        self.onSearchResult(result);
+    });
   }
 
   return Search;
