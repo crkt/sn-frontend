@@ -55,20 +55,18 @@
 </template>
 
 <template id="search">
-  <form id="sn-query">
-    <div class="label-input">
-      <input class="query-input" data-property="title" placeholder="Search with movie title"></input>
-      <fieldset class="genres">
-      </fieldset>
-    </div>
+  <form class="search-form">
+    <input class="title" placeholder="Search with title"></input>
+    <fieldset class="genres">
+    </fieldset>
+    <input type="submit"></input>
   </form>
 </template>
 
-<template id="genres">
+<template id="genre-input">
   <div class="checkbox">
-    <label class="check-label">
-      <input type="checkbox" class="check-input"></input>
-    </label>
+    <label class="label"></label>
+      <input type="checkbox" class="input">
   </div>
 </template>
 

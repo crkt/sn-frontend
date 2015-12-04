@@ -21,13 +21,17 @@ requirejs(['movie/list','movie/search','movie/detail','api'],function(Movie, Sea
   document.querySelector("#moviez-detail").appendChild(detail.view.dom);
   
 
+  API.fetchGenres(function (genres) {
+    genres.forEach(Search.prototype.addGenre, search);
+  });
+
   API.moviez.forEach(Movie.List.prototype.addMovie, list);
 
   list.onMovieSelected = function (movie) {
     detail.setMovie(movie);
   };
 
-  search.onSearchResult = function (r) {
+  search.searchResultCallback = function (r) {
     list.clear();
     r.forEach(Movie.List.prototype.addMovie, list);
   };
