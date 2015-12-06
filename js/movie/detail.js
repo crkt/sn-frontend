@@ -25,7 +25,16 @@ define([], function () {
   }
 
   DetailView.prototype.setRating = function (rating) {
-    this.rating.textContent = rating;
+    for (var i = 0; i < this.rating.children.length; i++) {
+      this.rating.children[i].classList.toggle('on', i + 1 <= rating);
+      var self = this;
+
+      this.rating.children[i].addEventListener("change", function (e) {
+        if (self.rateMovie) {
+          self.rateMovie(e.target.value);
+        }
+      }, false);
+    }
   }
 
   /*

@@ -28,7 +28,7 @@
       <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
       <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
       <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
-    </div>
+    </fieldset>
   </div>
 </template>
 
@@ -79,7 +79,23 @@
   <h2 class="title"></h2>
   <p class="plot"></p>
   <img class="image"></img>
-  <div class="rating"></div>
+  <fieldset class="rating">
+    <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
+    <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
+    <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
+    <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
+    <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
+  </fieldset>
+</template>
+
+<template id="user-register">
+  <form class="register">
+    <input type="text" class="username" placeholder="Enter username"></input>
+    <input type="email" class="email" placeholder="Enter email"></input>
+    <input type="password" class="password" placeholder="Enter a password"></input>
+    <input type="password" class="repeat" placeholder="Repeat password"></input>
+    <input type="submit"></input>
+  </form>
 </template>
 
 

@@ -114,6 +114,25 @@ define([],function()
          });
   }
 
+  var register = function (data, success, error, failure) {
+    send("POST",
+         "/user/register",
+         data,
+         function (xhr) {
+           if (xhr.readyState === 4) {
+             if (xhr.status === 201) {
+               success(JSON.parse(xhr.response));
+             } else if (xhr.status === 400) {     
+               error(JSON.parse(xhr.response));
+             } else {
+               failure(xhr.response);
+             }
+           }
+         },
+         error,
+         failure);
+  }
+
   var fetchGenres = function (success) {
     fetch("/movie/genres", 
           function (xhr) {
@@ -154,6 +173,17 @@ define([],function()
            });
   }
 
+  var registerUser = function (user, success, error) {
+    register("/user/register",
+             user,
+             success,
+             error,
+             function (xhr) {
+               console.log("Failed to create user");
+             });
+  }
+
+  api.register = registerUser;
   api.search = searchWithAttributes;
   api.moviez = moviez;
   api.fetchGenres = fetchGenres;

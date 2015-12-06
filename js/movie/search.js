@@ -47,7 +47,7 @@ define(['api'], function(API) {
       if (self.searchResultCallback) {
         var attrs = {};
         attrs.title = title == "" ? undefined : title;
-        attrs.genres = genres;
+        attrs.genres = undefined;
         attrs.runtime = undefined;
         attrs.year = undefined;
         API.search(attrs,function (r) {
