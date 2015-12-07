@@ -27,23 +27,35 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
   document.querySelector("#user").appendChild(user.profile.dom);
   
 
+  var userLoggedIn = false;
+  var currentUser = user.getUser();
+
   API.fetchGenres(function (genres) {
     genres.forEach(Search.prototype.addGenre, search);
   });
-
-  //API.moviez.forEach(Movie.List.prototype.addMovie, list);
 
   user.onUserLoggedIn = function (loggedIn, r) {
     userLoggedIn = loggedIn;
     user.register.hide();
     user.login.hide();
-    user.setUser(r.username);
-    
+    user.setUser(r);
+    currentUser = user.getUser();
+  }
+
+  detail.onRatingCallback = function (id, rating) {
+    if (userLoggedIn) {
+      API.rate(id,rating,currentUser.id, 
+               function (r) {
+                 detail.updateRating(r);
+               });      
+    } else {
+      console.log("You must be logged in to rate a movie");
+    }
   }
 
   list.onMovieRated = function (id,rating) {
     if (userLoggedIn) {
-      API.rate(id,rating,user.getUser().id, function (r) {
+      API.rate(id,rating,currentUser.id, function (r) {
         console.log("RATED MOVIE" + id + " " + r);
       });
     } else {

@@ -1,4 +1,4 @@
-define([], function () {
+define(['widget'], function (Widgets) {
 
   /*
     Movie detail view
@@ -9,7 +9,8 @@ define([], function () {
     this.title = this.dom.querySelector(".title");
     this.plot = this.dom.querySelector(".plot");
     this.image = this.dom.querySelector(".image");
-    this.rating = this.dom.querySelector(".rating");            
+    this.rating = new Widgets.Rating(this.dom.querySelector(".rating"));
+    this.votes = this.dom.querySelector(".votes");
   }
 
   DetailView.prototype.setTitle = function (title) {
@@ -25,16 +26,12 @@ define([], function () {
   }
 
   DetailView.prototype.setRating = function (rating) {
-    for (var i = 0; i < this.rating.children.length; i++) {
-      this.rating.children[i].classList.toggle('on', i + 1 <= rating);
-      var self = this;
+    this.rating.view.setRating(rating);
+    this.rating.onRatingCallback = this.onRating;     
+  }
 
-      this.rating.children[i].addEventListener("change", function (e) {
-        if (self.rateMovie) {
-          self.rateMovie(e.target.value);
-        }
-      }, false);
-    }
+  DetailView.prototype.setVotes = function (votes) {
+    this.votes.textContent = votes;
   }
 
   /*
@@ -42,13 +39,28 @@ define([], function () {
   */
   function Detail () {
     this.view = new DetailView();
+    this.view.onRating = Detail.prototype.onRating.bind(this);
+
+    this.onRatingCallback = null;
   }
 
   Detail.prototype.setMovie = function (movie) {
+    this.movie = movie;
     this.view.setTitle(movie.title);
     this.view.setPlot(movie.description);
     this.view.setImage(movie.picture);
-    this.view.setRating(movie.rating.user_rating);
+    this.view.setRating(movie.rating.rating);
+    this.view.setVotes(movie.rating.nr_votes);
+  }
+
+  Detail.prototype.updateRating = function (rating) {
+    this.view.setRating(rating.rating);
+  }
+
+  Detail.prototype.onRating = function (value) {
+    if (this.onRatingCallback) {
+      this.onRatingCallback(this.movie.id, value);
+    }
   }
 
   return Detail;

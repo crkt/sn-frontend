@@ -149,22 +149,23 @@ define([],function()
           });
   }
   
-  var rate = function (id,rating,user,success,error,failure) {
+  var rate = function (id,rating,user,success) {
     send("PUT",
          "/movie/rating",
+         {user_id: user, rating: rating, movie: id},
          function (xhr) {
            if (xhr.readyState === 4) {
              if (xhr.status === 200) {
                success(JSON.parse(xhr.response));
-             } else if (xhr.status === 400) {     
-               error(JSON.parse(xhr.response));
-             } else {
-               failure(xhr.response);
-             }
+             } 
            }
          },
-         error,
-         failure);
+         function (xhr) {
+           console.log("Error" + xhr);
+         },
+         function (xhr) {
+           console.log("Failure" + xhr);
+         });
   }
 
   var fetchGenres = function (success) {
@@ -244,6 +245,7 @@ define([],function()
          });
   }
 
+  api.rate = rate;
   api.random = random;
   api.login = loginUser;
   api.register = registerUser;

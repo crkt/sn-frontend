@@ -92,15 +92,20 @@ define(['api'], function(API) {
   function User(register,login,profile) {
     this.register = register || new RegisterView();
     this.login = login || new LoginView();
-    this.profile = profile || new ProfileView();   
+    this.profile = profile || new ProfileView();
 
     this.register.onRegister = User.prototype.onRegister.bind(this);
     this.login.onLogin = User.prototype.onLogin.bind(this);
     this.profile.onLogout = User.prototype.onLogout.bind(this);
   }
 
-  User.prototype.setUser = function (name) {
-    this.profile.setUsername(name);
+  User.prototype.getUser = function () {
+    return this.user;
+  }
+
+  User.prototype.setUser = function (user) {
+    this.user = user;
+    this.profile.setUsername(user.username);
   }
 
   User.prototype.onError = function (type, errors) {
