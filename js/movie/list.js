@@ -85,6 +85,9 @@ define(['api'], function (API)
     // API calls go here, etc etc.
     // Make sure the user is logged in, etc.
     console.log("Movie to rate: " + this.title.textContent + " rating: " + rating);
+    if (this.onRateMovie) {
+      this.onRateMovie(this.movie.id, rating);
+    }
   }
 
   MovieItem.prototype.clickMovie = function (e) {
@@ -126,12 +129,21 @@ define(['api'], function (API)
 
     // Click on a movie event
     item.selectMovie = MovieListing.prototype.onMovieSelect.bind(this);
+    // Rate a movie event
+    item.onRateMovie = MovieListing.prototype.onRateMovie.bind(this);
+
     item.setMovie(movie);
     this.view.addMovieItem(item);
   }
 
   MovieListing.prototype.clear = function() {
     this.view.clear();
+  }
+
+  MovieListing.prototype.onRateMovie = function (id, rating) {
+    if (this.onMovieRated) {
+      this.onMovieRated(id,rating);
+    }
   }
 
   MovieListing.prototype.onMovieSelect = function (movie) {

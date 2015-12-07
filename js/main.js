@@ -34,10 +34,21 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
   //API.moviez.forEach(Movie.List.prototype.addMovie, list);
 
   user.onUserLoggedIn = function (loggedIn, r) {
+    userLoggedIn = loggedIn;
     user.register.hide();
     user.login.hide();
     user.setUser(r.username);
     
+  }
+
+  list.onMovieRated = function (id,rating) {
+    if (userLoggedIn) {
+      API.rate(id,rating,user.getUser().id, function (r) {
+        console.log("RATED MOVIE" + id + " " + r);
+      });
+    } else {
+      console.log("You must be logged in to rate a movie");
+    }
   }
 
   list.onMovieSelected = function (movie) {
