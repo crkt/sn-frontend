@@ -46,9 +46,9 @@ define([], function () {
 
   Detail.prototype.setMovie = function (movie) {
     this.view.setTitle(movie.title);
-    this.view.setPlot(movie.plot);
-    this.view.setImage(movie.image);
-    this.view.setRating(movie.rating);
+    this.view.setPlot(movie.description);
+    this.view.setImage(movie.picture);
+    this.view.setRating(movie.rating.user_rating);
   }
 
   return Detail;

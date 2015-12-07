@@ -153,7 +153,7 @@ define([],function()
   var moviez = [
     {title: "Under Siege", 
      plot: "Bla bla bla",
-     image: "https://upload.wikimedia.org/wikipedia/en/3/3d/StevenSeagalUnderSiege_cover.jpg",
+     picture: "https://upload.wikimedia.org/wikipedia/en/3/3d/StevenSeagalUnderSiege_cover.jpg",
      rating: {
        user_rating: 5,
        votes: 20,
@@ -162,7 +162,7 @@ define([],function()
     },
     {title: "No Where To Run",
      plot: "Bla bla bla",
-     image: "https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Nowhere_to_Run.jpg/220px-Nowhere_to_Run.jpg", 
+     picture: "https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Nowhere_to_Run.jpg/220px-Nowhere_to_Run.jpg", 
      rating: {
        user_rating: 4,
        votes: 200231,
