@@ -39,7 +39,7 @@ fieldset, label {
 .movie {
     display: inline-block;
     word-wrap: break-word;
-    width: calc(20% - 4px);
+    width: calc(16.6% - 4px);
     vertical-align: top;
     box-sizing: border-box;
     background-color: black;
