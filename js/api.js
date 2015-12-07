@@ -73,9 +73,9 @@ define([],function()
          function (xhr) {
            if (xhr.readyState === 4) {
              if (xhr.status === 202) {
-               success(xhr, JSON.parse(xhr.response));
+               success(JSON.parse(xhr.response));
              } else if (xhr.status === 400) {     
-               error(xhr, JSON.parse(xhr.response));
+               error(JSON.parse(xhr.response));
              } else {
                failure(xhr, xhr.response);
              }
@@ -153,12 +153,22 @@ define([],function()
   var moviez = [
     {title: "Under Siege", 
      plot: "Bla bla bla",
-     image: "https://upload.wikimedia.org/wikipedia/en/3/3d/StevenSeagalUnderSiege_cover.jpg", 
-     rating: 5},
+     image: "https://upload.wikimedia.org/wikipedia/en/3/3d/StevenSeagalUnderSiege_cover.jpg",
+     rating: {
+       user_rating: 5,
+       votes: 20,
+       average: 3.6
+     },
+    },
     {title: "No Where To Run",
      plot: "Bla bla bla",
      image: "https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Nowhere_to_Run.jpg/220px-Nowhere_to_Run.jpg", 
-     rating: 4}
+     rating: {
+       user_rating: 4,
+       votes: 200231,
+       average: 2.5
+     },
+    }
   ];
   
   var searchWithAttributes = function (attrs, success) {
@@ -174,15 +184,24 @@ define([],function()
   }
 
   var registerUser = function (user, success, error) {
-    register("/user/register",
-             user,
+    register(user,
              success,
              error,
              function (xhr) {
                console.log("Failed to create user");
              });
   }
+  
+  var loginUser = function (user, success, error) {
+    login(user,
+          success,
+          error,
+          function (xhr) {
+            console.log("Failed to login");
+          });
+  }
 
+  api.login = loginUser;
   api.register = registerUser;
   api.search = searchWithAttributes;
   api.moviez = moviez;

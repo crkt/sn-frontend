@@ -11,6 +11,10 @@ fieldset, label {
     display: block;
 }
 
+.hidden {
+    display: none;
+}
+
 .rating > input { 
     -webkit-appearance: none;
     color: #ddd;

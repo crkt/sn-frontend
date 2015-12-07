@@ -15,6 +15,7 @@ define(['api'], function (API)
     this.dom = document.importNode(template.content, true);
     this.title = this.dom.querySelector(".title");
     this.image = this.dom.querySelector(".image");
+    this.avgRating = this.dom.querySelector(".average-rating");
     this.rating = this.dom.querySelector(".rating");
 
     var self = this;
@@ -31,6 +32,10 @@ define(['api'], function (API)
 
   MovieItemView.prototype.setImage = function (url) {
     this.image.src = url;
+  }
+
+  MovieItemView.prototype.setAverageRating = function (rating) {
+    this.avgRating.textContent = rating;
   }
 
   MovieItemView.prototype.setRating = function (rating) {
@@ -59,7 +64,8 @@ define(['api'], function (API)
   MovieItem.prototype.setMovie = function (movie) {
     this.view.setTitle(movie.title);
     this.view.setImage(movie.image);
-    this.view.setRating(movie.rating);
+    this.view.setRating(movie.rating.user_rating);
+    this.view.setAverageRating(movie.rating.average);
     // Have a look at this later...
     this.movie = movie;
   }

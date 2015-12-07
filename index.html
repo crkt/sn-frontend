@@ -22,6 +22,8 @@
   <div class="movie">
     <img class="image">
     <h2 class="title"></h2>
+    <label> Rating: </label>
+    <label class="average-rating"></label>
     <fieldset class="rating">
       <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
       <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
@@ -96,6 +98,20 @@
     <input type="password" class="repeat" placeholder="Repeat password"></input>
     <input type="submit"></input>
   </form>
+</template>
+
+<template id="user-login">
+  <form class="login">
+    <input type="text" class="username" placeholder="Enter username"></input>
+    <input type="password" class="password" placeholder="Enter your password"></input>
+    <input type="submit"></input>
+    </form>
+</template>
+
+<template id="user-profile">
+  <div class="profile">
+    <label class="username"></label>
+  </div>
 </template>
 
 

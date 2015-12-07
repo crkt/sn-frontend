@@ -23,6 +23,8 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
 
   var user = new User();
   document.querySelector("#user").appendChild(user.register.dom);
+  document.querySelector("#user").appendChild(user.login.dom);
+  document.querySelector("#user").appendChild(user.profile.dom);
   
 
   API.fetchGenres(function (genres) {
@@ -31,8 +33,11 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
 
   API.moviez.forEach(Movie.List.prototype.addMovie, list);
 
-  user.onUserLoggedIn = function (loggedIn) {
-    console.log("LoggedIn");
+  user.onUserLoggedIn = function (loggedIn, r) {
+    user.register.hide();
+    user.login.hide();
+    user.setUser(r.username);
+    
   }
 
   list.onMovieSelected = function (movie) {
