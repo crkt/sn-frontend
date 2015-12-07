@@ -132,6 +132,22 @@ define([],function()
          error,
          failure);
   }
+  var random = function (success) {
+    fetch("/search/random",
+      function (xhr) {
+        if (xhr.readyState === 4) {
+          if (xhr.readyState === 200) {
+            success(JSON.parse(xhr.response));
+            }
+        }
+      },
+      function (xhr) {
+        console.log("Failed to get random");
+      },
+      function (xhr) {
+        console.log("Failed to get random");
+      });
+  }
 
   var rate = function (id,rating,user,success,error,failure) {
     send("PUT",
@@ -228,6 +244,7 @@ define([],function()
          });
   }
 
+  api.random = random;
   api.login = loginUser;
   api.register = registerUser;
   api.search = searchWithAttributes;

@@ -60,4 +60,9 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
     r.forEach(Movie.List.prototype.addMovie, list);
   };
 
+  search.randomResultCallback = function (movie) {
+    detail.setMovie(movie);
+  }
+
+
 });
