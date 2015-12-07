@@ -1,20 +1,120 @@
 <html>
 <head>
-        <script data-main="js/main.js" src="js/require.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/forms.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/search.css">
-        <link rel="stylesheet" type="text/css" href="css/user.css">
-        <link rel="stylesheet" type="text/css" href="css/widgets.css">
+        <script data-main="js/main.js" src="js/require.js"></script>        
         <link rel="stylesheet" type="text/css" href="css/movie.css">
+
 </head>
 <body>
 <header id="header">
   <div class="logo-pane">SortNight</div>
-  <div id="search"></div>
   <div id="user"></div>
 </header>
 <div class="main-content" id="main-content">
+<h1> Search for a movie </h1>
+<div id="search-moviez"></div>
+<h1> Top rated moviez </h1>
+<div id="moviez-list"></div>
+
+<h1> Detail of movie </h1>
+<div id="moviez-detail"></div>
+
+<template id="movie-item">
+  <div class="movie">
+    <img class="image">
+    <h2 class="title"></h2>
+    <label> Rating: </label>
+    <label class="average-rating"></label>
+    <fieldset class="rating">
+      <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
+      <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
+      <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
+      <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
+      <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
+    </fieldset>
+  </div>
+</template>
+
+<template id="movie-sort">
+  <label> Sort by rating
+  <select class="rating">
+    <option class="low" value="low">Low to High</option>
+    <option class="high" value="high">High to Low</option>
+  </select>
+  </label>
+  <label>Sort by title
+  <select class="title">
+    <option class="low" value="low">Z-A</option>
+    <option class="high" value="high">A-Z</option>
+  </select>    
+  </label>
+</template>
+
+<template id="movie-listing">
+  <div class="sorting">
+  </div>
+  <div class="listing">
+  </div>
+</template>
+
+<template id="search">
+  <form class="search-form">
+    <input class="title" placeholder="Search with title"></input>
+    <fieldset class="genres">
+    </fieldset>
+    <input type="submit"></input>
+  </form>
+</template>
+
+<template id="genre-input">
+  <div class="checkbox">
+    <label class="label"></label>
+      <input type="checkbox" class="input">
+  </div>
+</template>
+
+<template id="movie-results">
+  <div class="list">
+  </div>
+</template>
+
+<template id="detail">
+  <h2 class="title"></h2>
+  <p class="plot"></p>
+  <img class="image"></img>
+  <fieldset class="rating">
+    <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
+    <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
+    <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
+    <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
+    <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
+  </fieldset>
+</template>
+
+<template id="user-register">
+  <form class="register">
+    <input type="text" class="username" placeholder="Enter username"></input>
+    <input type="email" class="email" placeholder="Enter email"></input>
+    <input type="password" class="password" placeholder="Enter a password"></input>
+    <input type="password" class="repeat" placeholder="Repeat password"></input>
+    <input type="submit"></input>
+  </form>
+</template>
+
+<template id="user-login">
+  <form class="login">
+    <input type="text" class="username" placeholder="Enter username"></input>
+    <input type="password" class="password" placeholder="Enter your password"></input>
+    <input type="submit"></input>
+    </form>
+</template>
+
+<template id="user-profile">
+  <div class="profile">
+    <label class="username"></label>
+  </div>
+</template>
+
+
 </div>
 </body>
 <footer>

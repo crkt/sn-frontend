@@ -1,25 +1,30 @@
-/*
-	Ratings Stars
-	(with as little code as possible)
-*/
-.rating {
-  unicode-bidi: bidi-override;
-  direction: rtl;
-  text-align: center;
+body {
+    background: grey;
 }
-.rating > input {
-  display: inline-block;
-  position: relative;
-  width: 1.1em;
+
+
+fieldset, label { 
+    margin: 0; 
+    padding: 0; 
+    -webkit-appearance: none;
+    border: none;
+    display: block;
 }
-.rating > input:hover,
-.rating > input:hover ~ input {
-  color: transparent;
+
+.hidden {
+    display: none;
 }
-.rating > input:hover:before,
-.rating > input:hover ~ input:before {
-   content: "\2605";
-   position: absolute;
-   left: 0; 
-   color: gold;
+
+.rating > input { 
+    -webkit-appearance: none;
+    color: #ddd;
+} 
+
+
+.rating .star:before {
+    content: "\2605";
+}
+
+.rating .star.on {
+    color: #FFD700;
 }
