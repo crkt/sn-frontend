@@ -41,6 +41,8 @@ fieldset, label {
     word-wrap: break-word;
     width: 214px;
     vertical-align: top;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 
