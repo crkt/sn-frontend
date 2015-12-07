@@ -31,7 +31,7 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
     genres.forEach(Search.prototype.addGenre, search);
   });
 
-  API.moviez.forEach(Movie.List.prototype.addMovie, list);
+  //API.moviez.forEach(Movie.List.prototype.addMovie, list);
 
   user.onUserLoggedIn = function (loggedIn, r) {
     user.register.hide();
