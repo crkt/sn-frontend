@@ -32,8 +32,15 @@ fieldset, label {
     color: #FFD700;
 }
 
+.listing {
+    width: 100%;
+}
+
 .movie {
     display: inline-block;
+    word-wrap: break-word;
+    width: 214px;
+    vertical-align: top;
 }
 
 
