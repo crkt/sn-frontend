@@ -63,7 +63,7 @@ define(['api'], function (API)
 
   MovieItem.prototype.setMovie = function (movie) {
     this.view.setTitle(movie.title);
-    this.view.setImage(movie.image);
+    this.view.setImage(movie.picture);
     this.view.setRating(movie.rating.user_rating);
     this.view.setAverageRating(movie.rating.average);
     // Have a look at this later...
