@@ -1,13 +1,16 @@
 define(['views/movie/list',
-        'app/request'], function(ListView, Request) 
+        'views/movie/detailedmovie',
+        'app/request'], function(ListView, DetailView, Request) 
 {
 
   function ListController(ratingCallback) {    
     this.view = document.querySelector("#main-content");
 
-    this.list = new ListView(this.updateRating.bind(this));
+    this.list = new ListView(this.clickMovie.bind(this), this.updateRating.bind(this));
+    this.detail = new DetailView(this.updateRating.bind(this));
 
     this.view.appendChild(this.list.element);
+    this.view.appendChild(this.detail.element);
 
     this.callback = ratingCallback;
   }
@@ -20,6 +23,11 @@ define(['views/movie/list',
     this.list.clear();
   }
 
+  ListController.prototype.clickMovie = function (movie) {
+    this.detail.setModel(movie);
+    this.detail.createFields();
+    console.log("SHOW DETAIL VIEW");
+  }
 
   ListController.prototype.success = function (xhr, response) {
     // There be dragons here.
