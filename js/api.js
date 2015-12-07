@@ -133,6 +133,24 @@ define([],function()
          failure);
   }
 
+  var rate = function (id,rating,user,success,error,failure) {
+    send("PUT",
+         "/movie/rating",
+         function (xhr) {
+           if (xhr.readyState === 4) {
+             if (xhr.status === 200) {
+               success(JSON.parse(xhr.response));
+             } else if (xhr.status === 400) {     
+               error(JSON.parse(xhr.response));
+             } else {
+               failure(xhr.response);
+             }
+           }
+         },
+         error,
+         failure);
+  }
+
   var fetchGenres = function (success) {
     fetch("/movie/genres", 
           function (xhr) {
@@ -199,6 +217,15 @@ define([],function()
           function (xhr) {
             console.log("Failed to login");
           });
+  }
+
+  var rateMovie = function (movie_id, rating, user_id, success, error) {
+    rate(movie_id,rating,user_id,
+         success,
+         error,
+         function (xhr) {
+           console.log("Faield to rate movie");
+         });
   }
 
   api.login = loginUser;
