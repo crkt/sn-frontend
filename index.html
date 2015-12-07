@@ -38,19 +38,9 @@
   <div class="movie">
     <img class="image">
     <h2 class="title"></h2>
-    <label> Rating: </label>
-    <label class="average-rating"></label>
-    <label class="votes"></label>
-    <label class="user-rating">Your rating: 0</label>
-    <!-- add the rating widget here -->
-    <fieldset class="rating">
-      <label> Average rating </label>
-      <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
-      <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
-      <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
-      <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
-      <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
-    </fieldset>
+    <div class="average-rating"></div>
+    <label class="label">Nr of votes <label class="votes"></label></label>
+    <div class="user-rating"></div>
   </div>
 </template>
 
@@ -82,7 +72,7 @@
     <input class="title" placeholder="Search with title"></input>
     <fieldset class="genres">
     </fieldset>
-    <input type="submit"></input>
+    <input type="submit" value="Search"></input>
     <input class="random" type="button" value="Random"></input> 
   </form>
 </template>

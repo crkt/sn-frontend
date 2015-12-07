@@ -185,27 +185,23 @@ define([],function()
           });
   }
 
-  var moviez = [
-    {title: "Under Siege", 
-     plot: "Bla bla bla",
-     picture: "https://upload.wikimedia.org/wikipedia/en/3/3d/StevenSeagalUnderSiege_cover.jpg",
-     rating: {
-       user_rating: 5,
-       votes: 20,
-       average: 3.6
-     },
-    },
-    {title: "No Where To Run",
-     plot: "Bla bla bla",
-     picture: "https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Nowhere_to_Run.jpg/220px-Nowhere_to_Run.jpg", 
-     rating: {
-       user_rating: 4,
-       votes: 200231,
-       average: 2.5
-     },
-    }
-  ];
-  
+  var fetchMovieId = function (id, success) {
+    send("/movie/id",
+         function (xhr) {
+           if (xhr.readyState === 4) {
+             if (xhr.status === 200) {
+               success(JSON.parse(xhr.response));
+             }
+           }
+         },
+          function (xhr) {
+            console.log("Failed to get genres");
+          },
+         function (xhr) {
+           console.log("Failed to get genres");
+         });
+  }
+
   var searchWithAttributes = function (attrs, success) {
     search("/search/movie",
            attrs,
@@ -250,8 +246,8 @@ define([],function()
   api.login = loginUser;
   api.register = registerUser;
   api.search = searchWithAttributes;
-  api.moviez = moviez;
   api.fetchGenres = fetchGenres;
+  api.fetchMovieId = fetchMovieId;
 
   return api;
 });

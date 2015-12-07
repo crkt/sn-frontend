@@ -49,7 +49,7 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
                  detail.updateRating(r);
                });      
     } else {
-      console.log("You must be logged in to rate a movie");
+      alert("You must be logged in to rate a movie");
     }
   }
 
@@ -59,7 +59,7 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
         console.log("RATED MOVIE" + id + " " + r);
       });
     } else {
-      console.log("You must be logged in to rate a movie");
+      alert("You must be logged in to rate a movie");
     }
   }
 
