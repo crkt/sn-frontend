@@ -76,7 +76,7 @@ define(['widgets/base',
     console.log("Selected new sort : " + value + " " + type);
   }
 
-  function ListItem(movie, callback) {
+  function ListItem(movie, click, callback) {
     Base.Base.call(this, "li");
     
     var field = new MovieItem(movie, 
@@ -125,7 +125,9 @@ define(['widgets/base',
   }
 
   List.prototype.addMovie = function (movie) {
-    var item = new ListItem(movie, this.callback);
+    var item = new ListItem(movie,
+                            this.onMovieClick.bind(this), 
+                            this.onMovieRating.bind(this));
     this.addChild(item.element);
   }
 

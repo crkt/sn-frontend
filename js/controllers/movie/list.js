@@ -1,5 +1,5 @@
 define(['views/movie/list',
-        'views/movie/detailedmovie',
+        'views/movie/detail',
         'app/request'], function(ListView, DetailView, Request) 
 {
 

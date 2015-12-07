@@ -45,8 +45,8 @@ DetailedMovie.prototype.createFields = function() {
 	for (var prop in this.model){
 		 var content = new Base.Base("div");
 		 content.addClass("fields");
-		 var proplbl = new Base.Label(dprop);
-		 propblb.addClass("property");
+		 var proplbl = new Base.Label(prop);
+		 proplbl.addClass("property");
 		 var valuelbl = new Base.Label(this.model[prop]);
 		 valuelbl.addClass("value");
       	 content.addChild(proplbl.element);
