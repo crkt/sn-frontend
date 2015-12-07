@@ -16,6 +16,8 @@ define(['api'], function (API)
     this.title = this.dom.querySelector(".title");
     this.image = this.dom.querySelector(".image");
     this.avgRating = this.dom.querySelector(".average-rating");
+    this.votes = this.dom.querySelector(".votes");
+    this.userRating = this.dom.querySelector(".user-rating");
     this.rating = this.dom.querySelector(".rating");
 
     var self = this;
@@ -36,6 +38,14 @@ define(['api'], function (API)
 
   MovieItemView.prototype.setAverageRating = function (rating) {
     this.avgRating.textContent = rating;
+  }
+
+  MovieItemView.prototype.setVotes = function (votes) {
+    this.votes.textContent = votes;
+  }
+
+  MovieItemView.prototype.setUserRating = function (rating) {
+    this.userRating.textContent = rating;
   }
 
   MovieItemView.prototype.setRating = function (rating) {
@@ -64,8 +74,9 @@ define(['api'], function (API)
   MovieItem.prototype.setMovie = function (movie) {
     this.view.setTitle(movie.title);
     this.view.setImage(movie.picture);
-    this.view.setRating(movie.rating.user_rating);
+    this.view.setRating(movie.rating.average);
     this.view.setAverageRating(movie.rating.average);
+    this.view.setVotes(movie.rating.votes);
     // Have a look at this later...
     this.movie = movie;
   }
