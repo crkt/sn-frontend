@@ -73,9 +73,9 @@ define([],function()
          function (xhr) {
            if (xhr.readyState === 4) {
              if (xhr.status === 202) {
-               success(xhr, JSON.parse(xhr.response));
+               success(JSON.parse(xhr.response));
              } else if (xhr.status === 400) {     
-               error(xhr, JSON.parse(xhr.response));
+               error(JSON.parse(xhr.response));
              } else {
                failure(xhr, xhr.response);
              }
@@ -132,6 +132,41 @@ define([],function()
          error,
          failure);
   }
+  var random = function (success) {
+    fetch("/search/random",
+          function (xhr) {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                success(JSON.parse(xhr.response));
+              }
+            }
+          },
+          function (xhr) {
+            console.log("Failed to get random");
+          },
+          function (xhr) {
+            console.log("Failed to get random");
+          });
+  }
+  
+  var rate = function (id,rating,user,success) {
+    send("PUT",
+         "/movie/rating",
+         {user_id: user, rating: rating, movie: id},
+         function (xhr) {
+           if (xhr.readyState === 4) {
+             if (xhr.status === 200) {
+               success(JSON.parse(xhr.response));
+             } 
+           }
+         },
+         function (xhr) {
+           console.log("Error" + xhr);
+         },
+         function (xhr) {
+           console.log("Failure" + xhr);
+         });
+  }
 
   var fetchGenres = function (success) {
     fetch("/movie/genres", 
@@ -150,17 +185,23 @@ define([],function()
           });
   }
 
-  var moviez = [
-    {title: "Under Siege", 
-     plot: "Bla bla bla",
-     image: "https://upload.wikimedia.org/wikipedia/en/3/3d/StevenSeagalUnderSiege_cover.jpg", 
-     rating: 5},
-    {title: "No Where To Run",
-     plot: "Bla bla bla",
-     image: "https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Nowhere_to_Run.jpg/220px-Nowhere_to_Run.jpg", 
-     rating: 4}
-  ];
-  
+  var fetchMovieId = function (id, success) {
+    send("/movie/id",
+         function (xhr) {
+           if (xhr.readyState === 4) {
+             if (xhr.status === 200) {
+               success(JSON.parse(xhr.response));
+             }
+           }
+         },
+          function (xhr) {
+            console.log("Failed to get genres");
+          },
+         function (xhr) {
+           console.log("Failed to get genres");
+         });
+  }
+
   var searchWithAttributes = function (attrs, success) {
     search("/search/movie",
            attrs,
@@ -174,19 +215,39 @@ define([],function()
   }
 
   var registerUser = function (user, success, error) {
-    register("/user/register",
-             user,
+    register(user,
              success,
              error,
              function (xhr) {
                console.log("Failed to create user");
              });
   }
+  
+  var loginUser = function (user, success, error) {
+    login(user,
+          success,
+          error,
+          function (xhr) {
+            console.log("Failed to login");
+          });
+  }
 
+  var rateMovie = function (movie_id, rating, user_id, success, error) {
+    rate(movie_id,rating,user_id,
+         success,
+         error,
+         function (xhr) {
+           console.log("Faield to rate movie");
+         });
+  }
+
+  api.rate = rate;
+  api.random = random;
+  api.login = loginUser;
   api.register = registerUser;
   api.search = searchWithAttributes;
-  api.moviez = moviez;
   api.fetchGenres = fetchGenres;
+  api.fetchMovieId = fetchMovieId;
 
   return api;
 });

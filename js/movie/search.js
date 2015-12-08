@@ -28,6 +28,7 @@ define(['api'], function(API) {
     this.form = this.dom.querySelector(".search-form");
     this.title = this.dom.querySelector(".title");
     this.genres = this.dom.querySelector(".genres");
+    this.random = this.dom.querySelector(".random");
   }
 
   SearchView.prototype.onSearch = function (callback) {
@@ -37,10 +38,19 @@ define(['api'], function(API) {
       callback(self.title.value);
     },false);
   }
+  SearchView.prototype.onRandom = function (callback) {
+    var self = this;
+    this.random.addEventListener("click", function (e) {
+      e.preventDefault();
+      callback();
+    },false); 
+  }
+
 
   function Search (view) {
     this.view = view || new SearchView();
     this.searchResultCallback = null;
+    this.randomResultCallback = null;
 
     var self = this;
     this.view.onSearch(function (title, genres) {
@@ -52,6 +62,14 @@ define(['api'], function(API) {
         attrs.year = undefined;
         API.search(attrs,function (r) {
           self.searchResultCallback(r);
+        });
+      }
+    });
+
+    this.view.onRandom(function() {
+      if (self.randomResultCallback) {
+        API.random(function (movie) {
+          self.randomResultCallback(movie);
         });
       }
     });

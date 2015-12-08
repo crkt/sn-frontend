@@ -18,17 +18,30 @@
 <h1> Detail of movie </h1>
 <div id="moviez-detail"></div>
 
+
+
+
+
+<!-- *Widgets* -->
+<!-- Rating widget DOM -->
+<template id="rating">
+  <fieldset class="rating">
+    <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
+    <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
+    <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
+    <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
+    <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
+  </fieldset>
+</template>
+
 <template id="movie-item">
   <div class="movie">
     <img class="image">
     <h2 class="title"></h2>
-    <fieldset class="rating">
-      <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
-      <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
-      <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
-      <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
-      <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
-    </fieldset>
+    <div class="average-rating"></div>
+    <label class="label">Nr of votes <label class="votes"></label></label>
+    <label class="label">Your rating</label>    
+    <div class="user-rating"></div>
   </div>
 </template>
 
@@ -47,6 +60,7 @@
   </label>
 </template>
 
+
 <template id="movie-listing">
   <div class="sorting">
   </div>
@@ -59,7 +73,8 @@
     <input class="title" placeholder="Search with title"></input>
     <fieldset class="genres">
     </fieldset>
-    <input type="submit"></input>
+    <input type="submit" value="Search"></input>
+    <input class="random" type="button" value="Random"></input> 
   </form>
 </template>
 
@@ -79,13 +94,8 @@
   <h2 class="title"></h2>
   <p class="plot"></p>
   <img class="image"></img>
-  <fieldset class="rating">
-    <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
-    <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
-    <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
-    <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
-    <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
-  </fieldset>
+  <div class="rating"></div>
+  <label class="votes"></label>
 </template>
 
 <template id="user-register">
@@ -96,6 +106,20 @@
     <input type="password" class="repeat" placeholder="Repeat password"></input>
     <input type="submit"></input>
   </form>
+</template>
+
+<template id="user-login">
+  <form class="login">
+    <input type="text" class="username" placeholder="Enter username"></input>
+    <input type="password" class="password" placeholder="Enter your password"></input>
+    <input type="submit"></input>
+    </form>
+</template>
+
+<template id="user-profile">
+  <div class="profile">
+    <label class="username"></label>
+  </div>
 </template>
 
 

@@ -23,16 +23,44 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
 
   var user = new User();
   document.querySelector("#user").appendChild(user.register.dom);
+  document.querySelector("#user").appendChild(user.login.dom);
+  document.querySelector("#user").appendChild(user.profile.dom);
   
+
+  var userLoggedIn = false;
+  var currentUser = user.getUser();
 
   API.fetchGenres(function (genres) {
     genres.forEach(Search.prototype.addGenre, search);
   });
 
-  API.moviez.forEach(Movie.List.prototype.addMovie, list);
+  user.onUserLoggedIn = function (loggedIn, r) {
+    userLoggedIn = loggedIn;
+    user.register.hide();
+    user.login.hide();
+    user.setUser(r);
+    currentUser = user.getUser();
+  }
 
-  user.onUserLoggedIn = function (loggedIn) {
-    console.log("LoggedIn");
+  detail.onRatingCallback = function (id, rating) {
+    if (userLoggedIn) {
+      API.rate(id,rating,currentUser.id, 
+               function (r) {
+                 detail.updateRating(r);
+               });      
+    } else {
+      alert("You must be logged in to rate a movie");
+    }
+  }
+
+  list.onMovieRated = function (id,rating) {
+    if (userLoggedIn) {
+      API.rate(id,rating,currentUser.id, function (r) {
+        list.updateMovie(r);
+      });
+    } else {
+      alert("You must be logged in to rate a movie");
+    }
   }
 
   list.onMovieSelected = function (movie) {
@@ -43,5 +71,10 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
     list.clear();
     r.forEach(Movie.List.prototype.addMovie, list);
   };
+
+  search.randomResultCallback = function (movie) {
+    detail.setMovie(movie);
+  }
+
 
 });
