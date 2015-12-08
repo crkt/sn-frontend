@@ -19,9 +19,14 @@ define(['api','widget'], function (API, Widget)
     this.avgRating = new Widget.Rating(this.dom.querySelector(".average-rating"));
     this.votes = this.dom.querySelector(".votes");
     this.userRating = new Widget.Rating(this.dom.querySelector(".user-rating"));
-    this.rating = this.dom.querySelector(".rating");
 
-    var self = this;
+    var self = this;    
+    this.userRating.onRatingCallback = function (value) {
+      if (self.rateMovie) {
+        self.rateMovie(value);
+      }
+    }
+
     this.dom.children[0].addEventListener("click", function (e) {
       if (self.clickMovie) {
         self.clickMovie(e);
@@ -53,26 +58,11 @@ define(['api','widget'], function (API, Widget)
     this.userRating.view.setRating(rating);
   }
 
-  MovieItemView.prototype.setRating = function (rating) {
-    // Zero indexed gotchas, 1 on 1...
-    for (var i = 0; i < this.rating.children.length; ++i) {
-      this.rating.children[i].classList.toggle('on', i + 1 <= rating);
-
-      var self = this;
-      this.rating.children[i].addEventListener("change", function (e) {
-        if (self.rateMovie) {
-          self.rateMovie(e.target.value);
-        }
-      }, false);
-    }
-  }
-
-
   function MovieItem (view) {
     this.view = view || new MovieItemView();
     
     // View events
-    this.view.rateMovie = MovieItem.prototype.rateMovie.bind(this.view);
+    this.view.rateMovie = MovieItem.prototype.rateMovie.bind(this);
     this.view.clickMovie = MovieItem.prototype.clickMovie.bind(this);
   }
 
@@ -80,17 +70,19 @@ define(['api','widget'], function (API, Widget)
     this.view.setId(movie.id);
     this.view.setTitle(movie.title);
     this.view.setImage(movie.picture);
-    this.view.setRating(movie.rating.average);
+    this.view.setUserRating(movie.rating.rating);
     this.view.setAverageRating(movie.rating.rating);
     this.view.setVotes(movie.rating.nr_votes);
     // Have a look at this later...
     this.movie = movie;
   }
 
+  MovieItem.prototype.updateRating = function (rating) {
+    this.view.setAverageRating(rating.rating);
+    this.view.setVotes(rating.nr_votes);
+  }
+
   MovieItem.prototype.rateMovie = function (rating) {
-    // API calls go here, etc etc.
-    // Make sure the user is logged in, etc.
-    console.log("Movie to rate: " + this.title.textContent + " rating: " + rating);
     if (this.onRateMovie) {
       this.onRateMovie(this.movie.id, rating);
     }
@@ -128,11 +120,13 @@ define(['api','widget'], function (API, Widget)
    */
   function MovieListing(view) {
     this.view = view || new MovieListingView();
+    
+    this.items = [];
   }
   
   MovieListing.prototype.addMovie = function(movie) {
     var item = new MovieItem();
-
+    this.items.push(item);
     // Click on a movie event
     item.selectMovie = MovieListing.prototype.onMovieSelect.bind(this);
     // Rate a movie event
@@ -143,7 +137,16 @@ define(['api','widget'], function (API, Widget)
   }
 
   MovieListing.prototype.clear = function() {
+    this.items = [];
     this.view.clear();
+  }
+
+  MovieListing.prototype.updateMovie = function (rating) {
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].movie.id === rating.movie_id) {
+        this.items[i].updateRating(rating);
+      }
+    }
   }
 
   MovieListing.prototype.onRateMovie = function (id, rating) {

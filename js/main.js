@@ -56,7 +56,7 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
   list.onMovieRated = function (id,rating) {
     if (userLoggedIn) {
       API.rate(id,rating,currentUser.id, function (r) {
-        console.log("RATED MOVIE" + id + " " + r);
+        list.updateMovie(r);
       });
     } else {
       alert("You must be logged in to rate a movie");

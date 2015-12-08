@@ -11,6 +11,8 @@ define(['widget'], function (Widgets) {
     this.image = this.dom.querySelector(".image");
     this.rating = new Widgets.Rating(this.dom.querySelector(".rating"));
     this.votes = this.dom.querySelector(".votes");
+
+    this.rating.onRatingCallback = this.onRating;
   }
 
   DetailView.prototype.setTitle = function (title) {
@@ -27,7 +29,7 @@ define(['widget'], function (Widgets) {
 
   DetailView.prototype.setRating = function (rating) {
     this.rating.view.setRating(rating);
-    this.rating.onRatingCallback = this.onRating;     
+
   }
 
   DetailView.prototype.setVotes = function (votes) {
