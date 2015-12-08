@@ -186,7 +186,10 @@ define([],function()
   }
 
   var fetchMovieId = function (id, success) {
-    send("/movie/id",
+    var req = {movie: id};
+    send("PUT",
+         "/movie/id",
+         req,
          function (xhr) {
            if (xhr.readyState === 4) {
              if (xhr.status === 200) {
@@ -248,6 +251,7 @@ define([],function()
   api.search = searchWithAttributes;
   api.fetchGenres = fetchGenres;
   api.fetchMovieId = fetchMovieId;
+  api.fetchMovieSummary = fetchMovieId;
 
   return api;
 });

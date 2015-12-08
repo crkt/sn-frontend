@@ -64,7 +64,8 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
   }
 
   list.onMovieSelected = function (movie) {
-    detail.setMovie(movie);
+    window.location = window.location + "movie" + "?id=" + movie.id;
+//    detail.setMovie(movie);
   };
 
   search.searchResultCallback = function (r) {
