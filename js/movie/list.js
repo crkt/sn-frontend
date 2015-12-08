@@ -3,13 +3,6 @@ define(['api','widget'], function (API, Widget)
 
   var exports = {};
 
-  function SortView() {
-    var template = document.querySelector("#movie-sort");
-    this.dom = document.importNode(template.content, true);
-    this.rating = this.dom.querySelector(".rating");
-    this.title = this.dom.querySelector(".title");
-  }
-
   function MovieItemView() {
     var template = document.querySelector("#movie-item");
     this.dom = document.importNode(template.content, true);
@@ -160,9 +153,6 @@ define(['api','widget'], function (API, Widget)
       this.onMovieSelected(movie);
     }
   }
-  
 
-  exports.Item = MovieItem;
-  exports.List = MovieListing;
-  return exports;
+  return MovieListing
 });

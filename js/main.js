@@ -4,7 +4,7 @@ requirejs.config({
 });
 
 
-requirejs(['movie/list','movie/search','movie/detail','user/user','api'],function(Movie, Search, Detail, User, API) 
+requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user','api'],function(List, Search, Detail, Sort, User, API) 
 {    
   
   /***
@@ -12,8 +12,11 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
       In a neat manner...
    ***/
 
-  var list = new Movie.List();
+  var list = new List();
   document.querySelector("#moviez-list").appendChild(list.view.dom);
+
+  var sort = new Sort();
+  document.querySelector("#moviez-sort").appendChild(sort.view.dom);
 
   var search = new Search();
   document.querySelector("#search-moviez").appendChild(search.view.dom);
@@ -69,7 +72,7 @@ requirejs(['movie/list','movie/search','movie/detail','user/user','api'],functio
 
   search.searchResultCallback = function (r) {
     list.clear();
-    r.forEach(Movie.List.prototype.addMovie, list);
+    r.forEach(List.prototype.addMovie, list);
   };
 
   search.randomResultCallback = function (movie) {
