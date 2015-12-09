@@ -13,7 +13,7 @@ define(['api','widget'], function (API, Widget)
     this.votes = this.dom.querySelector(".votes");
     this.userRating = new Widget.Rating(this.dom.querySelector(".user-rating"));
 
-    var self = this;    
+    var self = this;
     this.userRating.onRatingCallback = function (value) {
       if (self.rateMovie) {
         self.rateMovie(value);
