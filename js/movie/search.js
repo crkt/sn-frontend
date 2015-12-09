@@ -14,12 +14,13 @@ define(['api'], function(API) {
     this.input.value = value;
   }
 
-  // Do I need this...? Maybe not
-  GenreInputView.prototype.onCheck = function (callback) {
-    var self = this;
-    this.input.addEventListener("change", function (e) {
-      callback(self.input.value, self.input.dataset.id);
-    });
+  function GenreInput (view) {
+    this.view = view || new GenreInputView();
+  }
+
+  GenreInput.prototype.setGenre = function (genre) {
+    this.genre = genre;
+    this.view.setGenre(genre.genre, genre.genre, genre.id);
   }
 
   function SearchView() {
@@ -31,13 +32,28 @@ define(['api'], function(API) {
     this.random = this.dom.querySelector(".random");
   }
 
+  SearchView.prototype.addGenreInput = function (item) {
+    this.genres.appendChild(item.view.dom);
+  }
+
+  SearchView.prototype.getGenres = function () {
+    var genres = [];
+    for (var i = 0; i < this.genres.children.length; i++) {
+      if (this.genres.children[i].selected) {
+        genres.push(this.genres.children[i].value);
+      }
+    }
+    return genres;
+  }
+
   SearchView.prototype.onSearch = function (callback) {
     var self = this;
     this.form.addEventListener("submit", function (e) {
       e.preventDefault();
-      callback(self.title.value);
+      callback(self.title.value, self.getGenres());
     },false);
   }
+
   SearchView.prototype.onRandom = function (callback) {
     var self = this;
     this.random.addEventListener("click", function (e) {
@@ -57,7 +73,7 @@ define(['api'], function(API) {
       if (self.searchResultCallback) {
         var attrs = {};
         attrs.title = title == "" ? undefined : title;
-        attrs.genres = undefined;
+        attrs.genres = genres || undefined;
         attrs.runtime = undefined;
         attrs.year = undefined;
         API.search(attrs,function (r) {
@@ -76,10 +92,12 @@ define(['api'], function(API) {
   }
 
   Search.prototype.addGenre = function (genre) {
-    var item = new GenreInputView();
+    var item = new GenreInput();
     
-    item.setGenre(genre.genre, genre.genre, genre.id);
-    this.view.genres.appendChild(item.dom);
+    item.selectGenre = Search.prototype.onGenreSelected.bind(this);
+
+    item.setGenre(genre);
+    this.view.addGenreInput(item);
   }
 
   return Search;
