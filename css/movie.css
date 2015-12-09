@@ -48,9 +48,14 @@ fieldset, label {
     margin-bottom: 5px;
 }
 
+.movie .inline * {
+    display: inline-block;
+}
+
 .movie .image {
     margin: auto;
     width: 100%;
+    max-height: 450px;
     display: block;
 }
 
@@ -58,6 +63,37 @@ fieldset, label {
     height: 80px;
 }
 
+.movie .average-rating {
+    display: inline-block;
+}
+
+.movie .votes {
+    display: inline-block;
+}
+
+/** DETAIL **/
+
+#moviez-detail {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    overflow: auto;
+
+}
+
+#moviez-detail .title {
+    padding-left: 15px;
+}
+
+#moviez-detail .image {
+
+    margin: auto;
+    display: block;
+
+
+}
 
 /** SEARCH **/
 

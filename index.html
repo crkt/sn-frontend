@@ -12,14 +12,13 @@
 <div class="main-content" id="main-content">
 <h1> Search for a movie </h1>
 <div id="search-moviez"></div>
-<h1> Top rated moviez </h1>
+<h1> Sort movies </h1>
+<div id="moviez-sort"></div>
+<h1> Moviez </h1>
 <div id="moviez-list"></div>
 
 <h1> Detail of movie </h1>
 <div id="moviez-detail"></div>
-
-
-
 
 
 <!-- *Widgets* -->
@@ -38,32 +37,36 @@
   <div class="movie">
     <img class="image">
     <h2 class="title"></h2>
-    <div class="average-rating"></div>
-    <label class="label">Nr of votes <label class="votes"></label></label>
-    <label class="label">Your rating</label>    
-    <div class="user-rating"></div>
+    <div class="inline">
+      <label class="info">Rating</label>
+      <div class="average-rating"></div>
+    </div>
+    <div class="inline">
+      <label class="info">Nr of votes <label class="votes"></label></label>    
+    </div>
+    <div class="inline">
+      <label class="label">Your rating</label>
+      <div class="user-rating"></div>
+    </div>
   </div>
 </template>
 
 <template id="movie-sort">
   <label> Sort by rating
   <select class="rating">
-    <option class="low" value="low">Low to High</option>
-    <option class="high" value="high">High to Low</option>
+    <option class="low" value="desc">High to Low</option>
+    <option class="high" value="asc">Low to High</option>
   </select>
   </label>
   <label>Sort by title
   <select class="title">
-    <option class="low" value="low">Z-A</option>
-    <option class="high" value="high">A-Z</option>
+    <option class="low" value="desc">Z-A</option>
+    <option class="high" value="asc">A-Z</option>
   </select>    
   </label>
 </template>
 
-
 <template id="movie-listing">
-  <div class="sorting">
-  </div>
   <div class="listing">
   </div>
 </template>
@@ -91,11 +94,18 @@
 </template>
 
 <template id="detail">
-  <h2 class="title"></h2>
-  <p class="plot"></p>
   <img class="image"></img>
+  <h2 class="title"></h2>
   <div class="rating"></div>
-  <label class="votes"></label>
+  <label>Votes:</label><label class="votes"></label>
+  <label>Plot:</label><p class="plot"></p>
+  <label>Year:</label><label class="year"></label>
+  <label>Characters:</label><label class="character"></label>
+  <label>Runtime:</label><label class="runtime"></label>
+  <label>Mature rating:</label><label class="matureRating"></label>
+  <label>Director:</label><label class="director"></label>
+  <label>Writer:</label><label class="writer"></label>
+  <label>Stars:</label><label class="stars"></label>
 </template>
 
 <template id="user-register">

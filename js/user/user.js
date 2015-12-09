@@ -57,7 +57,7 @@ define(['api'], function(API) {
       e.preventDefault();
       if (self.onLogin) {
         self.onLogin(self.username.value,
-                        self.password.value);
+                     self.password.value);
       }
     }, false);
   }
@@ -89,22 +89,23 @@ define(['api'], function(API) {
   }
 
 
+  /*
+    User presenter
+   */
   function User(register,login,profile) {
     this.register = register || new RegisterView();
     this.login = login || new LoginView();
     this.profile = profile || new ProfileView();
+
+    this.registerResultCallback = null;
+    this.loginResultCallback = null;
 
     this.register.onRegister = User.prototype.onRegister.bind(this);
     this.login.onLogin = User.prototype.onLogin.bind(this);
     this.profile.onLogout = User.prototype.onLogout.bind(this);
   }
 
-  User.prototype.getUser = function () {
-    return this.user;
-  }
-
   User.prototype.setUser = function (user) {
-    this.user = user;
     this.profile.setUsername(user.username);
   }
 
@@ -116,32 +117,33 @@ define(['api'], function(API) {
     }
   }
 
-  User.prototype.onRegister = function (name, email, password, repeat) {
+  User.prototype.onRegister = function (name, email, password, repeat) {    
     var self = this;
-    API.register({username: name, email: email, password: password},
-                 function (r) {
-                   if (self.onUserLoggedIn) {
-                     self.onUserLoggedIn(true, r);
-                   }
-                 },
-                 self.onError.bind(self, "register"));
+    if (self.registerResultCallback) {
+      API.register({username: name, email: email, password: password},
+                   function (r) {
+                     self.registerResultCallback(r);
+                   },
+                   self.onError.bind(self, "register"));
+    }
   }
 
   User.prototype.onLogin = function (name, password) {
     var self = this;
-    API.login({username: name, password: password},
-              function (r) {
-                if (self.onUserLoggedIn) {
-                  self.onUserLoggedIn(true, r);
-                }
-              },
-              function (error) {
-                self.onError.call(self, "login", error);
-              });
+    if (self.loginResultCallback) {
+      API.login({username: name, password: password},
+                function (r) {
+                  self.loginResultCallback(r);
+                },
+                self.onError.bind(self, "login"));
+    }
   }
 
   User.prototype.onLogout = function () {
-    
+    var self = this;
+    if (self.logoutResultCallback) {
+      self.logoutResultCallback();
+    }
   }
 
   return User;
