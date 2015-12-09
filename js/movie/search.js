@@ -94,7 +94,7 @@ define(['api'], function(API) {
   Search.prototype.addGenre = function (genre) {
     var item = new GenreInput();
     
-    item.selectGenre = Search.prototype.onGenreSelected.bind(this);
+    //item.selectGenre = Search.prototype.onGenreSelected.bind(this);
 
     item.setGenre(genre);
     this.view.addGenreInput(item);
