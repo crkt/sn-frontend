@@ -48,11 +48,11 @@ define(['widget'], function (Widgets) {
   }
 
   DetailView.prototype.setRuntime = function (runtime) {
-    this.plot.textContent = runtime;
+    this.runtime.textContent = runtime + " " + "min";
   }
 
   DetailView.prototype.setCharacter = function (character) {
-    this.plot.textContent = character;
+    this.character.textContent = character;
 
   }
 
@@ -91,11 +91,12 @@ define(['widget'], function (Widgets) {
     this.view.setRating(movie.rating.rating);
     this.view.setVotes(movie.rating.nr_votes);
     this.view.setYear(movie.year);
-    this.view.setCharacter(movie.character);
+    this.view.setCharacter(movie.characters);
     this.view.setRuntime(movie.runtime);
     this.view.setMatureRating(movie.matureRating);
-    this.view.setDirector(movie.director);
-    this.view.setWriter(movie.writer);
+    this.view.setDirector(movie.directors);
+    this.view.setWriter(movie.writers);
+    this.view.setStars(movie.stars);
   }
 
   Detail.prototype.updateRating = function (rating) {
