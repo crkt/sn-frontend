@@ -6,12 +6,8 @@ requirejs.config({
 
 requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user','api'],function(List, Search, Detail, Sort, User, API) 
 {    
-  
-  /***
-      Find a way to handle event management.
-      In a neat manner...
-   ***/
 
+  /** Create the views and add them  to the html document **/
   var list = new List();
   document.querySelector("#moviez-list").appendChild(list.view.dom);
 
@@ -30,21 +26,38 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
   document.querySelector("#user").appendChild(user.profile.dom);
   
 
+
+  /** These probably shouldn't be here, fix **/
   var userLoggedIn = false;
   var currentUser = user.getUser();
-
   var moviez = undefined;
 
   API.fetchGenres(function (genres) {
     genres.forEach(Search.prototype.addGenre, search);
   });
 
-  user.onUserLoggedIn = function (loggedIn, r) {
-    userLoggedIn = loggedIn;
+  user.registerResultCallback = function (user) {
+    userLoggedIn = true;
     user.register.hide();
     user.login.hide();
-    user.setUser(r);
-    currentUser = user.getUser();
+    user.setUser(user);
+    currentUser = user;
+  }
+
+  user.loginResultCallback = function (user) {
+    userLoggedIn = true;
+    user.register.hide();
+    user.login.hide();
+    user.setUser(user);
+    currentUser = user;
+  }
+
+  user.logoutResultCallback = function () {
+    user.profile.hide();
+    user.login.show();
+    user.register.show();
+    user.setUser(undefined);
+    currentUser = undefined;
   }
 
   detail.onRatingCallback = function (id, rating) {
@@ -72,10 +85,8 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
     detail.setMovie(movie);
   };
 
-
   sort.sortCallback = function (sort) {
     var sorted = sort(moviez);
-    // sort movies, set sorted movies on list
     list.clear();
     sorted.forEach(List.prototype.addMovie, list);
   }

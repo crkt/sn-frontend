@@ -19,7 +19,6 @@ define(['widget'], function (Widgets) {
     this.writer = this.dom.querySelector(".writer");
     this.stars = this.dom.querySelector(".stars");
 
-/*Director, writer, stars */
     this.rating.onRatingCallback = this.onRating;
   }
 
@@ -102,6 +101,8 @@ define(['widget'], function (Widgets) {
   Detail.prototype.updateRating = function (rating) {
     this.view.setRating(rating.rating);
   }
+
+  /** External callbacks **/
 
   Detail.prototype.onRating = function (value) {
     if (this.onRatingCallback) {

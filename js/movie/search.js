@@ -1,10 +1,7 @@
-define(['api'], function(API) {
+define(['api','utils'], function(API, Utils) {
 
   var exports = {};
 
-  var capitalizeString = function (s) {
-    return s.charAt(0).toUpperCase() + s.substring(1).toLowerCase();
-  }
 
   function GenreInputView () {
     var template = document.querySelector("#genre-input");
@@ -21,7 +18,7 @@ define(['api'], function(API) {
   }
 
   GenreInputView.prototype.setLabel = function (label) {
-    this.label.textContent = capitalizeString(label);
+    this.label.textContent = Utils.capitalizeString(label);
   }
 
   GenreInputView.prototype.setGenre = function (value) {
@@ -36,7 +33,6 @@ define(['api'], function(API) {
   }
 
   GenreInput.prototype.setGenre = function (genre) {
-    this.genre = genre;
     this.view.setLabel(genre.genre);
     this.view.setGenre(genre.id);
   }
@@ -63,16 +59,6 @@ define(['api'], function(API) {
     this.genres.appendChild(item.view.dom);
   }
 
-  SearchView.prototype.getGenres = function () {
-    var genres = [];
-    for (var i = 0; i < this.genres.children.length; i++) {
-      if (this.genres.children[i].selected) {
-        genres.push(this.genres.children[i].value);
-      }
-    }
-    return genres;
-  }
-
   SearchView.prototype.onSearch = function (callback) {
     var self = this;
     this.form.addEventListener("submit", function (e) {
@@ -90,7 +76,7 @@ define(['api'], function(API) {
   }
 
   /*
-    Search model values
+    Search model
    */
   function SearchModel () {
     this.title = undefined;
@@ -119,6 +105,14 @@ define(['api'], function(API) {
     }
   }
 
+  SearchModel.prototype.setRuntime = function (runtime) {
+    this.runtime = runtime === 0 ? undefined : runtime;
+  }
+
+  SearchModel.prototype.setYear = function (year) {
+    this.year = (year === 0 || year < 0) ? undefined : year;
+  }
+
   /*
     Search presenter
    */
@@ -127,25 +121,11 @@ define(['api'], function(API) {
     this.searchResultCallback = null;
     this.randomResultCallback = null;
 
+    this.view.onSearch = Search.prototype.search.bind(this);
+    this.view.onRandom = Search.prototype.random.bind(this);
+
     this.model = new SearchModel();
 
-    var self = this;
-    this.view.onSearch(function () {
-      console.log("Searching" + self.model);
-      if (self.searchResultCallback) {
-        API.search(self.model,function (r) {
-          self.searchResultCallback(r);
-        });
-      }
-    });
-
-    this.view.onRandom(function() {
-      if (self.randomResultCallback) {
-        API.random(function (movie) {
-          self.randomResultCallback(movie);
-        });
-      }
-    });
   }
 
   Search.prototype.setGenre = function (id) {
@@ -156,14 +136,35 @@ define(['api'], function(API) {
     this.model.setTitle(title);
   }
 
+  Search.prototype.setRuntime = function (runtime) {
+    this.model.setRuntime(runtime);
+  }
+  
+  Search.prototype.setYear = function (year) {
+    this.model.setYear(year);
+  }
+
   Search.prototype.addGenre = function (genre) {
-    var item = new GenreInput();
-    
-
+    var item = new GenreInput();    
     item.genreChangedCallback = Search.prototype.setGenre.bind(this);
-
     item.setGenre(genre);
     this.view.addGenreInput(item);
+  }
+
+  Search.prototype.search = function () {
+    if (this.searchResultCallback) {
+      API.search(this,mode, function (r) {
+        this.searchResultCallback(r);
+      }, this);
+    }
+  }
+
+  Search.prototype.random = function () {
+    if (this.randomResultCallback) {
+      API.random(function (movie) {
+        this.randomResultCallback(movie);
+      }, this);
+    }
   }
 
   return Search;

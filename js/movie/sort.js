@@ -1,4 +1,4 @@
-define([], function() {
+define(['utils'], function(Utils) {
 
   function SortView() {
     var template = document.querySelector("#movie-sort");
@@ -6,6 +6,8 @@ define([], function() {
     this.rating = this.dom.querySelector(".rating");
     this.title = this.dom.querySelector(".title");
 
+
+    /** "rating.rating" refers to the property to sort on **/
     var self = this;
     this.rating.addEventListener("change", function (e) {
       if (self.onSortCallback) {
@@ -28,7 +30,7 @@ define([], function() {
   }
 
   Sort.prototype.onSort = function (by, order) {
-    var asc = order === "asc";
+    var asc = order === "asc"; // change order to a boolean
     if (this.sortCallback) {
       if (by === "title") {        
         this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
@@ -38,28 +40,11 @@ define([], function() {
     }
   }
 
-  Sort.prototype.accessProperty = function (prop, obj) {
-    var prop = prop.split(".");
-    return obj[prop];
-  }
-
-
-  // Recurseivly access a property in an object.
-  // Expects the prop to be = "prop.prop.prop" or just "prop".
-  var accessProperty = function (obj, prop) {
-    var index = prop.indexOf('.');
-
-    if(index > -1) {
-      return accessProperty(obj[prop.substring(0, index)], prop.substr(index+1));
-    }   
-    return obj[prop];
-  }
-
   // Returns a sorted list. Sort by the propery given and in the order specified.
   Sort.prototype.sortByProperty = function (prop, ascending, lst) {
     return lst.sort(function (a,b) {
-      a = accessProperty(a, prop);
-      b = accessProperty(b, prop);
+      a = Utils.accessProperty(a, prop);
+      b = Utils.accessProperty(b, prop);
       if (a > b) {
         return ascending ? 1 : -1;
       } else if (a < b) {

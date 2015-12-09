@@ -3,6 +3,9 @@ define(['api','widget'], function (API, Widget)
 
   var exports = {};
 
+  /*
+    Movie Item View
+   */
   function MovieItemView() {
     var template = document.querySelector("#movie-item");
     this.dom = document.importNode(template.content, true);
@@ -20,6 +23,7 @@ define(['api','widget'], function (API, Widget)
       }
     }
 
+    // Add a click listener to the div, fix so we don't assume it child 0.
     this.dom.children[0].addEventListener("click", function (e) {
       if (self.clickMovie) {
         self.clickMovie(e);
@@ -51,6 +55,9 @@ define(['api','widget'], function (API, Widget)
     this.userRating.view.setRating(rating);
   }
 
+  /*
+    Movie Item Presenter
+   */
   function MovieItem (view) {
     this.view = view || new MovieItemView();
     
@@ -66,7 +73,6 @@ define(['api','widget'], function (API, Widget)
     this.view.setUserRating(movie.rating.rating);
     this.view.setAverageRating(movie.rating.rating);
     this.view.setVotes(movie.rating.nr_votes);
-    // Have a look at this later...
     this.movie = movie;
   }
 
@@ -94,7 +100,6 @@ define(['api','widget'], function (API, Widget)
   function MovieListingView() {
     var template = document.querySelector("#movie-listing");
     this.dom = document.importNode(template.content, true);
-    this.sort = this.dom.querySelector(".sorting");
     this.list = this.dom.querySelector(".listing");
   }
   
@@ -113,16 +118,18 @@ define(['api','widget'], function (API, Widget)
    */
   function MovieListing(view) {
     this.view = view || new MovieListingView();
-    
+    // Items array is so we can update a movie after the users gives it a new rating.
     this.items = [];
   }
   
+  /**
+     Adds a movie item to the list view
+   **/
   MovieListing.prototype.addMovie = function(movie) {
     var item = new MovieItem();
     this.items.push(item);
-    // Click on a movie event
+
     item.selectMovie = MovieListing.prototype.onMovieSelect.bind(this);
-    // Rate a movie event
     item.onRateMovie = MovieListing.prototype.onRateMovie.bind(this);
 
     item.setMovie(movie);
@@ -142,6 +149,7 @@ define(['api','widget'], function (API, Widget)
     }
   }
 
+  /** External callbacks **/
   MovieListing.prototype.onRateMovie = function (id, rating) {
     if (this.onMovieRated) {
       this.onMovieRated(id,rating);
