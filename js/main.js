@@ -33,6 +33,8 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
   var userLoggedIn = false;
   var currentUser = user.getUser();
 
+  var moviez = undefined;
+
   API.fetchGenres(function (genres) {
     genres.forEach(Search.prototype.addGenre, search);
   });
@@ -70,7 +72,16 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
     detail.setMovie(movie);
   };
 
+
+  sort.sortCallback = function (sort) {
+    var sorted = sort(moviez);
+    // sort movies, set sorted movies on list
+    list.clear();
+    sorted.forEach(List.prototype.addMovie, list);
+  }
+
   search.searchResultCallback = function (r) {
+    moviez = r;
     list.clear();
     r.forEach(List.prototype.addMovie, list);
   };
