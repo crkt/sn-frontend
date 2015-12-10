@@ -52,6 +52,8 @@ define(['utils'], function(Utils) {
         this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
       } else if (by === "year") {
         this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
+      } else if (by === "runtime"){
+        this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
       }
     }
   }
