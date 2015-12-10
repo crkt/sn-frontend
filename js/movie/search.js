@@ -121,8 +121,8 @@ define(['api','utils'], function(API, Utils) {
     this.searchResultCallback = null;
     this.randomResultCallback = null;
 
-    this.view.onSearch = Search.prototype.search.bind(this);
-    this.view.onRandom = Search.prototype.random.bind(this);
+    this.view.onSearch(Search.prototype.search.bind(this));
+    this.view.onRandom(Search.prototype.random.bind(this));
 
     this.model = new SearchModel();
 
@@ -152,18 +152,20 @@ define(['api','utils'], function(API, Utils) {
   }
 
   Search.prototype.search = function () {
+    var self = this;
     if (this.searchResultCallback) {
-      API.search(this,mode, function (r) {
-        this.searchResultCallback(r);
-      }, this);
+      API.search(self.model, function (r) {
+        self.searchResultCallback(r);
+      });
     }
   }
 
   Search.prototype.random = function () {
+    var self = this;
     if (this.randomResultCallback) {
       API.random(function (movie) {
-        this.randomResultCallback(movie);
-      }, this);
+        self.randomResultCallback(movie);
+      });
     }
   }
 
