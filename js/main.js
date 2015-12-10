@@ -29,7 +29,7 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
 
   /** These probably shouldn't be here, fix **/
   var userLoggedIn = false;
-  var currentUser = user.getUser();
+  //var currentUser = user.getUser();
   var moviez = undefined;
 
   API.fetchGenres(function (genres) {
