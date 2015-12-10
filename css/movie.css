@@ -48,14 +48,27 @@ fieldset, label {
     margin-bottom: 5px;
 }
 
+.movie .inline * {
+    display: inline-block;
+}
+
 .movie .image {
     margin: auto;
     width: 100%;
+    max-height: 450px;
     display: block;
 }
 
 .movie .title {
     height: 80px;
+}
+
+.movie .average-rating {
+    display: inline-block;
+}
+
+.movie .votes {
+    display: inline-block;
 }
 
 /** DETAIL **/
