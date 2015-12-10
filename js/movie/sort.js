@@ -5,6 +5,7 @@ define(['utils'], function(Utils) {
     this.dom = document.importNode(template.content, true);
     this.rating = this.dom.querySelector(".rating");
     this.title = this.dom.querySelector(".title");
+    this.year = this.dom.querySelector(".year");
 
 
     /** "rating.rating" refers to the property to sort on **/
@@ -18,6 +19,12 @@ define(['utils'], function(Utils) {
     this.title.addEventListener("change", function (e) {
       if (self.onSortCallback) {
         self.onSortCallback("title", e.target.value);
+      }
+    }, false);
+
+    this.title.addEventListener("change", function (e) {
+      if (self.onSortCallback) {
+        self.onSortCallback("year", e.target.value);
       }
     }, false);
   }  
@@ -35,6 +42,8 @@ define(['utils'], function(Utils) {
       if (by === "title") {        
         this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
       } else if (by === "rating.rating") {
+        this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
+      } else if (by === "year") {
         this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
       }
     }
