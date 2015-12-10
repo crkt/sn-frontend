@@ -23,13 +23,13 @@ define(['utils'], function(Utils) {
       }
     }, false);
 
-    this.title.addEventListener("change", function (e) {
+    this.year.addEventListener("change", function (e) {
       if (self.onSortCallback) {
         self.onSortCallback("year", e.target.value);
       }
     }, false);
 
-    this.title.addEventListener("change", function (e) {
+    this.runtime.addEventListener("change", function (e) {
       if (self.onSortCallback) {
         self.onSortCallback("runtime", e.target.value);
       }
