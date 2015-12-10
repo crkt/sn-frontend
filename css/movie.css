@@ -61,24 +61,54 @@ fieldset, label {
 /** DETAIL **/
 
 #moviez-detail {
-    position: absolute;
-    width: 100%;
-    height: auto;
-    background-color: rgba(0,0,0,0.7);
+
+    border: 2px solid;
+    border-top-right-radius: 2em;
+    border-top-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    border-bottom-left-radius: 2em;
+    position: fixed;
+    width: 50%;
+    left: 25%;
+    top: 0;
+    background-color: rgba(0,0,0,0.9);
     color: white;
-    overflow: auto;
+    padding: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px;
+    box-sizing: border-box;
 
 }
 
 #moviez-detail .title {
-    padding-left: 15px;
+    text-align: center;
 }
 
 #moviez-detail .image {
 
     margin: auto;
     display: block;
+}
 
+.votes .rating {
+
+    padding: center;
+}
+
+.left {
+    
+    width: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.right {
+
+    width: 49%;
+    box-sizing: border-box;
+    display: inline-block;
 
 }
 
