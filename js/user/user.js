@@ -9,6 +9,7 @@ define(['api'], function(API) {
     this.password = this.dom.querySelector(".password");
     this.repeat = this.dom.querySelector(".repeat");
 
+
     var self = this;
     this.form.addEventListener("submit", function(e) {
       e.preventDefault();

@@ -72,9 +72,7 @@ fieldset, label {
 }
 
 /** DETAIL **/
-
-#moviez-detail {
-
+#moviez-detail .pane {
     border: 2px solid;
     border-top-right-radius: 2em;
     border-top-left-radius: 2em;
@@ -90,8 +88,11 @@ fieldset, label {
     margin-left: auto;
     margin-right: auto;
     border: 5px;
-    box-sizing: border-box;
+    box-sizing: border-box;    
+}
 
+#moviez-detail .pane:focus {
+    outline: 0;
 }
 
 #moviez-detail .title {
@@ -122,9 +123,11 @@ fieldset, label {
     width: 49%;
     box-sizing: border-box;
     display: inline-block;
-
 }
 
+.showhide {
+
+}
 /** SEARCH **/
 
 .genres {

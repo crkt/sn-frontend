@@ -6,6 +6,7 @@ define(['widget'], function (Widgets) {
   function DetailView() {
     var template = document.querySelector("#detail");
     this.dom = document.importNode(template.content, true);
+    this.pane = this.dom.querySelector(".pane");
     this.title = this.dom.querySelector(".title");
     this.plot = this.dom.querySelector(".plot");
     this.image = this.dom.querySelector(".image");
@@ -20,6 +21,17 @@ define(['widget'], function (Widgets) {
     this.stars = this.dom.querySelector(".stars");
 
     this.rating.onRatingCallback = this.onRating;
+
+    this.pane.classList.add("hidden");
+    
+    var self = this;
+    this.pane.addEventListener("blur", function(e){
+      self.pane.classList.add("hidden");
+    });
+
+    this.pane.addEventListener("focus", function(e){
+      self.pane.classList.remove("hidden");
+    });
   }
 
   DetailView.prototype.setTitle = function (title) {
@@ -72,6 +84,15 @@ define(['widget'], function (Widgets) {
     this.votes.textContent = votes;
   }
 
+  DetailView.prototype.hide = function () {
+    this.pane.classList.add("hidden");
+  }
+
+  DetailView.prototype.show = function () {
+    this.pane.classList.remove("hidden");
+  }
+
+
   /*
     Movie detail presenter
   */
@@ -96,6 +117,9 @@ define(['widget'], function (Widgets) {
     this.view.setDirector(movie.directors);
     this.view.setWriter(movie.writers);
     this.view.setStars(movie.stars);
+    this.view.pane.classList.remove("hidden");
+    this.view.pane.focus();
+
   }
 
   Detail.prototype.updateRating = function (rating) {
