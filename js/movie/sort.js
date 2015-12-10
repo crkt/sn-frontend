@@ -6,6 +6,7 @@ define(['utils'], function(Utils) {
     this.rating = this.dom.querySelector(".rating");
     this.title = this.dom.querySelector(".title");
     this.year = this.dom.querySelector(".year");
+    this.runtime = this.dom.querySelector(".runtime")
 
 
     /** "rating.rating" refers to the property to sort on **/
@@ -25,6 +26,12 @@ define(['utils'], function(Utils) {
     this.title.addEventListener("change", function (e) {
       if (self.onSortCallback) {
         self.onSortCallback("year", e.target.value);
+      }
+    }, false);
+
+    this.title.addEventListener("change", function (e) {
+      if (self.onSortCallback) {
+        self.onSortCallback("runtime", e.target.value);
       }
     }, false);
   }  
