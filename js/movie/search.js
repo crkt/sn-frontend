@@ -161,10 +161,11 @@ define(['api','utils'], function(API, Utils) {
   }
 
   Search.prototype.random = function () {
+    var self = this;
     if (this.randomResultCallback) {
       API.random(function (movie) {
-        this.randomResultCallback(movie);
-      }, this);
+        self.randomResultCallback(movie);
+      });
     }
   }
 
