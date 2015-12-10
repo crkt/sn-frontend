@@ -23,13 +23,13 @@ define(['utils'], function(Utils) {
       }
     }, false);
 
-    this.title.addEventListener("change", function (e) {
+    this.year.addEventListener("change", function (e) {
       if (self.onSortCallback) {
         self.onSortCallback("year", e.target.value);
       }
     }, false);
 
-    this.title.addEventListener("change", function (e) {
+    this.runtime.addEventListener("change", function (e) {
       if (self.onSortCallback) {
         self.onSortCallback("runtime", e.target.value);
       }
@@ -51,6 +51,8 @@ define(['utils'], function(Utils) {
       } else if (by === "rating.rating") {
         this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
       } else if (by === "year") {
+        this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
+      } else if (by === "runtime"){
         this.sortCallback(Sort.prototype.sortByProperty.bind(this, by, asc));
       }
     }
