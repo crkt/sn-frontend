@@ -106,6 +106,6 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
   }
 
   // Fill the page with movies on load
-  search.search(currentUser);
+  search.search();
 
 });

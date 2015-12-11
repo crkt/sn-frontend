@@ -64,7 +64,7 @@ define(['api','utils'], function(API, Utils) {
     this.form.addEventListener("submit", function (e) {
       e.preventDefault();
       callback();
-    },false);
+    }, false);
   }
 
   SearchView.prototype.onRandom = function (callback) {
@@ -162,10 +162,11 @@ define(['api','utils'], function(API, Utils) {
      who ever has created the callback. Check main.js
      user is a user id
    **/
-  Search.prototype.search = function (user) {
+  Search.prototype.search = function () {
     var self = this;
     if (this.searchResultCallback) {
       // The user thing here, check into alternatives...
+      var user = localStorage.getItem("user"); // ALternatvies?
       if (user) {
         self.model.setUser(user);
         API.searchWithUser(self.model, function (r) {
