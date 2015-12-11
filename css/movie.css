@@ -1,5 +1,11 @@
 body {
-    background: grey;
+    background: #141414;
+    color: white;
+}
+
+a {
+    color: green;
+    underline: none;
 }
 
 
@@ -141,5 +147,10 @@ fieldset, label {
 }
 
 .genres .checkbox .label {
+    display: inline-block;
+}
+
+/** SORT **/
+#moviez-sort label {
     display: inline-block;
 }
