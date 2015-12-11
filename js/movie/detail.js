@@ -127,7 +127,6 @@ define(['widget'], function (Widgets) {
   }
 
   /** External callbacks **/
-
   Detail.prototype.onRating = function (value) {
     if (this.onRatingCallback) {
       this.onRatingCallback(this.movie.id, value);
