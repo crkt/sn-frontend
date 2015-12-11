@@ -11,7 +11,7 @@ define([], function() {
     var index = prop.indexOf('.');
 
     if(index > -1) {
-      return accessProperty(obj[prop.substring(0, index)], prop.substr(index+1));
+      return utils.accessProperty(obj[prop.substring(0, index)], prop.substr(index+1));
     }   
     return obj[prop];
   }

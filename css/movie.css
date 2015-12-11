@@ -31,7 +31,8 @@ fieldset, label {
 }
 
 .hidden {
-    display: none;
+    visibility: hidden;
+    /*display: none;*/
 }
 
 
@@ -107,7 +108,7 @@ fieldset, label {
     margin-left: auto;
     margin-right: auto;
     border: 5px;
-    box-sizing: border-box;    
+    box-sizing: border-box; 
 }
 
 #moviez-detail .pane:focus {
@@ -129,19 +130,13 @@ fieldset, label {
     padding: center;
 }
 
-.left {
-    
-    width: 50%;
-    box-sizing: border-box;
-    display: inline-block;
-    vertical-align: top;
-}
-
+.left,
 .right {
-
+    
     width: 49%;
     box-sizing: border-box;
     display: inline-block;
+    vertical-align: top;
 }
 
 .showhide {

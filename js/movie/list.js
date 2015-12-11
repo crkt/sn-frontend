@@ -70,7 +70,7 @@ define(['api','widget'], function (API, Widget)
     this.view.setId(movie.id);
     this.view.setTitle(movie.title);
     this.view.setImage(movie.picture);
-    this.view.setUserRating(movie.rating.rating);
+    this.view.setUserRating(movie.rating.user_rating);
     this.view.setAverageRating(movie.rating.rating);
     this.view.setVotes(movie.rating.nr_votes);
     this.movie = movie;

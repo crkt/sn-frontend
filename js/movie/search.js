@@ -83,6 +83,7 @@ define(['api','utils'], function(API, Utils) {
     this.genres = undefined;
     this.runtime = undefined;
     this.year = undefined;
+    this.user = undefined;
   }
 
   SearchModel.prototype.setTitle = function (title) {
@@ -111,6 +112,10 @@ define(['api','utils'], function(API, Utils) {
 
   SearchModel.prototype.setYear = function (year) {
     this.year = (year === 0 || year < 0) ? undefined : year;
+  }
+
+  SearchModel.prototype.setUser = function (user) {
+    this.user = user;
   }
 
   /*
@@ -151,12 +156,27 @@ define(['api','utils'], function(API, Utils) {
     this.view.addGenreInput(item);
   }
 
-  Search.prototype.search = function () {
+
+  /**
+     This will use the API search function and then callback to
+     who ever has created the callback. Check main.js
+     user is a user id
+   **/
+  Search.prototype.search = function (user) {
     var self = this;
     if (this.searchResultCallback) {
-      API.search(self.model, function (r) {
-        self.searchResultCallback(r);
-      });
+      // The user thing here, check into alternatives...
+      if (user) {
+        self.model.setUser(user);
+        API.searchWithUser(self.model, function (r) {
+          self.searchResultCallback(r);
+        });
+      } else {
+        self.model.setUser(undefined);
+        API.search(self.model, function (r) {
+          self.searchResultCallback(r);
+        });
+      }
     }
   }
 
