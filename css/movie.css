@@ -1,5 +1,24 @@
 body {
-    background: grey;
+    background: #141414;
+    color: white;
+}
+
+a {
+    color: #c1c3c6;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #13B51E;
+}
+
+/** HEADER **/
+.nav {
+    padding: 25px;
+    text-align: center;
+    vertical-align: middle;
+    height: 25px;
+    line-height: 50px;
 }
 
 
@@ -136,5 +155,10 @@ fieldset, label {
 }
 
 .genres .checkbox .label {
+    display: inline-block;
+}
+
+/** SORT **/
+#moviez-sort label {
     display: inline-block;
 }

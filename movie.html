@@ -1,0 +1,45 @@
+<DOCTYPE html>
+<html>
+<head>
+  <script data-main="js/movie.js" src="js/require.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/movie.css">      
+</head>
+<body>
+<h1> Detail of movie </h1>
+<div id="moviez-detail"></div>
+
+<template id="detail">
+  <div class="pane" tabindex="0">
+  <h2 class="title"></h2>
+  <div class="left">
+    <img class="image"></img>
+    <div class="rating"></div>
+    <label>Votes:</label><label class="votes"></label>
+  </div>
+  <div class="right">  
+    <label>Plot:</label><p class="plot"></p>
+    <label>Year:</label><label class="year"></label>
+    <label>Characters:</label><label class="character"></label>
+    <label>Runtime:</label><label class="runtime"></label>
+    <label>Mature rating:</label><label class="matureRating"></label>
+    <label>Director:</label><label class="director"></label>
+    <label>Writer:</label><label class="writer"></label>
+    <label>Stars:</label><label class="stars"></label>  
+  </div>
+</template>
+
+<!-- *Widgets* -->
+<!-- Rating widget DOM -->
+<template id="rating">
+  <fieldset class="rating">
+    <input name="rating" type="radio" value="1" class="star" title="Dont watch it"></input>
+    <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
+    <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
+    <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
+    <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
+  </fieldset>
+</template>
+
+
+</body>
+</html>

@@ -16,6 +16,11 @@ define([], function() {
     return obj[prop];
   }
 
+  utils.getQueryStringValue = function (key) {  
+    return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+  }
+  
+
   return utils;
 
 });
