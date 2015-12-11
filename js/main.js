@@ -7,6 +7,9 @@ requirejs.config({
 requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user','api','header'],function(List, Search, Detail, Sort, User, API, Header) 
 {    
 
+  var header = new Header();
+  document.querySelector("header").appendChild(header.view.dom);
+
   /** Create the views and add them  to the html document **/
   var list = new List();
   document.querySelector("#moviez-list").appendChild(list.view.dom);
@@ -25,8 +28,6 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
   //document.querySelector("#user").appendChild(user.login.dom);
   //document.querySelector("#user").appendChild(user.profile.dom);
   
-  var header = new Header();
-  document.querySelector("header").appendChild(header.view.dom);
 
 
   /** These probably shouldn't be here, fix **/
@@ -35,6 +36,7 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
   var moviez = undefined;
 
   API.fetchGenres(function (genres) {
+    genres.sort();
     genres.forEach(Search.prototype.addGenre, search);
   });
 
