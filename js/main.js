@@ -4,7 +4,7 @@ requirejs.config({
 });
 
 
-requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user','api'],function(List, Search, Detail, Sort, User, API) 
+requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user','api','header'],function(List, Search, Detail, Sort, User, API, Header) 
 {    
 
   /** Create the views and add them  to the html document **/
@@ -21,15 +21,17 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
   document.querySelector("#moviez-detail").appendChild(detail.view.dom);
 
   var user = new User();
-  document.querySelector("#user").appendChild(user.register.dom);
-  document.querySelector("#user").appendChild(user.login.dom);
-  document.querySelector("#user").appendChild(user.profile.dom);
+  //document.querySelector("#user").appendChild(user.register.dom);
+  //document.querySelector("#user").appendChild(user.login.dom);
+  //document.querySelector("#user").appendChild(user.profile.dom);
   
+  var header = new Header();
+  document.querySelector("header").appendChild(header.view.dom);
 
 
   /** These probably shouldn't be here, fix **/
-  var userLoggedIn = false;
-  //var currentUser = user.getUser();
+  var currentUser = localStorage.getItem("user");
+  var loggedIn = currentUser ? true : false;
   var moviez = undefined;
 
   API.fetchGenres(function (genres) {
