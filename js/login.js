@@ -1,4 +1,4 @@
-define(['api','user/login'], function (API, Login) {
+define(['user/login'], function (Login) {
   
   var login = new Login();
   document.querySelector("#user").appendChild(login.view.dom);
