@@ -104,5 +104,7 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
     detail.setMovie(movie);
   }
 
+  // Fill the page with movies on load
+  search.search();
 
 });
