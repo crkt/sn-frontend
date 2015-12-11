@@ -4,8 +4,21 @@ body {
 }
 
 a {
-    color: green;
-    underline: none;
+    color: #c1c3c6;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #13B51E;
+}
+
+/** HEADER **/
+.nav {
+    padding: 25px;
+    text-align: center;
+    vertical-align: middle;
+    height: 25px;
+    line-height: 50px;
 }
 
 
