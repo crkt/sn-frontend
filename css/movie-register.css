@@ -1,5 +1,13 @@
 body {
-	background-color: black;
-	
-	
+    background-color: black;		
+}
+
+.register {
+    width: 400px;
+    margin: auto;
+    color: white;
+}
+
+.register * {
+    display: block;
 }
