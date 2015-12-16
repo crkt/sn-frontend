@@ -9,8 +9,9 @@ define(['api','utils'], function(API, Utils) {
     this.input = this.dom.querySelector(".input");
 
     var self = this;
-    this.input.addEventListener("change", function (e) {
+    this.input.addEventListener("click", function (e) {
       if (self.onGenreChanged) {
+        e.target.classList.toggle("selected");
         self.onGenreChanged(parseInt(e.target.dataset.id));
       }
     }, false);
