@@ -147,12 +147,38 @@ fieldset, label {
 }
 /** SEARCH **/
 
+
+.genre-button .id{
+	width: 500px;
+	
+}
 .genre-button {
 	display: inline-block;
-    width: 400px;
-	height: 100px;
-    padding-left: 5px;
-    padding-right: 5px;
+    width: 75px;
+	height: 25px;
+}
+
+.genre-button .input{
+	background-color: #141414;
+	width: 70px;
+	height: 25px;
+	text-align: center;
+	color: #d5d5c3;
+	border: solid 1px #d5d5c3;
+	padding: 5px;
+	margin: 10px;
+	opacity: 0.5;
+}
+.genre-button .input.selected{
+	background-color: #141414;
+	width: 70px;
+	height: 25px;
+	text-align: center;
+	color: #ffffff;
+	border: solid 1px #ffffff;
+	padding: 5px;
+	margin: 10px;
+	opacity: 0.9;
 }
 
 /** SORT **/
