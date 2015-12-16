@@ -147,18 +147,12 @@ fieldset, label {
 }
 /** SEARCH **/
 
-.genres {
+.genre-button {
+	display: inline-block;
     width: 400px;
-}
-
-.genres .checkbox {
-    display: inline-block;
+	height: 100px;
     padding-left: 5px;
     padding-right: 5px;
-}
-
-.genres .checkbox .label {
-    display: inline-block;
 }
 
 /** SORT **/
