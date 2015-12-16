@@ -7,8 +7,17 @@ define(['movie/detail','api', 'utils'], function(Detail, API, Utils) {
 
   API.fetchMovieSummary(movie_id, function (r) {
     detail.setMovie(r);
-  })
-  
-  
+  });
+
+  detail.onRandomCallback = function () {
+  	API.random(function (movie)	{
+  		detail.setMovie(movie);
+  	})
+  }
+
 
 });
+
+
+
+

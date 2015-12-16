@@ -11,6 +11,7 @@ define(['api'], function(API) {
 	this.genres = this.dom.querySelector(".genres");
 	this.characters = this.dom.querySelector(".characters");
 	this.runtime = this.dom.querySelector(".runtime");
+	this.mature = this.dom.querySelector(".mature");
 	this.directors = this.dom.querySelector(".directors");
 	this.stars = this.dom.querySelector(".stars");
 	this.writers = this.dom.querySelector(".writers");
@@ -28,6 +29,7 @@ define(['api'], function(API) {
 						self.genres.value,
 						self.characters.value,
 						self.runtime.value,
+						self.mature.value,
 						self.directors.value,
 						self.stars.value,
 						self.writers.value);
@@ -61,6 +63,10 @@ define(['api'], function(API) {
   
   RegisterView.prototype.setRuntime = function (runtime) {
     this.runtime.value = runtime;
+  }
+  
+  RegisterView.prototype.setMature = function (mature) {
+    this.mature.value = mature;
   }
   
   RegisterView.prototype.setDirectors = function (directors) {
@@ -100,6 +106,7 @@ define(['api'], function(API) {
 											genres,
 											characters,
 											runtime,
+											mature,
 											directors,
 											stars,
 											writers) {
@@ -113,6 +120,7 @@ define(['api'], function(API) {
 			genres: genres,
 			characters: characters,
 			runtime: runtime,
+			mature: mature,
 			directors: directors,
 			stars: stars,
 			writers: writers 
