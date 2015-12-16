@@ -4,21 +4,49 @@ body {
 }
 
 a {
-    color: #c1c3c6;
     text-decoration: none;
 }
 
-a:hover {
+/** HEADER **/
+header {
+    display: flex;
+    justify-content: space-between;
+    text-align: justify; 
+    width: 100%;
+}
+
+.logo,
+.user-links {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.logo .image {
+    height: 125px;
+}
+
+.user-links {
+    box-sizing: border-box;
+}
+
+.nav:hover {
     color: #13B51E;
 }
 
-/** HEADER **/
 .nav {
-    padding: 25px;
+    color: white;
+    padding: 17px;
+    font-family: Circular, Helvetica, Arial, sans-serif;
     text-align: center;
     vertical-align: middle;
-    height: 25px;
-    line-height: 50px;
+    height: 125px;
+    line-height: 125px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.nav:not(:last-child) {
+    border-right: 1px solid #ddd;
 }
 
 
@@ -75,6 +103,7 @@ fieldset, label {
     display: inline-block;
 }
 
+
 .movie .image {
     margin: auto;
     width: 100%;
@@ -101,7 +130,6 @@ fieldset, label {
     border-top-left-radius: 2em;
     border-bottom-right-radius: 2em;
     border-bottom-left-radius: 2em;
-    position: fixed;
     width: 50%;
     left: 25%;
     top: 0;
@@ -128,6 +156,16 @@ fieldset, label {
     display: block;
 }
 
+#moviez-detail .pane .info * {
+    display: inline-block;
+    
+    /** shitzwritten **/
+}
+
+#moviez-detail .pane .info label {
+    padding-right: 5px;
+}
+
 .votes .rating {
 
     padding: center;
@@ -138,7 +176,7 @@ fieldset, label {
     
     width: 49%;
     box-sizing: border-box;
-    display: inline-block;
+    display: inline
     vertical-align: top;
 }
 
