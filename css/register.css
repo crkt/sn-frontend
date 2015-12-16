@@ -42,7 +42,6 @@ input {
 
 #user input[type="text"] {
 	background: #dedede;
-	border-top: 1px solid #000;
 	border-right: 1px solid #000;
 	border-left: 1px solid #000;
         border-radius: 5px 5px 0 0;
@@ -91,7 +90,36 @@ input {
         
 }
 
+#user input[type="cancel"] {
+	background: #EB1315;
+	border: 1px solid #391515;
+	border-radius: 5px;
+        color: #fff;
+	font-weight: bold;
+	line-height: 48px;
+	text-align: center;
+	text-transform: uppercase;
+        width: 240px;
+       
+        
+        
+}
+
 #user input[type="submit"]:hover {
+	background: #F46E6F;
+}
+
+a { 
+        position: absolute;
+        top: 10;
+        left: 10;
+        font-weight: bold;
+        font-height: 48px;
+        color: #FF69B4;
+        text-decoration: none;
+}
+
+#user input[type="cancel"]:hover {
 	background: #F46E6F;
 }
 
