@@ -47,10 +47,16 @@ define(['api'], function(API) {
   }
 
   Register.prototype.onError = function (e) {
+    if (e.field == "email") {
+      this.view.email.classList.add("invalid");
+    }
+    if (e.field == "user") {
+      this.view.user.classList.add("invalid");
+    }
     console.log("On error in register" + e);
   }
 
-  Register.prototype.onRegister = function (name, password, email) {
+  Register.prototype.onRegister = function (name, email, password, repeat) {
     var self = this;
     if (self.registerCallback) {
       API.register({username: name, password: password, email: email},

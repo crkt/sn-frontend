@@ -39,11 +39,6 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
     genres.forEach(Search.prototype.addGenre, search);
   });
 
-  if (loggedIn) {
-    //hide header sign in and register, and show account link
-    //Search for movies with the user id.
-  }
-
   user.registerResultCallback = function (user) {
     userLoggedIn = true;
     user.register.hide();

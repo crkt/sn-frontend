@@ -1,4 +1,4 @@
-define(['API'], function(API) {
+define(['api'], function(API) {
   
   function LoginView() {
     var template = document.querySelector("#user-login");

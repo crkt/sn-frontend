@@ -37,6 +37,9 @@ fieldset, label {
 
 
 /** LIST AND DETAIL **/
+.rating > input {
+    -moz-apperance: none;
+}
 
 .rating > input { 
     -webkit-appearance: none;
@@ -44,7 +47,7 @@ fieldset, label {
 } 
 
 
-.rating .star:before {
+.rating .star::before {
     content: "\2605";
 }
 

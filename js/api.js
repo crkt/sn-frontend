@@ -114,15 +114,6 @@ define([],function()
          });
   }
 
-  /**
-     SearchWithUser : function, data, user id -> Movies
-     Expects a search function and a user Id to add to the search
-     Add the id to the data model
-   **/
-  var searchWithUser = function (f, data, user) {
-    data.user = user;
-    f(data);
-  };
   
   var register = function (data, success, error, failure) {
     send("POST",
@@ -227,6 +218,24 @@ define([],function()
            });
   }
 
+  /**
+     SearchWithUser : function, data, user id -> Movies
+     Expects a search function and a user Id to add to the search
+     Add the id to the data model
+   **/
+  var searchWithUser = function (attrs, success) {
+    search("/search/movie/user",
+           attrs,
+           success,
+           function (xhr) {
+             console.log("Failed to search with user");
+           },
+           function (xhr) {
+             console.log("Failed to search with user");
+           });
+  };
+
+
   var registerUser = function (user, success, error) {
     register(user,
              success,
@@ -259,10 +268,11 @@ define([],function()
   api.login = loginUser;
   api.register = registerUser;
   api.search = searchWithAttributes;
+  api.searchWithUser = searchWithUser;
   api.fetchGenres = fetchGenres;
   api.fetchMovieId = fetchMovieId;
   api.fetchMovieSummary = fetchMovieId;
-  api.searchWithUser = searchWithUser;
+
 
   return api;
 });
