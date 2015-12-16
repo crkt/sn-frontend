@@ -10,12 +10,12 @@ define(['movie/detail','api', 'utils'], function(Detail, API, Utils) {
   });
 
   detail.onRandomCallback = function () {
-  	API.random(function (movie)	{
-  		detail.setMovie(movie);
-  	})
+    API.random(function (movie)	{
+      // Fix that we set the id in the location instead.
+      detail.setMovie(movie);
+    })
   }
-
-
+  
 });
 
 

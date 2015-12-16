@@ -86,7 +86,6 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
 
   list.onMovieSelected = function (movie) {
     window.location = window.location + "movie" + "?id=" + movie.id;
-//    detail.setMovie(movie);
   };
 
   sort.sortCallback = function (sort) {
@@ -102,7 +101,7 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
   };
 
   search.randomResultCallback = function (movie) {
-    detail.setMovie(movie);
+    window.location = window.location +"movie" + "?id=" + movie.id;
   }
 
   // Fill the page with movies on load
