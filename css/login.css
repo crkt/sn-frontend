@@ -68,12 +68,13 @@ input {
 	background: #EB1315;
 	border: 1px solid #391515;
 	border-radius: 5px;
-    color: #fff;
+        color: #fff;
 	font-weight: bold;
 	line-height: 48px;
 	text-align: center;
 	text-transform: uppercase;
 	width: 240px;
+        cursor: pointer;
 }
 
 #user input[type="submit"]:hover {
