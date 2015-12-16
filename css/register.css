@@ -66,10 +66,14 @@ input {
         border-top: 1px solid #828282;
 	border-right: 1px solid #000;
 	border-left: 1px solid #000;
-        border-radius: 0 0 5px 5px;
+
 	color: #363636;
 	padding-left: 36px;
 	width: 240px;
+}
+
+#user input.repeat {
+    border-radius: 0 0 5px 5px;
 }
 
 
@@ -86,9 +90,7 @@ input {
         margin-top: 20px;
 	text-transform: uppercase;
         width: 240px;
-       
-        
-        
+        cursor: pointer;
 }
 
 #user input[type="submit"]:hover {
