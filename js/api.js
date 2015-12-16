@@ -133,7 +133,8 @@ define([],function()
          error,
          failure);
   }
-  var random = function (success) {
+  
+    var random = function (success) {
     fetch("/search/random",
           function (xhr) {
             if (xhr.readyState === 4) {
@@ -244,7 +245,26 @@ define([],function()
                console.log("Failed to create user");
              });
   }
-  
+ 
+	var movieRegister = function (data, success, error) {
+		send("POST",
+         "/movie/register",
+         data,
+         function (xhr) {
+           if (xhr.readyState === 4) {
+             if (xhr.status === 201) {
+               success(JSON.parse(xhr.response));
+             } else if (xhr.status === 400) {     
+               error(JSON.parse(xhr.response));
+             }
+           }
+         },
+         error,
+         function (xhr) {
+			 console.log("Failed to submit move");
+		 });
+	}
+ 
   var loginUser = function (user, success, error) {
     login(user,
           success,
@@ -267,6 +287,7 @@ define([],function()
   api.random = random;
   api.login = loginUser;
   api.register = registerUser;
+  api.registerMovie = movieRegister;
   api.search = searchWithAttributes;
   api.searchWithUser = searchWithUser;
   api.fetchGenres = fetchGenres;
