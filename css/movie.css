@@ -137,12 +137,13 @@ fieldset, label {
 }
 
 /** DETAIL **/
+#moviez-detail {
+    height: 100%;
+}
+
+
 #moviez-detail .pane {
     border: 2px solid;
-    border-top-right-radius: 2em;
-    border-top-left-radius: 2em;
-    border-bottom-right-radius: 2em;
-    border-bottom-left-radius: 2em;
     width: 50%;
     left: 25%;
     top: 0;
@@ -153,6 +154,8 @@ fieldset, label {
     margin-right: auto;
     border: 5px;
     box-sizing: border-box; 
+    padding-bottom: 15px;
+    height: 100%;
 }
 
 #moviez-detail .pane:focus {
@@ -198,11 +201,11 @@ fieldset, label {
 }
 /** SEARCH **/
 
-
-.genre-button .id{
-	width: 500px;
-	
+.genres {
+    width: 400px;
+    margin-bottom: 15px;
 }
+
 .genre-button {
 	display: inline-block;
     width: 75px;
