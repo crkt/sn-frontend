@@ -4,37 +4,43 @@ body {
 }
 
 a {
-    color: #c1c3c6;
     text-decoration: none;
-}
-
-a:hover {
-    color: #13B51E;
 }
 
 /** HEADER **/
 header {
-    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    text-align: justify; 
+    width: 100%;
 }
 
+.logo,
+.user-links {
+    display: inline-block;
+    vertical-align: baseline;
+}
 
-.logo {
-    width: 200px;
-    margin-right: auto;
+.logo .image {
+    height: 125px;
 }
 
 .user-links {
-    margin-left: auto;
-    width: 400px;
+    box-sizing: border-box;
+}
+
+.nav:hover {
+    color: #13B51E;
 }
 
 .nav {
+    color: white;
     padding: 17px;
     font-family: Circular, Helvetica, Arial, sans-serif;
     text-align: center;
     vertical-align: middle;
-    height: 25px;
-    line-height: 50px;
+    height: 125px;
+    line-height: 125px;
     font-weight: 500;
     font-size: 16px;
 }
