@@ -6,23 +6,23 @@ define(['api','utils'], function(API, Utils) {
   function GenreInputView () {
     var template = document.querySelector("#genre-input");
     this.dom = document.importNode(template.content, true);
-    this.label = this.dom.querySelector(".label");
     this.input = this.dom.querySelector(".input");
 
     var self = this;
-    this.input.addEventListener("change", function (e) {
+    this.input.addEventListener("click", function (e) {
       if (self.onGenreChanged) {
-        self.onGenreChanged(parseInt(e.target.value));
+        e.target.classList.toggle("selected");
+        self.onGenreChanged(parseInt(e.target.dataset.id));
       }
     }, false);
   }
 
   GenreInputView.prototype.setLabel = function (label) {
-    this.label.textContent = Utils.capitalizeString(label);
+    this.input.value = Utils.capitalizeString(label);
   }
 
   GenreInputView.prototype.setGenre = function (value) {
-    this.input.value = value;
+    this.input.dataset.id = value;
   }
 
   function GenreInput (view) {
