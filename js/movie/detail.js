@@ -19,19 +19,30 @@ define(['widget'], function (Widgets) {
     this.director = this.dom.querySelector(".director");
     this.writer = this.dom.querySelector(".writer");
     this.stars = this.dom.querySelector(".stars");
+    this.random = this.dom.querySelector(".random");
 
+    // This needs a fix...
     this.rating.onRatingCallback = this.onRating;
+
+    this.randomCallback = null;
 
     this.pane.classList.add("hidden");
     
     var self = this;
-    this.pane.addEventListener("blur", function(e){
+    this.pane.addEventListener("blur", function(e) {
       self.pane.classList.add("hidden");
     });
 
-    this.pane.addEventListener("focus", function(e){
+    this.pane.addEventListener("focus", function(e) {
       self.pane.classList.remove("hidden");
     });
+    //
+    this.random.addEventListener("click", function(e) {
+      e.preventDefault();
+      if (self.randomCallback) {
+        self.randomCallback();
+      }
+    },false); 
   }
 
   DetailView.prototype.setTitle = function (title) {
@@ -99,8 +110,10 @@ define(['widget'], function (Widgets) {
   function Detail () {
     this.view = new DetailView();
     this.view.onRating = Detail.prototype.onRating.bind(this);
+    this.view.randomCallback = Detail.prototype.onRandom.bind(this);  
 
     this.onRatingCallback = null;
+    this.onRandomCallback = null;
   }
 
   Detail.prototype.setMovie = function (movie) {
@@ -127,6 +140,12 @@ define(['widget'], function (Widgets) {
   }
 
   /** External callbacks **/
+  Detail.prototype.onRandom = function () {
+    if (this.onRandomCallback) {
+      this.onRandomCallback();
+    }
+  }
+
   Detail.prototype.onRating = function (value) {
     if (this.onRatingCallback) {
       this.onRatingCallback(this.movie.id, value);

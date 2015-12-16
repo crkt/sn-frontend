@@ -25,9 +25,18 @@
     <input name="rating" type="radio" value="2" class="star" title="Bad"></input>
     <input name="rating" type="radio" value="3" class="star" title="Meh"></input>
     <input name="rating" type="radio" value="4" class="star" title="Pretty good"></input>
-    <input name="rating" type="radio" value="5" class="star" ttitle="Really good!"></input>
+    <input name="rating" type="radio" value="5" class="star" title="Really good!"></input>
   </fieldset>
 </template>
+
+<!-- Genre widget -->
+<template id="genre-input">
+  <div class="genre-button">
+    <input type="button" class="input">
+  </div>
+</template>
+
+<!-- END WIDGETS -->
 
 <template id="movie-item">
   <div class="movie">
@@ -89,12 +98,7 @@
   </form>
 </template>
 
-<template id="genre-input">
-  <div class="checkbox">
-    <label class="label"></label>
-    <input type="checkbox" class="input">
-  </div>
-</template>
+
 
 <template id="movie-results">
   <div class="list">
@@ -110,6 +114,7 @@
     <label>Votes:</label><label class="votes"></label>
   </div>
   <div class="right">  
+    <input class="random" type="button" value="Random"></input>  
     <label>Plot:</label><p class="plot"></p>
     <label>Year:</label><label class="year"></label>
     <label>Characters:</label><label class="character"></label>
@@ -151,6 +156,7 @@
   <div class="user-links">
     <a class="nav" href="/login">Sign in</a>
     <a class="nav" href="/register">Register account</a>
+	<a class="nav" href="/movies/register">Register movie</a>
   </div>
 </template>
 
