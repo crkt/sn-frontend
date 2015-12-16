@@ -88,6 +88,7 @@ fieldset, label {
 }
 
 .movie {
+    position: relative;
     display: inline-block;
     word-wrap: break-word;
     width: calc(16.6% - 4px);
@@ -96,11 +97,29 @@ fieldset, label {
     background-color: black;
     border: 1px solid black;
     color: white;
-    margin-bottom: 5px;
+    margin-bottom: 75px;
 }
 
-.movie .inline * {
-    display: inline-block;
+.movie .average-rating {
+}
+
+.movie .average-rating:after {
+    content: "\2605";
+    font-size: 25px;
+    color: yellow;
+    padding-left: 5px;
+}
+
+.movie .top-right {
+    position: absolute;
+    background-color: rgba(0,0,0,0.8);
+    top: 0;
+    width: 100%;
+}
+
+.movie .votes:before {
+    content: "Votes";
+    padding-right: 5px;
 }
 
 .movie .image {
@@ -108,18 +127,6 @@ fieldset, label {
     width: 100%;
     max-height: 450px;
     display: block;
-}
-
-.movie .title {
-    height: 80px;
-}
-
-.movie .average-rating {
-    display: inline-block;
-}
-
-.movie .votes {
-    display: inline-block;
 }
 
 /** DETAIL **/

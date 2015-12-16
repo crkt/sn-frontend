@@ -10,25 +10,26 @@ define(['api','widget'], function (API, Widget)
     var template = document.querySelector("#movie-item");
     this.dom = document.importNode(template.content, true);
     this.movie = this.dom.querySelector(".movie");
-    this.title = this.dom.querySelector(".title");
+    //this.title = this.dom.querySelector(".title");
     this.image = this.dom.querySelector(".image");
-    this.avgRating = new Widget.Rating(this.dom.querySelector(".average-rating"));
+    this.avgRating = this.dom.querySelector(".average-rating");
+      //new Widget.Rating(this.dom.querySelector(".average-rating"));
     this.votes = this.dom.querySelector(".votes");
-    this.userRating = new Widget.Rating(this.dom.querySelector(".user-rating"));
+    //this.userRating = new Widget.Rating(this.dom.querySelector(".user-rating"));
 
     var self = this;
-    this.userRating.onRatingCallback = function (value) {
+    /*this.userRating.onRatingCallback = function (value) {
       if (self.rateMovie) {
         self.rateMovie(value);
       }
-    }
+    }*/
 
-    // Add a click listener to the div, fix so we don't assume it child 0.
-    this.dom.children[0].addEventListener("click", function (e) {
+    this.movie.addEventListener("click", function (e) {
       if (self.clickMovie) {
         self.clickMovie(e);
       }
     },false);
+
   }
 
   MovieItemView.prototype.setId = function (id) {
@@ -36,7 +37,7 @@ define(['api','widget'], function (API, Widget)
   }
 
   MovieItemView.prototype.setTitle = function (title) {
-    this.title.textContent = title;
+    //this.title.textContent = title;
   }
 
   MovieItemView.prototype.setImage = function (url) {
@@ -44,7 +45,8 @@ define(['api','widget'], function (API, Widget)
   }
 
   MovieItemView.prototype.setAverageRating = function (rating) {
-    this.avgRating.view.setRating(rating);
+    //this.avgRating.view.setRating(rating);
+    this.avgRating.textContent = rating;
   }
 
   MovieItemView.prototype.setVotes = function (votes) {
@@ -52,7 +54,7 @@ define(['api','widget'], function (API, Widget)
   }
 
   MovieItemView.prototype.setUserRating = function (rating) {
-    this.userRating.view.setRating(rating);
+    //this.userRating.view.setRating(rating);
   }
 
   /*
