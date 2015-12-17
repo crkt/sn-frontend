@@ -21,22 +21,14 @@ define(['widget'], function (Widgets) {
     this.stars = this.dom.querySelector(".stars");
     this.random = this.dom.querySelector(".random");
 
-    // This needs a fix...
-    this.rating.onRatingCallback = this.onRating;
-
     this.randomCallback = null;
 
-    this.pane.classList.add("hidden");
-    
     var self = this;
-    this.pane.addEventListener("blur", function(e) {
-      self.pane.classList.add("hidden");
-    });
+    this.rating.onRatingCallback = function (rating) {
+      if (self.onRating)
+        self.onRating(rating);
+    };
 
-    this.pane.addEventListener("focus", function(e) {
-      self.pane.classList.remove("hidden");
-    });
-    //
     this.random.addEventListener("click", function(e) {
       e.preventDefault();
       if (self.randomCallback) {
@@ -95,22 +87,13 @@ define(['widget'], function (Widgets) {
     this.votes.textContent = votes;
   }
 
-  DetailView.prototype.hide = function () {
-    this.pane.classList.add("hidden");
-  }
-
-  DetailView.prototype.show = function () {
-    this.pane.classList.remove("hidden");
-  }
-
-
   /*
     Movie detail presenter
   */
   function Detail () {
     this.view = new DetailView();
     this.view.onRating = Detail.prototype.onRating.bind(this);
-    this.view.randomCallback = Detail.prototype.onRandom.bind(this);  
+    this.view.randomCallback = Detail.prototype.onRandom.bind(this);
 
     this.onRatingCallback = null;
     this.onRandomCallback = null;
@@ -130,9 +113,6 @@ define(['widget'], function (Widgets) {
     this.view.setDirector(movie.directors);
     this.view.setWriter(movie.writers);
     this.view.setStars(movie.stars);
-    this.view.pane.classList.remove("hidden");
-    this.view.pane.focus();
-
   }
 
   Detail.prototype.updateRating = function (rating) {

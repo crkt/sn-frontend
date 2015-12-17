@@ -25,19 +25,6 @@ requirejs(['movie/list','movie/search','movie/sort','api','header'],function(Lis
   var loggedIn = currentUser ? true : false;
   var moviez = undefined;
 
-  API.fetchGenres(function (genres) {
-    genres.forEach(Search.prototype.addGenre, search);
-  });
-
-  list.onMovieRated = function (id,rating) {
-    if (userLoggedIn) {
-      API.rate(id,rating,currentUser.id, function (r) {
-        list.updateMovie(r);
-      });
-    } else {
-      alert("You must be logged in to rate a movie");
-    }
-  }
 
   list.onMovieSelected = function (movie) {
     window.location = window.location + "movie" + "?id=" + movie.id;
@@ -60,6 +47,10 @@ requirejs(['movie/list','movie/search','movie/sort','api','header'],function(Lis
   }
 
   // Fill the page with movies on load
+  API.fetchGenres(function (genres) {
+    genres.forEach(Search.prototype.addGenre, search);
+  });
+
   search.search();
 
 });
