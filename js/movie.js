@@ -22,7 +22,7 @@ define(['movie/detail','api', 'utils'], function(Detail, API, Utils) {
   detail.onRatingCallback = function (id, rating) {
     if (loggedIn) {
       API.rate(id,rating,currentUser, function (r) {
-        detail.setRating(r);
+        detail.updateRating(r);
       });
     } else {
       window.location = "/login";
