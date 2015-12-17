@@ -4,7 +4,7 @@ requirejs.config({
 });
 
 
-requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user','api','header'],function(List, Search, Detail, Sort, User, API, Header) 
+requirejs(['movie/list','movie/search','movie/sort','api','header'],function(List, Search, Sort, API, Header) 
 {    
 
   var header = new Header();
@@ -20,16 +20,6 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
   var search = new Search();
   document.querySelector("#search-moviez").appendChild(search.view.dom);
 
-  var detail = new Detail();
-  document.querySelector("#moviez-detail").appendChild(detail.view.dom);
-
-  var user = new User();
-  //document.querySelector("#user").appendChild(user.register.dom);
-  //document.querySelector("#user").appendChild(user.login.dom);
-  //document.querySelector("#user").appendChild(user.profile.dom);
-  
-
-
   /** These probably shouldn't be here, fix **/
   var currentUser = localStorage.getItem("user");
   var loggedIn = currentUser ? true : false;
@@ -38,41 +28,6 @@ requirejs(['movie/list','movie/search','movie/detail', 'movie/sort', 'user/user'
   API.fetchGenres(function (genres) {
     genres.forEach(Search.prototype.addGenre, search);
   });
-
-  user.registerResultCallback = function (user) {
-    userLoggedIn = true;
-    user.register.hide();
-    user.login.hide();
-    user.setUser(user);
-    currentUser = user;
-  }
-
-  user.loginResultCallback = function (user) {
-    userLoggedIn = true;
-    user.register.hide();
-    user.login.hide();
-    user.setUser(user);
-    currentUser = user;
-  }
-
-  user.logoutResultCallback = function () {
-    user.profile.hide();
-    user.login.show();
-    user.register.show();
-    user.setUser(undefined);
-    currentUser = undefined;
-  }
-
-  detail.onRatingCallback = function (id, rating) {
-    if (userLoggedIn) {
-      API.rate(id,rating,currentUser.id, 
-               function (r) {
-                 detail.updateRating(r);
-               });      
-    } else {
-      alert("You must be logged in to rate a movie");
-    }
-  }
 
   list.onMovieRated = function (id,rating) {
     if (userLoggedIn) {
