@@ -13,7 +13,13 @@ define([],function()
     
     // If things go as planned, run the success function that was
     // supplied.  if not, the failure function.
-    xhr.onload = success.bind(xhr, xhr);
+    xhr.onload = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          success(JSON.parse(xhr.response));
+        }
+      }
+    }
     
     // If shit goes wrong, we want to know and why.
     xhr.onerror = error.bind(xhr, xhr);
@@ -22,7 +28,7 @@ define([],function()
     xhr.send(null);
   }
 
-  var send = function(type,dest, data, success, error, failure) {
+  var send = function(type, dest, data, success, error, failure, OK, ERROR) {
     var xhr = new XMLHttpRequest();
     xhr.open(type, dest, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -31,9 +37,23 @@ define([],function()
     // If the request timeouts.
     xhr.ontimeout = failure.bind(xhr, xhr);
     
+    if (!OK) {
+      OK = 200;
+    }   
+
     // If things go as planned, run the success function that was
     // supplied.  if not, the failure function.
-    xhr.onload = success.bind(xhr, xhr);
+    xhr.onload = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === OK) {
+          success(JSON.parse(xhr.response));
+        } else if (xhr.status === ERROR) {
+          error(JSON.parse(xhr.response));
+        } else {
+          failure(xhr.response);
+        }
+      }
+    }
     
     // If shit goes wrong, we want to know and why.
     xhr.onerror = error.bind(xhr, xhr);
@@ -42,76 +62,22 @@ define([],function()
     xhr.send(JSON.stringify(data));
   };
 
-  var register = function(data, success, error, failure) {
-    send("POST",
-         "/user/register",
-         data,
-         function (xhr) {
-           if (xhr.readyState === 4) {
-             if (xhr.status === 201) {
-               success(xhr, JSON.parse(xhr.response));
-             } else if (xhr.status === 400) {
-               error(JSON.parse(xhr.response));
-             } else {
-               failure(xhr, xhr.response);
-             }
-           }
-         },
-         function (xhr) {
-           console.log("Error on registering user");
-           error(xhr.statusText);
-         },
-         function (xhr) {
-           console.log("Failed to register user");
-         });
-  }
-
   var login = function (data, success, error, failure) {
     send("PUT",
          "/user/login",
          data,
-         function (xhr) {
-           if (xhr.readyState === 4) {
-             if (xhr.status === 202) {
-               success(JSON.parse(xhr.response));
-             } else if (xhr.status === 400) {     
-               error(JSON.parse(xhr.response));
-             } else {
-               failure(xhr, xhr.response);
-             }
-           }
-         },
-         function (xhr) {
-           console.log("Error on login");
-           error(xhr.statusText);
-         },
-         function (xhr) {
-           console.log("Failed to login");
-         });
+         success,
+         error,
+         failure);
   }
 
   var search = function (dest, data, success, error, failure) {
     send("PUT",
          dest,
          data,
-         function (xhr) {
-           if (xhr.readyState === 4) {
-             if (xhr.status === 200) {
-               success(JSON.parse(xhr.response));
-             } else if (xhr.status === 400) {     
-               error(JSON.parse(xhr.response));
-             } else {
-               failure(xhr.response);
-             }
-           }
-         },
-         function (xhr) {
-           console.log("Error on search");
-           error(xhr.statusText);
-         },
-         function (xhr) {
-           console.log("Failed to search");
-         });
+         success,
+         error,
+         failure);
   }
 
   
@@ -119,30 +85,14 @@ define([],function()
     send("POST",
          "/user/register",
          data,
-         function (xhr) {
-           if (xhr.readyState === 4) {
-             if (xhr.status === 201) {
-               success(JSON.parse(xhr.response));
-             } else if (xhr.status === 400) {     
-               error(JSON.parse(xhr.response));
-             } else {
-               failure(xhr.response);
-             }
-           }
-         },
+         success,
          error,
          failure);
   }
   
-    var random = function (success) {
+  var random = function (success) {
     fetch("/search/random",
-          function (xhr) {
-            if (xhr.readyState === 4) {
-              if (xhr.status === 200) {
-                success(JSON.parse(xhr.response));
-              }
-            }
-          },
+          success,
           function (xhr) {
             console.log("Failed to get random");
           },
@@ -151,34 +101,20 @@ define([],function()
           });
   }
   
-  var rate = function (id,rating,user,success) {
+  var rateMovie = function (id,rating,user,success,error) {
     send("PUT",
          "/movie/rating",
          {user_id: user, rating: rating, movie: id},
-         function (xhr) {
-           if (xhr.readyState === 4) {
-             if (xhr.status === 200) {
-               success(JSON.parse(xhr.response));
-             } 
-           }
-         },
-         function (xhr) {
-           console.log("Error" + xhr);
-         },
+         success,
+         error,
          function (xhr) {
            console.log("Failure" + xhr);
          });
   }
 
   var fetchGenres = function (success) {
-    fetch("/movie/genres", 
-          function (xhr) {
-            if (xhr.readyState === 4) {
-             if (xhr.status === 200) {
-               success(JSON.parse(xhr.response));
-             }
-            }
-          },
+    fetch("/movie/genres",
+          success,
           function (xhr) {
             console.log("Failed to get genres");
           },
@@ -192,21 +128,15 @@ define([],function()
     send("PUT",
          "/movie/id",
          req,
+         success,
          function (xhr) {
-           if (xhr.readyState === 4) {
-             if (xhr.status === 200) {
-               success(JSON.parse(xhr.response));
-             }
-           }
+           console.log("Failed to get genres");
          },
-          function (xhr) {
-            console.log("Failed to get genres");
-          },
          function (xhr) {
            console.log("Failed to get genres");
          });
   }
-
+  
   var searchWithAttributes = function (attrs, success) {
     search("/search/movie",
            attrs,
@@ -243,27 +173,23 @@ define([],function()
              error,
              function (xhr) {
                console.log("Failed to create user");
-             });
+             },
+            201,
+            400);
   }
  
-	var movieRegister = function (data, success, error) {
-		send("POST",
+  var movieRegister = function (data, success, error) {
+    send("POST",
          "/movie/register",
          data,
-         function (xhr) {
-           if (xhr.readyState === 4) {
-             if (xhr.status === 201) {
-               success(JSON.parse(xhr.response));
-             } else if (xhr.status === 400) {     
-               error(JSON.parse(xhr.response));
-             }
-           }
-         },
+         success,
          error,
          function (xhr) {
-			 console.log("Failed to submit move");
-		 });
-	}
+	   console.log("Failed to submit move");
+	 },
+        202,
+        400);
+  }
  
   var loginUser = function (user, success, error) {
     login(user,
@@ -271,19 +197,11 @@ define([],function()
           error,
           function (xhr) {
             console.log("Failed to login");
-          });
+          },
+         202,
+         400);
   }
 
-  var rateMovie = function (movie_id, rating, user_id, success, error) {
-    rate(movie_id,rating,user_id,
-         success,
-         error,
-         function (xhr) {
-           console.log("Faield to rate movie");
-         });
-  }
-
-  api.rate = rate;
   api.random = random;
   api.login = loginUser;
   api.register = registerUser;

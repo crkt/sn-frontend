@@ -1,4 +1,4 @@
-define(['widget'], function (Widgets) {
+define(['widget', 'utils'], function (Widgets, Utils) {
 
   /*
     Movie detail view
@@ -9,7 +9,9 @@ define(['widget'], function (Widgets) {
     this.pane = this.dom.querySelector(".pane");
     this.title = this.dom.querySelector(".title");
     this.plot = this.dom.querySelector(".plot");
+    this.genres = this.dom.querySelector(".genres");
     this.image = this.dom.querySelector(".image");
+    this.avgRating = this.dom.querySelector(".average-rating");
     this.rating = new Widgets.Rating(this.dom.querySelector(".rating"));
     this.votes = this.dom.querySelector(".votes");
     this.year = this.dom.querySelector(".year");
@@ -74,14 +76,24 @@ define(['widget'], function (Widgets) {
     this.plot.textContent = plot;
   }
 
+  DetailView.prototype.setGenres = function (genres) {
+    genres.forEach(function (s, index) {
+      genres[index] = Utils.capitalizeString(s);
+    });
+    this.genres.textContent = genres.join(", ");
+  }
+
   DetailView.prototype.setImage = function (url) {
     this.image.src = url;
   }
 
   DetailView.prototype.setRating = function (rating) {
     this.rating.view.setRating(rating);
-
   }
+
+  DetailView.prototype.setAvgRating = function (rating) {
+    this.avgRating.textContent = rating;
+  }  
 
   DetailView.prototype.setVotes = function (votes) {
     this.votes.textContent = votes;
@@ -103,8 +115,10 @@ define(['widget'], function (Widgets) {
     this.movie = movie;
     this.view.setTitle(movie.title);
     this.view.setPlot(movie.plot);
+    this.view.setGenres(movie.genres);
     this.view.setImage(movie.picture);
-    this.view.setRating(movie.rating.rating);
+    this.view.setRating(movie.rating.user_rating);
+    this.view.setAvgRating(movie.rating.rating);
     this.view.setVotes(movie.rating.nr_votes);
     this.view.setYear(movie.year);
     this.view.setCharacter(movie.characters);
@@ -116,7 +130,8 @@ define(['widget'], function (Widgets) {
   }
 
   Detail.prototype.updateRating = function (rating) {
-    this.view.setRating(rating.rating);
+    this.view.setRating(rating.user_rating);
+    this.view.setVotes(rating.nr_votes);
   }
 
   /** External callbacks **/

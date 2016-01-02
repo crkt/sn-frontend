@@ -60,7 +60,7 @@ fieldset, label {
 
 .hidden {
     visibility: hidden;
-    /*display: none;*/
+    display: none;
 }
 
 
@@ -143,23 +143,14 @@ fieldset, label {
 
 
 #moviez-detail .pane {
-    border: 2px solid;
     width: 50%;
-    left: 25%;
-    top: 0;
     background-color: rgba(0,0,0,0.9);
     color: white;
     padding: 12px;
     margin-left: auto;
     margin-right: auto;
-    border: 5px;
     box-sizing: border-box; 
     padding-bottom: 15px;
-    height: 100%;
-}
-
-#moviez-detail .pane:focus {
-    outline: 0;
 }
 
 #moviez-detail .title {
@@ -167,18 +158,47 @@ fieldset, label {
 }
 
 #moviez-detail .image {
-
     margin: auto;
     display: block;
 }
 
 #moviez-detail .pane .info * {
-    display: inline-block;
-    
-    /** shitzwritten **/
+    display: inline-block;  
 }
 
 #moviez-detail .pane .info label {
+    padding-right: 5px;
+}
+
+#moviez-detail .rating-pane .average-rating {
+    font-size: 25px;
+}
+
+#moviez-detail .rating-pane .average-rating:after {
+    content: "\2605";
+    color: yellow;
+    padding-left: 5px;
+}
+
+#moviez-detail .rating-pane .votes {
+
+}
+
+#moviez-detail .rating-pane .votes:before {
+    content: "Votes";
+    padding-right: 5px;
+}
+
+#moviez-detail #buttons {
+    padding-top: 15px;
+}
+
+#moviez-detail #buttons .back {
+    color: black;
+    background: rgb(221,221,221);
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding-left: 5px;
     padding-right: 5px;
 }
 
@@ -187,19 +207,11 @@ fieldset, label {
     padding: center;
 }
 
-.left,
-.right {
-    
-    width: 49%;
-    box-sizing: border-box;
-    display: inline
-    vertical-align: top;
-}
-
-.showhide {
-
-}
 /** SEARCH **/
+
+.title {
+    
+}
 
 .genres {
     width: 400px;
