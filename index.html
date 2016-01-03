@@ -61,24 +61,28 @@
 <template id="movie-sort">
   <label> Sort by rating
   <select class="rating">
+    <option value="-1"></option>
     <option class="low" value="desc">High to Low</option>
     <option class="high" value="asc">Low to High</option>
   </select>
   </label>
   <label>Sort by title
   <select class="title">
+    <option value="-1"></option>
     <option class="low" value="desc">Z-A</option>
     <option class="high" value="asc">A-Z</option>
   </select>    
   </label>
   <label>Sort by year
   <select class="year">
+    <option value="-1"></option>
     <option class="low" value="desc">High to Low</option>
     <option class="high" value="asc">Low to High</option>
   </select>    
   </label>
   <label>Sort by runtime
   <select class="runtime">
+    <option value="-1"></option>
     <option class="low" value="desc">High to Low</option>
     <option class="high" value="asc">Low to High</option>
   </select>    
@@ -108,14 +112,12 @@
   </form>
 </template>
 
-
-
 <template id="header-temp">
   <div class="logo">
     <img class="image" src="/logow.png"></img>
   </div>
   <div class="user-links">
-    <a class="nav profile" href="/info">View profile</a>
+    <a class="nav profile" href="/account">View profile</a>
     <a class="nav sign-in" href="/login">Sign in</a>
     <a class="nav sign-out" href="/"> Sign out</a>
     <a class="nav register" href="/register">Register account</a>

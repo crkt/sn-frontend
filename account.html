@@ -1,24 +1,42 @@
 <html>
-  <head>
-    <script data-main="js/account.js" src="js/require.js"></script>
-    <title>My Account</title>
-    <link rel = "stylesheet" href = "css/main8.css">
-  </head>
+<head>
+  <script data-main="js/account.js" src="js/require.js"></script>
+  <title>Profile</title>
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/movie.css">
+</head>
+<body>
+  <h1> Your profile </h1>
+  <div id="profile">
+    <a class="back" href="/">Home</a>
+    <div id="profile-info"></div>
+    <h2> Your rated movies </h2>
+    <div id="moviez-list"></div>
+  </div>
+  
+  <template id="user-info">
+    <div class="pane">     
+      <span class="username"></span>
+    </div>
+  </template>
 
-  <body>
-    <div id="user"></div>
-    <header>
-      <nav>
-        <h1>SUCK IT GIL. and welcome to your account page</h1>
-        <ul>
-          <li><a href "#">Home</a></li>
-          <li><a href="/info">My info</a></li>
-          <li><a href "#">Contact</a></li>
-        </ul>
-      </nav>  
-    </header>
-    
-    
-
-  </body>
+  <template id="movie-listing">
+    <div class="listing">
+    </div>
+  </template>
+  
+  <template id="movie-item">
+    <div class="movie">
+      <img class="image">
+      <div class="top-right">
+        <div class="rating">
+          <span class="star-rating"></span>
+          <span class="average-rating"></span>
+          <span class="votes"></span>
+        </div>
+    </div>
+    </div>
+  </template>
+  
+</body>
 </html>

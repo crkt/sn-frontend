@@ -13,24 +13,36 @@ define(['utils'], function(Utils) {
     var self = this;
     this.rating.addEventListener("change", function (e) {
       if (self.onSortCallback) {
+        if (e.target[0].value == -1) {
+          e.target.removeChild(e.target[0]);
+        }
         self.onSortCallback("rating.rating", e.target.value);
       }
     },false);
 
     this.title.addEventListener("change", function (e) {
       if (self.onSortCallback) {
+        if (e.target[0].value == -1) {
+          e.target.removeChild(e.target[0]);
+        }
         self.onSortCallback("title", e.target.value);
       }
     }, false);
 
     this.year.addEventListener("change", function (e) {
       if (self.onSortCallback) {
+        if (e.target[0].value == -1) {
+          e.target.removeChild(e.target[0]);
+        }
         self.onSortCallback("year", e.target.value);
       }
     }, false);
 
     this.runtime.addEventListener("change", function (e) {
       if (self.onSortCallback) {
+        if (e.target[0].value == -1) {
+          e.target.removeChild(e.target[0]);
+        }
         self.onSortCallback("runtime", e.target.value);
       }
     }, false);

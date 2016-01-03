@@ -117,6 +117,20 @@ define([],function()
          });
   }
 
+  var fetchRatedMovies = function (user, success) {
+    var req = {user:user};
+    send("PUT",
+         "/user/rated",
+         req,
+         success,
+         function (resp) {
+           console.log("Error on rating movie" + resp);
+         },
+         function (xhr) {
+           console.log("Failure" + xhr);
+         });
+  }
+
   var fetchGenres = function (success) {
     fetch("/movie/genres",
           success,
@@ -219,7 +233,7 @@ define([],function()
           });
   }
 
-  api.rate = rateMovie;
+  api.rate = rateMovie; 
   api.random = random;
   api.login = loginUser;
   api.register = registerUser;
@@ -227,6 +241,7 @@ define([],function()
   api.search = searchWithAttributes;
   api.searchWithUser = searchWithUser;
   api.fetchGenres = fetchGenres;
+  api.fetchRated = fetchRatedMovies;
   api.fetchMovieId = fetchMovieId;
   api.fetchMovieSummary = fetchMovieId;
   api.fetchMovieSummaryUser = fetchMovieIdWithUser;
