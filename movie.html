@@ -4,23 +4,27 @@
   <link rel="stylesheet" type="text/css" href="css/movie.css">      
 </head>
 <body>
-<div id="moviez-detail"></div>
+<div id="moviez-detail">
+</div>
 <!-- Add random button -->
 <template id="detail">
   <div class="pane">
   <h2 class="title"></h2>
   <img class="image"></img>
-  <div class="rating"></div>
-  <div class="info">
-    <label>Votes:</label>
-    <label class="votes"></label>
+  <div class="rating-pane">    
+    <span class="average-rating"></span>
+    <span class="votes"></span>
   </div>
-  <input class="random" type="button" value="Random"></input>  
+  <div class="rating"></div>
   <p class="plot"></p>
+  <div class="info">
+    <label class="label">Genres:</label>
+    <label class="genres"></label>
+  </div>
   <div class="info">  
     <label class="label">Release date:</label>
     <label class="year"></label>
-  </div>  
+  </div>
   <div class="info">
     <label class="label">Characters:</label>
     <label class="character"></label>
@@ -34,17 +38,21 @@
     <label class="matureRating"></label>
   </div>
   <div class="info">
-    <label class="label">Director:</label>
+    <label class="label">Directors:</label>
     <label class="director"></label>
   </div>  
   <div class="info">  
-    <label class="label">Writer:</label>
+    <label class="label">Writers:</label>
     <label class="writer"></label>
   </div>
   <div class="info">  
     <label class="label">Stars:</label>
     <label class="stars"></label>
   </div>  
+  <div id="buttons">
+    <input class="random" type="button" value="Random"></input>
+    <a class="back" href="/"> Back</a>
+  </div>
 </template>
 
 <!-- *Widgets* -->

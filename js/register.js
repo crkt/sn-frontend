@@ -5,6 +5,7 @@ define(['api','user/register'], function(API, Register) {
 
   register.registerCallback = function (user) {
     localStorage.setItem("user", user.id);
+    localStorage.setItem("username", user.username);
     // Go back to the main page with the user
     window.location = "/";
   }

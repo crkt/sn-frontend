@@ -20,11 +20,20 @@ requirejs(['movie/list','movie/search','movie/sort','api','header'],function(Lis
   var search = new Search();
   document.querySelector("#search-moviez").appendChild(search.view.dom);
 
-  /** These probably shouldn't be here, fix **/
+  /** These probably shouldn't be here? **/
   var currentUser = localStorage.getItem("user");
   var loggedIn = currentUser ? true : false;
   var moviez = undefined;
 
+  if (loggedIn) {
+    header.userLoggedIn();
+  } else {
+    header.userLoggedOut();
+  }
+
+  header.onSignOut = function () {
+    window.location.reload(true);
+  }
 
   list.onMovieSelected = function (movie) {
     window.location = window.location + "movie" + "?id=" + movie.id;
