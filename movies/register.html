@@ -1,31 +1,31 @@
-
-
 <html>
-<head>
+  <head>
 	<script data-main="/js/movie-register.js" src="/js/require.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/movie-register.css">	
-</head>
-<body>
-<div id="movie"></div>
-	<a href = "/">Cancel</a>
- 
+  </head>
+  <body>
+    <h1> Register a movie </h1>
+    <div id="movie"></div>
+
+    
     <template id="movie-register">
       <form class="register">
         <input type="text" class="title" placeholder="Enter the movie title"></input>
-		<label class="info">Write the movie plot</label>
-		<textarea class="plot"></textarea>
-		<input type="number" class="year" placeholder="Enter the movie year"></input>
-		<input type="file" class="picture" placeholder="Upload a picture"></input>
-		<input type="text" class="genres" placeholder="Enter the movie genres"></input>
-		<input type="text" class="characters" placeholder="Enter the movie characters"></input>
-		<input type="number" class="runtime" placeholder="Enter the movie runtime"></input>
-		<input type="number" class="mature" placeholder="Enter the mature rating"></input>
-		<input type="text" class="directors" placeholder="Enter the movie directors"></input>
-		<input type="text" class="stars" placeholder="Enter the movie stars"></input>
-		<input type="text" class="writers" placeholder="Enter the movie writers"></input>
-		<input type="submit" class="submit" value="Register"></input>
+	<label class="info">Write the movie plot</label>
+	<textarea class="plot"></textarea>
+	<input type="number" class="year" placeholder="Enter the movie year" min="1900" max="2016"></input>
+	<input type="text" class="picture" placeholder="Enter a picture URL"></input>
+	<input type="text" class="genres" placeholder="Enter the movie genres, (action,drama)"></input>
+	<input type="text" class="characters" placeholder="Enter the movie characters"></input>
+	<input type="number" class="runtime" placeholder="Enter the movie runtime"></input>
+	<input type="text" class="mature" placeholder="Enter the mature rating"></input>
+	<input type="text" class="directors" placeholder="Enter the movie directors"></input>
+	<input type="text" class="stars" placeholder="Enter the movie stars"></input>
+	<input type="text" class="writers" placeholder="Enter the movie writers"></input>
+	<input type="submit" class="submit" value="Register"></input>
+        <a href="/" class="link">Cancel</a>
       </form>
     </template>
 </body>
-
+  
 </html>

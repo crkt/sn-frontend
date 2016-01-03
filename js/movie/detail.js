@@ -131,6 +131,7 @@ define(['widget', 'utils'], function (Widgets, Utils) {
 
   Detail.prototype.updateRating = function (rating) {
     this.view.setRating(rating.user_rating);
+    this.view.setAvgRating(rating.rating);
     this.view.setVotes(rating.nr_votes);
   }
 

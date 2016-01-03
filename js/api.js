@@ -104,11 +104,14 @@ define([],function()
   }
   
   var rateMovie = function (id,rating,user,success,error) {
+    var req = {user_id: user, rating: rating, movie: id};
     send("PUT",
          "/movie/rating",
-         {user_id: user, rating: rating, movie: id},
+         req,
          success,
-         error,
+         function (resp) {
+           console.log("Error on rating movie" + resp);
+         },
          function (xhr) {
            console.log("Failure" + xhr);
          });
@@ -127,6 +130,20 @@ define([],function()
 
   var fetchMovieId = function (id, success) {
     var req = {movie: id};
+    send("PUT",
+         "/movie/id",
+         req,
+         success,
+         function (xhr) {
+           console.log("Failed to get genres");
+         },
+         function (xhr) {
+           console.log("Failed to get genres");
+         });
+  }
+
+  var fetchMovieIdWithUser = function (movie, user, success) {
+    var req = {movie: movie, user: user};
     send("PUT",
          "/movie/id",
          req,
@@ -202,6 +219,7 @@ define([],function()
           });
   }
 
+  api.rate = rateMovie;
   api.random = random;
   api.login = loginUser;
   api.register = registerUser;
@@ -211,6 +229,7 @@ define([],function()
   api.fetchGenres = fetchGenres;
   api.fetchMovieId = fetchMovieId;
   api.fetchMovieSummary = fetchMovieId;
+  api.fetchMovieSummaryUser = fetchMovieIdWithUser;
 
 
   return api;

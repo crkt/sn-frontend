@@ -1,15 +1,15 @@
-body {
-    
+body {    
     margin:0;
-    background: black;
-    
+    background: black;   
 }
 
 h1 {
-    margin: 80;
+    margin: auto;
+    color: black;
     padding: 0;
     text-align: center;
-    color: white
+    width: 800px;
+    background-color: #ddd;
 }
 
 input {
@@ -21,8 +21,11 @@ input {
 
 #movie {
     padding-top: 15px;
-    margin: auto;
-    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    background-color: #ddd;
+    border-radius: 0px 0px 5px 5px;
 }
 
 #movie span {
@@ -35,137 +38,32 @@ input {
     width: 36px;
 }
 
-#movie input {
-    border: none;
+#movie .register * {
+    display: block;
+    margin: auto;
+    width: 350px;
+}
+
+#movie .register .info {
     height: 48px;
-    outline: none;
-}
-
-#movie input[type="text"] {
-    background: #e1e1e1;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    border-radius: 5px 5px 0 0;
-	
-    color: #363636;
+    line-height: 48px;
     padding-left: 36px;
-    width: 240px;
+    box-sizing: border-box;
 }
 
-#movie input[type="number"] {
-    background: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
+#movie .register input {
+    height: 48px;
+    box-sizing: border-box;
     padding-left: 36px;
-    width: 240px;
 }
 
-#movie input[type="file"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
+#movie .register .plot {
+    height: 128px;
+    font-size: 14px;
     padding-left: 36px;
-    width: 240px;
+    padding-right: 36px;
+    box-sizing: border-box;
 }
-
-#movie input[type="text"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
-    padding-left: 36px;
-    width: 240px;
-}
-
-#movie input[type="text"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
-    padding-left: 36px;
-    width: 240px;
-}
-
-#movie input[type="number"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
-    padding-left: 36px;
-    width: 240px;
-}
-
-#movie input[type="number"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
-    padding-left: 36px;
-    width: 240px;
-}
-
-#movie input[type="text"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
-    padding-left: 36px;
-    width: 240px;
-}
-
-#movie input[type="text"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
-    padding-left: 36px;
-    width: 240px;
-}
-
-#movie input[type="text"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
-    padding-left: 36px;
-    width: 240px;
-}
-
-#movie input[type="text"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-	border-radius: 0 0 5px 5px;
-    color: #363636;
-    padding-left: 36px;
-    width: 240px;
-}
-
-#movie input[type="submit"] {
-    background-color: #e1e1e1;
-    border-top: 1px solid #828282;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-    color: #363636;
-    padding-left: 36px;
-    width: 240px;
-}
-
-
-
 
 #movie input[type="submit"] {
     background: #EB1315;
@@ -177,22 +75,24 @@ input {
     text-align: center;
     margin-top: 20px;
     text-transform: uppercase;
-    width: 240px;
     cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0px;
 }
 
 #movie .cancel {
-	background: #EB1315;
-	border: 1px solid #391515;
-	border-radius: 5px;
+    background: #EB1315;
+    border: 1px solid #391515;
+    border-radius: 5px;
     color: #fff;
-	font-weight: bold;
-	line-height: 48px;
-	display: inline-block;
-	text-align: center;
-	text-transform: uppercase;
-	width: 100%;
-	cursor: pointer;
+    font-weight: bold;
+    line-height: 48px;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    cursor: pointer;
 }
 
 
@@ -201,13 +101,15 @@ input {
 }
 
 #movie .cancel:hover {
-	background: #F46E6F;
+    background: #F46E6F;
 }
 
 a { 
     display: block;
-    width: 240px;
-    margin: auto;    
+    margin: auto;  
+    height: 48px;
+    line-height: 48px;
+    width: 350px;
     text-align: center;
     font-weight: bold;
     color: #FF69B4;

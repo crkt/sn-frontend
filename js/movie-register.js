@@ -5,8 +5,7 @@ define(['api','movie/register'], function(API, Register) {
 
   register.registerCallback = function (id) {
     // Go back to the main page with the user
-    window.search.id = id;
-	window.location = "/movie";
+    window.location = "/movie" + "?id=" + id.id;
   }
 
 });

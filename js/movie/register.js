@@ -5,17 +5,17 @@ define(['api'], function(API) {
     this.dom = document.importNode(template.content, true);
     this.form = this.dom.querySelector(".register");
     this.title = this.dom.querySelector(".title");
-	this.plot = this.dom.querySelector(".plot");
-	this.year = this.dom.querySelector(".year");
-	this.picture = this.dom.querySelector(".picture");
-	this.genres = this.dom.querySelector(".genres");
-	this.characters = this.dom.querySelector(".characters");
-	this.runtime = this.dom.querySelector(".runtime");
-	this.mature = this.dom.querySelector(".mature");
-	this.directors = this.dom.querySelector(".directors");
-	this.stars = this.dom.querySelector(".stars");
-	this.writers = this.dom.querySelector(".writers");
-	
+    this.plot = this.dom.querySelector(".plot");
+    this.year = this.dom.querySelector(".year");
+    this.picture = this.dom.querySelector(".picture");
+    this.genres = this.dom.querySelector(".genres");
+    this.characters = this.dom.querySelector(".characters");
+    this.runtime = this.dom.querySelector(".runtime");
+    this.mature = this.dom.querySelector(".mature");
+    this.directors = this.dom.querySelector(".directors");
+    this.stars = this.dom.querySelector(".stars");
+    this.writers = this.dom.querySelector(".writers");
+    
 
 
     var self = this;
@@ -26,13 +26,13 @@ define(['api'], function(API) {
                         self.plot.value,
                         self.year.value,
                         self.picture.value,
-						self.genres.value,
-						self.characters.value,
-						self.runtime.value,
-						self.mature.value,
-						self.directors.value,
-						self.stars.value,
-						self.writers.value);
+			self.genres.value.split(","),
+			self.characters.value,
+			self.runtime.value,
+			self.mature.value,
+			self.directors.value,
+			self.stars.value,
+			self.writers.value);
       }
     }, false);
   }
@@ -100,36 +100,36 @@ define(['api'], function(API) {
   }
 
   Register.prototype.onRegister = function (title,
-											plot,
-											year,
-											picture,
-											genres,
-											characters,
-											runtime,
-											mature,
-											directors,
-											stars,
-											writers) {
+					    plot,
+					    year,
+					    picture,
+					    genres,
+					    characters,
+					    runtime,
+					    mature,
+					    directors,
+					    stars,
+					    writers) {
     var self = this;
     if (self.registerCallback) {
-		var movie = {
-			title: title,
-			plot: plot,
-			year: year,
-			picture: picture,
-			genres: genres,
-			characters: characters,
-			runtime: runtime,
-			mature: mature,
-			directors: directors,
-			stars: stars,
-			writers: writers 
-		};
+      var movie = {
+	title: title,
+	plot: plot,
+	year: year,
+	picture: picture,
+	genres: genres,
+	characters: characters,
+	runtime: runtime,
+	mature: mature,
+	directors: directors,
+	stars: stars,
+	writers: writers 
+      };
       API.registerMovie(movie,
-                   function (r) {
-                     self.registerCallback(r);
-                   },
-                   self.onError.bind(self));
+                        function (r) {
+                          self.registerCallback(r);
+                        },
+                        self.onError.bind(self));
     }
   }
 
@@ -137,4 +137,5 @@ define(['api'], function(API) {
   return Register;
   
 });  
+
 
