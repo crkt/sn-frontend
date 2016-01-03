@@ -1,9 +1,10 @@
 body{
 	margin:0;
+	background: black;
 }
 
 header {
-	background: #999;
+	background: #EB1315;
 	color: white;
 	padding: 15px 15px 0px 15px;
 }
@@ -11,6 +12,7 @@ header {
 header h1 {
 	margin: 0;
 	display: inline;
+	color: black;
 }
 
 nav ul {
@@ -49,4 +51,8 @@ nav ul li a{
 
 footer {
 	clear:both;
+}
+
+.information {
+	color: white;
 }
