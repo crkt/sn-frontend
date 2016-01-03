@@ -2,7 +2,9 @@ define(['api','utils'], function(API, Utils) {
 
   var exports = {};
 
-
+  /**
+     Genre view
+  **/
   function GenreInputView () {
     var template = document.querySelector("#genre-input");
     this.dom = document.importNode(template.content, true);
@@ -51,8 +53,36 @@ define(['api','utils'], function(API, Utils) {
     this.dom = document.importNode(template.content, true);
     this.form = this.dom.querySelector(".search-form");
     this.title = this.dom.querySelector(".title");
+    this.yearMin = this.dom.querySelector(".year-min");
+    this.yearMax = this.dom.querySelector(".year-max");
+    this.runtimeMin = this.dom.querySelector(".runtime-min");
+    this.runtimeMax = this.dom.querySelector(".runtime-max");    
     this.genres = this.dom.querySelector(".genres");
     this.random = this.dom.querySelector(".random");
+
+    var self = this;
+    this.title.addEventListener("change", function (e) {
+      if (self.titleChange)
+        self.titleChange(e.target.value);
+    }, false);
+    
+    this.yearMin.addEventListener("change", function (e) {
+      if (self.yearMinChange)
+        self.yearMinChange(e.target.value);
+    }, false);
+    this.yearMax.addEventListener("change", function (e) {
+      if (self.yearMaxChange)
+        self.yearMaxChange(e.target.value);
+    }, false);
+
+    this.runtimeMin.addEventListener("change", function (e) {
+      if (self.runtimeMinChange)
+        self.runtimeMinChange(e.target.value);
+    }, false);
+    this.runtimeMax.addEventListener("change", function (e) {
+      if (self.runtimeMaxChange)
+        self.runtimeMaxChange(e.target.value);
+    }, false);
   }
 
   SearchView.prototype.addGenreInput = function (item) {
@@ -81,8 +111,8 @@ define(['api','utils'], function(API, Utils) {
   function SearchModel () {
     this.title = undefined;
     this.genres = undefined;
-    this.runtime = undefined;
-    this.year = undefined;
+    this.runtime = {min:0, max:800};
+    this.year = {min:1800, max:2016};
     this.user = undefined;
   }
 
@@ -106,12 +136,20 @@ define(['api','utils'], function(API, Utils) {
     }
   }
 
-  SearchModel.prototype.setRuntime = function (runtime) {
-    this.runtime = runtime === 0 ? undefined : runtime;
+  SearchModel.prototype.setRuntimeMin = function (runtime) {
+    this.runtime.min = runtime;
   }
 
-  SearchModel.prototype.setYear = function (year) {
-    this.year = (year === 0 || year < 0) ? undefined : year;
+  SearchModel.prototype.setRuntimeMax = function (runtime) {
+    this.runtime.max = runtime;
+  }
+
+  SearchModel.prototype.setYearMin = function (year) {
+    this.year.min = year
+  }
+
+  SearchModel.prototype.setYearMax = function (year) {
+    this.year.max = year
   }
 
   SearchModel.prototype.setUser = function (user) {
@@ -128,6 +166,11 @@ define(['api','utils'], function(API, Utils) {
 
     this.view.onSearch(Search.prototype.search.bind(this));
     this.view.onRandom(Search.prototype.random.bind(this));
+    this.view.titleChange = Search.prototype.setTitle.bind(this);
+    this.view.yearMinChange = Search.prototype.setYearMin.bind(this);
+    this.view.yearMaxChange = Search.prototype.setYearMax.bind(this);
+    this.view.runtimeMinChange = Search.prototype.setRuntimeMin.bind(this);
+    this.view.runtimeMaxChange = Search.prototype.setRuntimeMax.bind(this);
 
     this.model = new SearchModel();
 
@@ -141,13 +184,21 @@ define(['api','utils'], function(API, Utils) {
     this.model.setTitle(title);
   }
 
-  Search.prototype.setRuntime = function (runtime) {
-    this.model.setRuntime(runtime);
+  Search.prototype.setYearMin = function (year) {
+    this.model.setYearMin(year);
   }
-  
-  Search.prototype.setYear = function (year) {
-    this.model.setYear(year);
+
+  Search.prototype.setYearMax = function (year) {
+    this.model.setYearMax(year);
   }
+
+  Search.prototype.setRuntimeMin = function (runtime) {
+    this.model.setRuntimeMin(runtime);
+  }
+
+  Search.prototype.setRuntimeMax = function (runtime) {
+    this.model.setRuntimeMax(runtime);
+  } 
 
   Search.prototype.addGenre = function (genre) {
     var item = new GenreInput();    

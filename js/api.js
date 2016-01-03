@@ -68,8 +68,10 @@ define([],function()
          data,
          success,
          error,
-         failure);
-  }
+         failure,
+        202,
+        400);
+  }    
 
   var search = function (dest, data, success, error, failure) {
     send("PUT",
@@ -197,9 +199,7 @@ define([],function()
           error,
           function (xhr) {
             console.log("Failed to login");
-          },
-         202,
-         400);
+          });
   }
 
   api.random = random;
