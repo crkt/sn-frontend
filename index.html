@@ -28,6 +28,14 @@
   </fieldset>
 </template>
 
+<!-- Min and max input widget -->
+<template id="min-max">
+  <div class="pane">  
+    <input class="min" type="number"></input>
+    <input class="max" type="number"></input>
+  </div>
+</template>
+
 <!-- Genre widget -->
 <template id="genre-input">
   <div class="genre-button">
@@ -85,6 +93,14 @@
 <template id="search">
   <form class="search-form">
     <input class="title" placeholder="Search with title"></input>
+    <div class="year-pane">
+      <input class="year-min" type="number" min="1930" max="2016" placeholder="1930">
+      <input class="year-max" type="number" min="1930" max="2016" placeholder="2016">
+    </div>
+    <div class="runtime-pane">
+      <input class="runtime-min" type="number" min="0" max="250" placeholder="0">
+      <input class="runtime-max" type="number" min="0" max="250" placeholder="250">
+    </div>
     <fieldset class="genres">
     </fieldset>
     <input type="submit" value="Search"></input>
