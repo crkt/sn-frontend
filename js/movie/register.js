@@ -1,5 +1,11 @@
 define(['api'], function(API) {
   
+  /** 
+      Movie Register
+
+      Handles the registration of a movie, all validation and such will go in here
+  **/
+
   function RegisterView() {
     var template = document.querySelector("#movie-register");
     this.dom = document.importNode(template.content, true);

@@ -1,7 +1,11 @@
 define(['api','widget'], function (API, Widget) 
 {
 
-  var exports = {};
+  /** 
+      Movie List
+      
+      Creates a Movie list to present movies in.
+   **/
 
   /*
     Movie Item View
@@ -10,19 +14,12 @@ define(['api','widget'], function (API, Widget)
     var template = document.querySelector("#movie-item");
     this.dom = document.importNode(template.content, true);
     this.movie = this.dom.querySelector(".movie");
-    //this.title = this.dom.querySelector(".title");
     this.image = this.dom.querySelector(".image");
     this.avgRating = this.dom.querySelector(".average-rating");
-      //new Widget.Rating(this.dom.querySelector(".average-rating"));
     this.votes = this.dom.querySelector(".votes");
-    //this.userRating = new Widget.Rating(this.dom.querySelector(".user-rating"));
+
 
     var self = this;
-    /*this.userRating.onRatingCallback = function (value) {
-      if (self.rateMovie) {
-        self.rateMovie(value);
-      }
-    }*/
 
     this.movie.addEventListener("click", function (e) {
       if (self.clickMovie) {
@@ -36,25 +33,16 @@ define(['api','widget'], function (API, Widget)
     this.movie.id = "movie-" + id;
   }
 
-  MovieItemView.prototype.setTitle = function (title) {
-    //this.title.textContent = title;
-  }
-
   MovieItemView.prototype.setImage = function (url) {
     this.image.src = url;
   }
 
   MovieItemView.prototype.setAverageRating = function (rating) {
-    //this.avgRating.view.setRating(rating);
     this.avgRating.textContent = rating;
   }
 
   MovieItemView.prototype.setVotes = function (votes) {
     this.votes.textContent = votes;
-  }
-
-  MovieItemView.prototype.setUserRating = function (rating) {
-    //this.userRating.view.setRating(rating);
   }
 
   /*
@@ -70,9 +58,7 @@ define(['api','widget'], function (API, Widget)
 
   MovieItem.prototype.setMovie = function (movie) {
     this.view.setId(movie.id);
-    this.view.setTitle(movie.title);
     this.view.setImage(movie.picture);
-    this.view.setUserRating(movie.rating.user_rating);
     this.view.setAverageRating(movie.rating.rating);
     this.view.setVotes(movie.rating.nr_votes);
     this.movie = movie;

@@ -1,5 +1,15 @@
 define([], function() {
-  
+
+  /**
+     Header
+     The headers controller and view.
+     It can hide and show links in its header tag.
+  **/
+
+
+  /*
+    HeaderView
+   */
   function HeaderView () {
     var template = document.querySelector("#header-temp");
     this.dom = document.importNode(template.content, true);
@@ -25,6 +35,9 @@ define([], function() {
     this.register.classList.add("hidden");
   }
 
+  /*
+    Header presenter
+   */
   function Header(view) {
     this.view = view || new HeaderView();
     this.onSignOut = null;

@@ -1,5 +1,11 @@
 define([], function() {
   
+  /**
+     Utils
+     
+     Contains all of the common utilites that are used in the page.
+  **/
+
   var utils = {};
   
   utils.capitalizeString = function (s) {

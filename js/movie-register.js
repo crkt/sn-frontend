@@ -1,4 +1,10 @@
 define(['api','movie/register'], function(API, Register) {
+
+  /**
+     Movie Register
+
+     Register a movie file, main.
+   **/
   
   var register = new Register();
   document.querySelector("#movie").appendChild(register.view.dom);

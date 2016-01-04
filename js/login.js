@@ -1,5 +1,11 @@
 define(['user/login'], function (Login) {
   
+  /**
+     Login
+     
+     The main file for Login.k
+  **/
+
   var login = new Login();
   document.querySelector("#user").appendChild(login.view.dom);
 

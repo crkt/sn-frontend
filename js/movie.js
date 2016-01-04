@@ -1,5 +1,11 @@
 define(['movie/detail','api', 'utils'], function(Detail, API, Utils) {
   
+  /**
+     Detail
+
+     The detail view of the client.
+  **/
+
   var movie_id = parseInt(Utils.getQueryStringValue("id"));
 
   var currentUser = localStorage.getItem("user");

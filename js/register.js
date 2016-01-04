@@ -1,5 +1,11 @@
 define(['api','user/register'], function(API, Register) {
   
+  /**
+     Register
+
+     The main file of the register a user page
+  **/
+
   var register = new Register();
   document.querySelector("#user").appendChild(register.view.dom);
 

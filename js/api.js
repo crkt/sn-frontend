@@ -2,6 +2,15 @@ define([],function()
 {
   var api = {};
 
+  /**
+     API
+     This file contains all of the request that can be made to the server.
+     the api object is the one that will contain all of the functions that are exported.
+     see bottom of the file to see what get's exported or add an export of a function.
+
+     Uses the default XMLHttpRequest to perform all requests.
+  **/
+
   var fetch = function(dest, success, error, failure) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", dest, true);

@@ -1,5 +1,12 @@
 define(['api','utils'], function(API, Utils) {
 
+  /** 
+      Search
+
+      This file contains all of the search related things. 
+      And the genre input buttons.
+   **/
+
   var exports = {};
 
   /**

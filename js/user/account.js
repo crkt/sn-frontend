@@ -1,5 +1,13 @@
 define([], function () {
 
+  /**
+     Account
+
+  **/
+
+  /**
+     Account view
+  **/
   function AccountView() {
     var template = document.querySelector("#user-info");
     this.dom = document.importNode(template.content, true);
@@ -10,6 +18,9 @@ define([], function () {
     this.userName.textContent = name;
   }
 
+  /** 
+      Account Presenter 
+  **/
   function Account() {
     this.view = new AccountView();
   }

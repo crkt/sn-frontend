@@ -1,5 +1,8 @@
 define(['api'], function(API) {
   
+  /**
+     Login View
+  **/
   function LoginView() {
     var template = document.querySelector("#user-login");
     this.dom = document.importNode(template.content, true);
@@ -25,6 +28,9 @@ define(['api'], function(API) {
     this.password.value = password;
   }
 
+  /** 
+      Login Presenter
+  **/
   function Login(view) {
     this.view = view || new LoginView();
     

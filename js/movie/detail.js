@@ -1,4 +1,11 @@
 define(['widget', 'utils'], function (Widgets, Utils) {
+  
+  /** 
+      Movie Detail
+
+      Here you will find all of the things required to present a movie in a detailed view.
+   **/
+
 
   /*
     Movie detail view

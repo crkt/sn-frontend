@@ -1,5 +1,11 @@
 define(['utils'], function(Utils) {
 
+  /**
+     Movie Sort
+
+     Creates the sorting view that will sort movies on the different attributes.
+  **/
+
   function SortView() {
     var template = document.querySelector("#movie-sort");
     this.dom = document.importNode(template.content, true);

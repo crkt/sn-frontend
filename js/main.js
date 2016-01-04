@@ -7,6 +7,12 @@ requirejs.config({
 requirejs(['movie/list','movie/search','movie/sort','api','header'],function(List, Search, Sort, API, Header) 
 {    
 
+  /**
+     Main
+
+     This file is the main file, it's for the / or index of the webpage.
+  **/
+
   var header = new Header();
   document.querySelector("header").appendChild(header.view.dom);
 
@@ -30,6 +36,10 @@ requirejs(['movie/list','movie/search','movie/sort','api','header'],function(Lis
   } else {
     header.userLoggedOut();
   }
+
+  /** 
+      Callbacks
+  **/
 
   header.onSignOut = function () {
     window.location.reload(true);
