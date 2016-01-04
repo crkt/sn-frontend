@@ -96,19 +96,30 @@
 
 <template id="search">
   <form class="search-form">
-    <input class="title" placeholder="Search with title"></input>
+    <div class="container">
+      <input class="title" placeholder="Search with title"></input>
+    </div>
+    <h3> Search with year range </h3>
     <div class="year-pane">
+      <label class="info-label">From</label>
       <input class="year-min" type="number" min="1930" max="2016" placeholder="1930">
+      <label class="info-label">To</label>
       <input class="year-max" type="number" min="1930" max="2016" placeholder="2016">
     </div>
+    <h3> Search with runtime range </h3>
     <div class="runtime-pane">
+      <label class="info-label">From</label>
       <input class="runtime-min" type="number" min="0" max="250" placeholder="0">
+      <label class="info-label">To</label>
       <input class="runtime-max" type="number" min="0" max="250" placeholder="250">
     </div>
+    <h3> Select genres to search on </h3>
     <fieldset class="genres">
     </fieldset>
-    <input type="submit" value="Search"></input>
-    <input class="random" type="button" value="Random"></input> 
+    <div class="container">
+      <input class="submit" type="submit" value="Search"></input>
+      <input class="random" type="button" value="Random"></input> 
+    </div>
   </form>
 </template>
 
