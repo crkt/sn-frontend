@@ -38,6 +38,10 @@ input {
     width: 36px;
 }
 
+#movie .register {
+    padding-bottom: 15px;
+}
+
 #movie .register * {
     display: block;
     margin: auto;
@@ -88,11 +92,12 @@ input {
     color: #fff;
     font-weight: bold;
     line-height: 48px;
-    display: inline-block;
+    display: block;
     text-align: center;
     text-transform: uppercase;
-    width: 100%;
     cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 

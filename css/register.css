@@ -95,17 +95,17 @@ input {
 }
 
 #user .cancel {
-	background: #EB1315;
-	border: 1px solid #391515;
-	border-radius: 5px;
+    background: #EB1315;
+    border: 1px solid #391515;
+    border-radius: 5px;
     color: #fff;
-	font-weight: bold;
-	line-height: 48px;
-	display: inline-block;
-	text-align: center;
-	text-transform: uppercase;
-	width: 100%;
-	cursor: pointer;
+    font-weight: bold;
+    line-height: 48px;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    cursor: pointer;
 }
 
 
@@ -114,7 +114,7 @@ input {
 }
 
 #user .cancel:hover {
-	background: #F46E6F;
+    background: #F46E6F;
 }
 
 a { 
