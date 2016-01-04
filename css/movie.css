@@ -193,17 +193,27 @@ fieldset, label {
     padding-top: 15px;
 }
 
-#moviez-detail #buttons .back {
+#moviez-detail #buttons .back,
+#moviez-detail #buttons .random {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
     color: black;
-    background: rgb(221,221,221);
-    border-radius: 5px;
-    box-sizing: border-box;
-    padding-left: 5px;
-    padding-right: 5px;
+    border: none;
+    background-color: #fff;
+    width: 100px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: top;
+}
+
+#moviez-detail #buttons .back {
+    margin-left: 15px;
 }
 
 .votes .rating {
-
     padding: center;
 }
 
@@ -274,6 +284,10 @@ fieldset, label {
     font-size: 18px;
     width: 128px;
     background-color: #fff;
+}
+
+.search-form .random {
+    margin-left: 15px;
 }
 
 /** SORT **/
