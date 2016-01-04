@@ -1,9 +1,11 @@
 define(['user/account','movie/list','api'], function (Account, List, API) {
 
-  // Code goes here
-  // Look at the movie/list.js
-  // And main.js for adding movies to the list.
-  // Look at API to find the user rated searcg query.
+  /**
+     Account
+
+     The main file for the user profile.
+  **/
+
   var account = new Account();
   document.querySelector("#profile-info").appendChild(account.view.dom);
 
