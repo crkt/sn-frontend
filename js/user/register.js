@@ -20,6 +20,10 @@ define(['api'], function(API) {
                         self.repeat.value);
       }
     }, false);
+
+    this.email.addEventListener("change", function (e) {
+      e.target.classList.remove("invalid");
+    });
   }
 
   RegisterView.prototype.setUsername = function (name) {
@@ -47,13 +51,7 @@ define(['api'], function(API) {
   }
 
   Register.prototype.onError = function (e) {
-    if (e.field == "email") {
-      this.view.email.classList.add("invalid");
-    }
-    if (e.field == "user") {
-      this.view.user.classList.add("invalid");
-    }
-    console.log("On error in register" + e);
+    alert("User already exists");
   }
 
   Register.prototype.onRegister = function (name, email, password, repeat) {

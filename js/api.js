@@ -89,7 +89,9 @@ define([],function()
          data,
          success,
          error,
-         failure);
+         failure,
+        201,
+        400);
   }
   
   var random = function (success) {
@@ -206,9 +208,7 @@ define([],function()
              error,
              function (xhr) {
                console.log("Failed to create user");
-             },
-            201,
-            400);
+             });
   }
  
   var movieRegister = function (data, success, error) {

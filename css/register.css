@@ -41,6 +41,10 @@ input {
     outline: none;
 }
 
+#user input.invalid {
+    border: 1px solid red !important;
+}
+
 #user input[type="text"] {
     background: #e1e1e1;
     border-top: 1px solid #000;
