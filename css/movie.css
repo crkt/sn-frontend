@@ -7,6 +7,10 @@ a {
     text-decoration: none;
 }
 
+#main-content {
+    background: url("/images/background.jpg");
+}
+
 /** HEADER **/
 header {
     display: flex;
@@ -97,7 +101,7 @@ fieldset, label {
     background-color: black;
     border: 1px solid black;
     color: white;
-    margin-bottom: 75px;
+    margin-bottom: 36px;
 }
 
 .movie .average-rating {
@@ -139,6 +143,7 @@ fieldset, label {
 /** DETAIL **/
 #moviez-detail {
     height: 100%;
+    background: url("/images/background.jpg");
 }
 
 
@@ -220,6 +225,10 @@ fieldset, label {
 /** SEARCH **/
 
 /** Structure **/
+.search-header {
+    text-align: center;
+}
+
 .search-form > div,
 .search-form > fieldset,
 .search-form h3 {
@@ -227,6 +236,13 @@ fieldset, label {
     padding-top: 5px;
     padding-bottom: 5px;
     margin: 0;
+}
+
+.search-form {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .search-form input[type="text"],
@@ -240,6 +256,7 @@ fieldset, label {
 /** Title **/
 .search-form .title {
     font-size: 22px;
+    text-align: center;
 }
 
 /** Year **/
@@ -248,8 +265,10 @@ fieldset, label {
     display: inline-block;
 }
 
-.genres {
+.search-form .genres {
     width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .genre-button {
